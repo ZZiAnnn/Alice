@@ -12,12 +12,13 @@ public class AliceController : MonoBehaviour
     public GameObject bullet;
     private GameObject biu;
     bool isAttacking;
-
+    bool isJump;
     void Start()
     {
         animator=GetComponent<Animator>();
         rigid=GetComponent<Rigidbody2D>();
         isAttacking = false;
+        isJump = false;
     }
 
     void Update()
@@ -25,6 +26,7 @@ public class AliceController : MonoBehaviour
         float verticalVelocity = rigid.velocity.y;
         if (Input.GetKeyDown(KeyCode.Space)&&cnt<2)
         {
+            isJump = true;
             isGrounded = false;
             if (verticalVelocity < 0.0f)
             {
@@ -44,11 +46,14 @@ public class AliceController : MonoBehaviour
         if(isGrounded)
         {
             animator.SetBool("DropToRun",true);
+            isJump = false;
         }
         if(!isAttacking)
         {
             if (Input.GetMouseButtonDown(0))
             {
+                if (!isJump) animator.SetTrigger("Attack");
+                else isAttacking = true;
                 if (biu == null)
                 {
                     animator.SetTrigger("Attack");
@@ -83,10 +88,10 @@ public class AliceController : MonoBehaviour
     public void AttacktoRun()
     {
         animator.SetBool("AttackToRun", true);
-        isAttacking = false;
     }
     public void InitAnimator()
     {
+        isAttacking = false;
         animator.SetBool("AttackToRun", false);
         animator.SetBool("JumpToDrop", false);
         //animator.SetBool("RunToJump", false);
