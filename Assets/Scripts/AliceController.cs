@@ -49,17 +49,17 @@ public class AliceController : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                animator.SetTrigger("Attack");
-                isAttacking = true;
                 if (biu == null)
                 {
-                    biu = Instantiate(bullet, transform.position + new Vector3(0, -0.4f, 0), Quaternion.identity);
+                    animator.SetTrigger("Attack");
+                    isAttacking = true;
+                    biu = Instantiate(bullet, transform.position + new Vector3(0.0f, -0.4f, 0), Quaternion.identity);
                 }
             }
         }
         if(biu!=null)
         {
-            biu.transform.position+=new Vector3(0.1f,0,0);
+            biu.transform.position+=new Vector3(0.05f,0,0);
             if(biu.transform.position.x>10)
             {
                 Destroy(biu);
