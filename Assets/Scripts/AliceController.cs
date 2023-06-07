@@ -11,25 +11,32 @@ public class AliceController : MonoBehaviour
     bool isGrounded=false;
     public GameObject bullet;
     private GameObject biu;
+    bool isAttacking;
 
     void Start()
     {
         animator=GetComponent<Animator>();
         rigid=GetComponent<Rigidbody2D>();
+        isAttacking = false;
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space)&&cnt<2)
-        {
-            animator.SetBool("RunToJump",true);
-            rigid.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-            cnt=cnt+1; 
-        }
         float verticalVelocity = rigid.velocity.y;
-        if(verticalVelocity<=0.0f)
+        if (Input.GetKeyDown(KeyCode.Space)&&cnt<2)
         {
-            animator.SetBool("RunToJump",false);
+            isGrounded = false;
+            if (verticalVelocity < 0.0f)
+            {
+                animator.SetBool("DropToJump", true);
+            }
+            else animator.SetBool("RunToJump", true);
+            rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            cnt++; 
+        }
+        if(verticalVelocity<0.0f)
+        {
+            animator.SetBool("RunToJump", false);
             animator.SetBool("JumpToDrop",true);
             animator.SetBool("DropToRun",false);
         }
@@ -38,16 +45,18 @@ public class AliceController : MonoBehaviour
         {
             animator.SetBool("DropToRun",true);
         }
-
-        if(Input.GetKeyDown(KeyCode.J))
+        if(!isAttacking)
         {
-            animator.SetTrigger("Attack");
-            if(biu==null)
+            if (Input.GetMouseButtonDown(0))
             {
-                biu = Instantiate(bullet,transform.position+new Vector3(0,-0.4f,0),Quaternion.identity);
+                animator.SetTrigger("Attack");
+                isAttacking = true;
+                if (biu == null)
+                {
+                    biu = Instantiate(bullet, transform.position + new Vector3(0, -0.4f, 0), Quaternion.identity);
+                }
             }
         }
-
         if(biu!=null)
         {
             biu.transform.position+=new Vector3(0.1f,0,0);
@@ -71,6 +80,21 @@ public class AliceController : MonoBehaviour
         // }
         isGrounded=true;
     }
-
-
+    public void AttacktoRun()
+    {
+        animator.SetBool("AttackToRun", true);
+        isAttacking = false;
+    }
+    public void InitAnimator()
+    {
+        animator.SetBool("AttackToRun", false);
+        animator.SetBool("JumpToDrop", false);
+        //animator.SetBool("RunToJump", false);
+        animator.SetBool("DropToJump", false);
+    }
+    public void Jump()
+    {
+        animator.SetBool("DropToJump", false);
+        animator.SetBool("JumpToDrop", false);
+    }
 }
