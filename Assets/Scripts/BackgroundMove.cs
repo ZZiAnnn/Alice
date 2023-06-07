@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BackgroundMove : MonoBehaviour
@@ -7,9 +8,11 @@ public class BackgroundMove : MonoBehaviour
     private GameObject[] background=new GameObject[3];
     public float Speed=0.05f;
     private float ystart,zstart;
+    float lasttime;
     void Start()
     {
-        for(int i=0;i<3;++i)
+        lasttime = Time.time;
+        for (int i=0;i<3;++i)
         {
             background[i] = GameObject.Find("Background_"+(i+1));
         }
@@ -19,15 +22,18 @@ public class BackgroundMove : MonoBehaviour
 
     void Update()
     {
-        for(int i=0;i<3;++i)
+        if (Time.time - lasttime >= 3)
         {
-            if(background[i].transform.position.x<-18.5f)
+            for (int i = 0; i < 3; ++i)
             {
-                background[i].transform.position=new Vector3(27.0f,ystart,zstart);
-            }
-            else
-            {
-                background[i].transform.position-=new Vector3(Speed,0,0);
+                if (background[i].transform.position.x < -18.5f)
+                {
+                    background[i].transform.position = new Vector3(27.0f, ystart, zstart);
+                }
+                else
+                {
+                    background[i].transform.position -= new Vector3(Speed, 0, 0);
+                }
             }
         }
     }

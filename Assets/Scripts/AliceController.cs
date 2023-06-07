@@ -11,13 +11,15 @@ public class AliceController : MonoBehaviour
     bool isGrounded=false;
     public GameObject bullet;
     private GameObject biu;
-    bool isAttacking;
-
+    bool isAttacking, isJump;
+    public AliceHP Alice_hp;
     void Start()
     {
         animator=GetComponent<Animator>();
         rigid=GetComponent<Rigidbody2D>();
+        Alice_hp = GetComponent<AliceHP>();
         isAttacking = false;
+        isJump = false;
     }
 
     void Update()
@@ -25,6 +27,7 @@ public class AliceController : MonoBehaviour
         float verticalVelocity = rigid.velocity.y;
         if (Input.GetKeyDown(KeyCode.Space)&&cnt<2)
         {
+            isJump = true;
             isGrounded = false;
             if (verticalVelocity < 0.0f)
             {
@@ -44,11 +47,14 @@ public class AliceController : MonoBehaviour
         if(isGrounded)
         {
             animator.SetBool("DropToRun",true);
+            isJump = false;
         }
         if(!isAttacking)
         {
             if (Input.GetMouseButtonDown(0))
             {
+                if (!isJump) animator.SetTrigger("Attack");
+                else isAttacking = true;
                 if (biu == null)
                 {
                     animator.SetTrigger("Attack");
@@ -66,27 +72,26 @@ public class AliceController : MonoBehaviour
             }
         }
 
-
     }
-
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(111);
-        cnt=0;
-        // if (collision.gameObject.tag == "Ground")
-        // {
-        //     Debug.Log(222);
-        //     isGrounded=true;
-        // }
-        isGrounded=true;
+        if (collision.gameObject.tag == "Ground")
+        {
+            isGrounded=true;
+            cnt=0;
+        }
+        else if(collision.gameObject.tag == "Barrier")
+        {
+            Alice_hp.HP-=10;
+        }
     }
     public void AttacktoRun()
     {
         animator.SetBool("AttackToRun", true);
-        isAttacking = false;
     }
     public void InitAnimator()
     {
+        isAttacking = false;
         animator.SetBool("AttackToRun", false);
         animator.SetBool("JumpToDrop", false);
         //animator.SetBool("RunToJump", false);
@@ -97,4 +102,5 @@ public class AliceController : MonoBehaviour
         animator.SetBool("DropToJump", false);
         animator.SetBool("JumpToDrop", false);
     }
+    
 }
