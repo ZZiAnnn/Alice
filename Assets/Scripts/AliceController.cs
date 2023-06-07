@@ -8,6 +8,9 @@ public class AliceController : MonoBehaviour
     Rigidbody2D rigid;
     private float jumpForce=5.0f;
     private int cnt=0;
+    bool isGrounded=false;
+    public GameObject bullet;
+    private GameObject biu;
 
     void Start()
     {
@@ -28,14 +31,45 @@ public class AliceController : MonoBehaviour
         {
             animator.SetBool("RunToJump",false);
             animator.SetBool("JumpToDrop",true);
+            animator.SetBool("DropToRun",false);
         }
-        bool isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 0.001f);
+
         if(isGrounded)
         {
-            cnt=0;
             animator.SetBool("DropToRun",true);
         }
 
+        if(Input.GetKeyDown(KeyCode.J))
+        {
+            animator.SetTrigger("Attack");
+            if(biu==null)
+            {
+                biu = Instantiate(bullet,transform.position+new Vector3(0,-0.4f,0),Quaternion.identity);
+            }
+        }
+
+        if(biu!=null)
+        {
+            biu.transform.position+=new Vector3(0.1f,0,0);
+            if(biu.transform.position.x>10)
+            {
+                Destroy(biu);
+            }
+        }
+
+
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log(111);
+        cnt=0;
+        // if (collision.gameObject.tag == "Ground")
+        // {
+        //     Debug.Log(222);
+        //     isGrounded=true;
+        // }
+        isGrounded=true;
     }
 
 
