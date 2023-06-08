@@ -6,6 +6,8 @@ public class BarrierMove : MonoBehaviour
 {
     private Transform tran;
     private Vector3 start;
+    public float moveSpeed = 8f;
+    float lasttime;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,14 @@ public class BarrierMove : MonoBehaviour
         else//到达结束点
         {
             tran.position = start + new Vector3(20.0f, 0, 0);
+            if (tran.position.x > -20)
+            {
+                tran.position -= new Vector3(moveSpeed * Time.deltaTime, 0, 0);
+            }
+            else//到达结束点
+            {
+                tran.position = start + new Vector3(20, 0, 0);
+            }
         }
     }
 }

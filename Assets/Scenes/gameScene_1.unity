@@ -1548,7 +1548,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1244538370
@@ -1578,6 +1578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3799a8ee2fb2f6489c48962da48a595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 8
 --- !u!114 &1244538372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1716,6 +1717,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mushRoomPreferb: {fileID: 2523866688316242840, guid: dd2b347521131d64c972504cee716c11, type: 3}
   smallMashroomPreferb: {fileID: 2791308385674749207, guid: 374250e120b56d24eacdb1ffe896f1d3, type: 3}
+  floatSteepPreferb: {fileID: 0}
   v0: 2
   accumlation: 0.2
 --- !u!1 &1689042998
@@ -2373,7 +2375,6 @@ GameObject:
   - component: {fileID: 2049301032}
   - component: {fileID: 2049301036}
   - component: {fileID: 2049301037}
-  - component: {fileID: 2049301039}
   - component: {fileID: 2049301038}
   m_Layer: 0
   m_Name: Alice
@@ -2543,18 +2544,6 @@ PolygonCollider2D:
       - {x: 0.77488464, y: -0.49859107}
       - {x: 0.72097695, y: 0.5704222}
       - {x: 0.5710608, y: 0.8825489}
---- !u!114 &2049301039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2049301031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25ef46c35fbaf5146bfa0ea9b63831fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2791308385455718633
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -128,7 +128,7 @@ public class AliceController : MonoBehaviour
         animator.SetBool("hurted", false);
         for (int i = 0; i < tmp.Length; i++)
         {
-            tmp[i].GetComponent<PolygonCollider2D>().enabled = true;
+            if (tmp[i]) tmp[i].GetComponent<PolygonCollider2D>().enabled = true;
         }
     }
     IEnumerator DelayedAction(float wait)

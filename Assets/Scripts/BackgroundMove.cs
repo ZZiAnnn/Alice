@@ -12,12 +12,12 @@ public class BackgroundMove : MonoBehaviour
     void Start()
     {
         lasttime = Time.time;
-        for (int i=0;i<3;++i)
+        for (int i = 0; i < 3; ++i) 
         {
-            background[i] = GameObject.Find("Background_"+(i+1));
+            background[i] = GameObject.Find("Background_" + (i + 1));
         }
-        ystart=background[0].transform.position.y;
-        zstart=background[0].transform.position.z;
+        ystart = background[0].transform.position.y;
+        zstart = background[0].transform.position.z;
     }
 
     void Update()
