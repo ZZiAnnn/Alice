@@ -9,7 +9,7 @@ public class AliceController : MonoBehaviour
     Animator animator;
     Rigidbody2D rigid;
     Transform tran;
-    private float jumpForce=5.0f;
+    private float jumpForce=4.5f;
     private int cnt=0;
     bool isGrounded=false;
     public GameObject bullet;
