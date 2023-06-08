@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AliceController : MonoBehaviour
 {
@@ -13,13 +14,15 @@ public class AliceController : MonoBehaviour
     public GameObject bullet;
     private GameObject biu;
     bool isAttacking, isJump;
-    public AliceHP Alice_hp;
+    public float HP = 100;
+    public Slider healthBar;
     private Vector3 startpos;
+
     void Start()
     {
         animator=GetComponent<Animator>();
         rigid=GetComponent<Rigidbody2D>();
-        Alice_hp = GetComponent<AliceHP>();
+        //Alice_hp = GetComponent<AliceHP>();
         isAttacking = false;
         isJump = false;
         tran=GetComponent<Transform>();
@@ -29,6 +32,7 @@ public class AliceController : MonoBehaviour
 
     void Update()
     {
+        healthBar.value = HP / 100;
         float verticalVelocity = rigid.velocity.y;
         if (Input.GetKeyDown(KeyCode.Space)&&cnt<2)
         {
@@ -88,7 +92,7 @@ public class AliceController : MonoBehaviour
         }
         else if(collision.gameObject.tag == "Barrier")
         {
-            Alice_hp.HP-=10;
+            HP-=10;
             StartCoroutine(DelayedAction(1.0f));
         }
     }
