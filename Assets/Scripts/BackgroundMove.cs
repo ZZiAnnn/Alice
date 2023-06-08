@@ -22,8 +22,8 @@ public class BackgroundMove : MonoBehaviour
 
     void Update()
     {
-        
-        BackgroundSpeed=TilemapMove.Speed*0.5f;
+
+        BackgroundSpeed = TilemapMove.Speed * 0.5f;
 
         if (Time.time - lasttime >= 3)
         {

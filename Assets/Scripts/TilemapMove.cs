@@ -6,14 +6,17 @@ using UnityEngine;
 public class TilemapMove : MonoBehaviour
 {
     private GameObject[] tilemap=new GameObject[32];
-    public GameObject mushRoomPreferb,smallMashroomPreferb,floatSteepPreferb;
+    public GameObject mushRoomPreferb, smallMashroomPreferb;//,floatSteepPreferb;
     private GameObject barrier;
+    private GameObject barrier2;
     public float v0=2.0f;
     public float accumlation=0.2f;
     public static  float currentTime = 0f;
     public static float Speed=2.00f;
     private float ystart,zstart;
     float lasttime;
+    private int[] mushRoomShow = { 6, 11, 16, 22, 25 ,28, 31, 34,39, 43, 47, 50, 54, 57 };
+    private int[] smallMushRoomShow = { 30, 37, 50, 52 };
     void Start()
     {
         StartCoroutine(StartTimer());
@@ -51,19 +54,41 @@ public class TilemapMove : MonoBehaviour
     }
     void BarrierController(int t)
     {
-        Speed=2+6.0f*t/60;
+        Speed = 4 + 6.0f * t / 60;
         //Debug.Log(t);
-        if(t>=60)//finished
+        if (t >= 60)//finished
         {
 
         }
-        else if(t==3&&barrier==null) barrier = Instantiate(mushRoomPreferb, transform.position + new Vector3(20.0f, -0.5f, 0), Quaternion.identity);
+        else if (isMushRoomAppear(t)&&barrier==null) barrier = Instantiate(mushRoomPreferb, transform.position + new Vector3(20.0f, -0.5f, 0), Quaternion.identity);
+        else if (isSmallMushRoomAppear(t)&&barrier2==null) barrier2 = Instantiate(smallMashroomPreferb, transform.position + new Vector3(20.0f, -1.3f, 0), Quaternion.identity);
         else
         {
 
         }
 
     }
+
+    bool isMushRoomAppear(int x)
+    {
+        foreach (int mrs in mushRoomShow)
+        {
+            if (x == mrs) return true;
+        }
+        return false;
+    }
+
+    bool isSmallMushRoomAppear(int x)
+    {
+        foreach (int smrs in smallMushRoomShow)
+        {
+            if (x == smrs) return true;
+        }
+        return false;
+    }
+
+
+
     void OnGUI() // 在屏幕上显示计时器的数值
     {
         int second = (int)(currentTime % 60) - 3;
