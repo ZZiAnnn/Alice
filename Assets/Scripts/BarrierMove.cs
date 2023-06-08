@@ -6,7 +6,7 @@ public class BarrierMove : MonoBehaviour
 {
     private Transform tran;
     private Vector3 start;
-    private float moveSpeed = 0.03f;
+    public float moveSpeed = 0.03f;
     float lasttime;
     // Start is called before the first frame update
     void Start()

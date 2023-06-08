@@ -30,7 +30,7 @@ public class AliceController : MonoBehaviour
         isDrop = false;
         tran =GetComponent<Transform>();
         startpos=tran.position;
-        startpos.y=-1.27024f;
+        startpos.y=0.0f;
     }
 
     void Update()
@@ -136,6 +136,7 @@ public class AliceController : MonoBehaviour
     {
         yield return new WaitForSeconds(wait); 
         tran.position=startpos;
+        Debug.Log(tran.position);
         animator.SetBool("hurted", true);
         tmp = GameObject.FindGameObjectsWithTag("Barrier");
         for(int i=0;i<tmp.Length;i++)
