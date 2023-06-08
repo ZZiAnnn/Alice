@@ -21,7 +21,7 @@ public class ChangeShader : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && flag == 0) 
         {
             //cam.SetReplacementShader(shader, "Water");
-            material.SetColor("_Color", new Color(0.42968f, 0.8671875f, 0.96875f, 0.67578f));
+            material.SetColor("_Color", new Color(0.70703f, 0.88671f, 0.92968f, 0.67578f));
             Debug.Log("!!!");
             flag = 1;
             time = 0;
@@ -34,7 +34,7 @@ public class ChangeShader : MonoBehaviour
         if (time >= 5 && flag == 1) 
         {
             flag = -1;
-            material.SetColor("_Color", new Color(0.70703f, 0.88671f, 0.92968f, 0.67578f));
+            material.SetColor("_Color", new Color(0.60937f, 0.640625f, 0.64843f, 0.67578f));
             //cam.ResetReplacementShader();
         }
         else if(time>= 6 && flag == -1)
