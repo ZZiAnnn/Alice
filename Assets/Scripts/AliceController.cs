@@ -14,6 +14,7 @@ public class AliceController : MonoBehaviour
     bool isGrounded=false;
     public GameObject bullet;
     private GameObject biu;
+    public float bulletSpeed = 50;
     bool isAttacking, isJump, isDrop;
     public float HP = 100;
     public Slider healthBar;
@@ -24,7 +25,6 @@ public class AliceController : MonoBehaviour
     {
         animator=GetComponent<Animator>();
         rigid=GetComponent<Rigidbody2D>();
-        //Alice_hp = GetComponent<AliceHP>();
         isAttacking = false;
         isJump = false;
         isDrop = false;
@@ -64,30 +64,31 @@ public class AliceController : MonoBehaviour
             isJump = false;
             isDrop = false;
         }
-        if(!isAttacking)
+
+        if(!isAttacking&& Input.GetMouseButtonDown(0))
         {
-            if (Input.GetMouseButtonDown(0))
+            if (biu == null)
             {
-                if (biu == null)
-                {
-                    if (!isJump) animator.SetTrigger("Attack");
-                    else isAttacking = true;
-                    animator.SetTrigger("Attack");
-                    isAttacking = true;
-                    biu = Instantiate(bullet, transform.position + new Vector3(0.0f, -0.4f, 0), Quaternion.identity);
-                }
+                if (!isJump) animator.SetTrigger("Attack");
+                else isAttacking = true;
+                animator.SetTrigger("Attack");
+                isAttacking = true;
+                biu = Instantiate(bullet, transform.position + new Vector3(0.0f, -0.4f, 0), Quaternion.identity);
             }
         }
         if(biu!=null)
         {
-            biu.transform.position+=new Vector3(0.1f,0,0);
-            if(biu.transform.position.x>10)
+            //biu.transform.Translate(Vector3.right * bulletSpeed * Time.deltaTime);
+            //biu.transform.position+=new Vector3(0.1f,0,0);
+
+            biu.transform.position += Vector3.right * bulletSpeed * Time.deltaTime;
+            if (biu.transform.position.x>10)
             {
-                Destroy(biu);
+                 Destroy(biu);
             }
         }
-
     }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log(collision.gameObject.tag);
@@ -96,7 +97,7 @@ public class AliceController : MonoBehaviour
             isGrounded=true;
             cnt=0;
         }
-        else if(collision.gameObject.tag == "Barrier")
+        else if(collision.gameObject.tag == "Barrier" || collision.gameObject.tag == "Barrier2")
         {
             HP-=10;
             Debug.Log(collision.gameObject.transform.position.x+"!!");

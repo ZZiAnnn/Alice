@@ -4,23 +4,18 @@ using UnityEngine;
 
 public class BulletShooted : MonoBehaviour
 {
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Barrier")
+        //Debug.Log("yes");
+        if (collision.gameObject.CompareTag("Barrier"))
         {
-            collision.gameObject.GetComponent<MushRoomHP>().hpdelete(100);
             Debug.Log("Collision with Barrier detected");
             Destroy(gameObject);
+            collision.gameObject.GetComponent<MushRoomHP>().hpdelete(50);
+            
         }
+
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Barrier")
-        {
-            other.gameObject.GetComponent<MushRoomHP>().hpdelete(100);
-        }
-        Destroy(gameObject);
-        Debug.Log("Collision with Barrier detected");
-    }
 }

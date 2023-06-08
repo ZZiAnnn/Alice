@@ -217,7 +217,7 @@ RectTransform:
   m_Children:
   - {fileID: 676146173}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -486,7 +486,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &434496017
 MonoBehaviour:
@@ -740,7 +740,7 @@ Transform:
   - {fileID: 1894337422}
   - {fileID: 813032426}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &676863566
 MonoBehaviour:
@@ -754,6 +754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25c43c6c34d862f4897cae06116a7b1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mushRoom: {fileID: 2550206330225666218, guid: e9c984a01b39b354db260b6b2febd897, type: 3}
   Speed: 0.008
 --- !u!1 &813032425
 GameObject:
@@ -1354,7 +1355,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1045489084
 GameObject:
@@ -1549,7 +1550,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1244538370
@@ -1824,7 +1825,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1894337420
 GameObject:
@@ -2481,6 +2482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 721909105728777466, guid: d8c70ac54dee7cf4e8ee56157b8a2480, type: 3}
+  bulletSpeed: 20
   HP: 100
   healthBar: {fileID: 676146174}
 --- !u!50 &2049301037
@@ -2624,7 +2626,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2791308385674749207, guid: 374250e120b56d24eacdb1ffe896f1d3, type: 3}
       propertyPath: m_TagString
-      value: Barrier
+      value: Barrier2
       objectReference: {fileID: 0}
     - target: {fileID: 2791308385674749672, guid: 374250e120b56d24eacdb1ffe896f1d3, type: 3}
       propertyPath: moveSpeed

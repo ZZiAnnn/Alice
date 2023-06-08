@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BackgroundMove : MonoBehaviour
 {
+    public GameObject mushRoom;
     private GameObject[] background=new GameObject[3];
     public float Speed=0.05f;
     private float ystart,zstart;
@@ -29,6 +30,7 @@ public class BackgroundMove : MonoBehaviour
                 if (background[i].transform.position.x < -18.5f)
                 {
                     background[i].transform.position = new Vector3(27.0f, ystart, zstart);
+                    GameObject mr = Instantiate(mushRoom, transform.position + new Vector3(6.56f, -1.39f, 0), Quaternion.identity);
                 }
                 else
                 {
