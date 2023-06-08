@@ -6,6 +6,7 @@ public class AliceController : MonoBehaviour
 {
     Animator animator;
     Rigidbody2D rigid;
+    Transform tran;
     private float jumpForce=5.0f;
     private int cnt=0;
     bool isGrounded=false;
@@ -13,6 +14,7 @@ public class AliceController : MonoBehaviour
     private GameObject biu;
     bool isAttacking, isJump;
     public AliceHP Alice_hp;
+    private Vector3 startpos;
     void Start()
     {
         animator=GetComponent<Animator>();
@@ -20,6 +22,9 @@ public class AliceController : MonoBehaviour
         Alice_hp = GetComponent<AliceHP>();
         isAttacking = false;
         isJump = false;
+        tran=GetComponent<Transform>();
+        startpos=tran.position;
+        startpos.y=-1.27024f;
     }
 
     void Update()
@@ -53,10 +58,10 @@ public class AliceController : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                if (!isJump) animator.SetTrigger("Attack");
-                else isAttacking = true;
                 if (biu == null)
                 {
+                    if (!isJump) animator.SetTrigger("Attack");
+                    else isAttacking = true;
                     animator.SetTrigger("Attack");
                     isAttacking = true;
                     biu = Instantiate(bullet, transform.position + new Vector3(0.0f, -0.4f, 0), Quaternion.identity);
@@ -65,7 +70,7 @@ public class AliceController : MonoBehaviour
         }
         if(biu!=null)
         {
-            biu.transform.position+=new Vector3(0.05f,0,0);
+            biu.transform.position+=new Vector3(0.1f,0,0);
             if(biu.transform.position.x>10)
             {
                 Destroy(biu);
@@ -83,6 +88,10 @@ public class AliceController : MonoBehaviour
         else if(collision.gameObject.tag == "Barrier")
         {
             Alice_hp.HP-=10;
+            StartCoroutine(DelayedAction(0.5f));
+            Debug.Log(2222);
+            Debug.Log(startpos.x);
+            tran.position=startpos;
         }
     }
     public void AttacktoRun()
@@ -101,6 +110,11 @@ public class AliceController : MonoBehaviour
     {
         animator.SetBool("DropToJump", false);
         animator.SetBool("JumpToDrop", false);
+    }
+
+    IEnumerator DelayedAction(float wait)
+    {
+        yield return new WaitForSeconds(wait); 
     }
     
 }
