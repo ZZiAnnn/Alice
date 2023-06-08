@@ -20,6 +20,7 @@ public class AliceController : MonoBehaviour
     public Slider healthBar;
     private Vector3 startpos;
     GameObject[] tmp;
+    GameObject[] barrier;
 
     void Start()
     {
@@ -78,9 +79,6 @@ public class AliceController : MonoBehaviour
         }
         if(biu!=null)
         {
-            //biu.transform.Translate(Vector3.right * bulletSpeed * Time.deltaTime);
-            //biu.transform.position+=new Vector3(0.1f,0,0);
-
             biu.transform.position += Vector3.right * bulletSpeed * Time.deltaTime;
             if (biu.transform.position.x>10)
             {
@@ -134,7 +132,6 @@ public class AliceController : MonoBehaviour
     {
         yield return new WaitForSeconds(wait); 
         tran.position=startpos;
-        Debug.Log(tran.position);
         animator.SetBool("hurted", true);
         tmp = GameObject.FindGameObjectsWithTag("Barrier");
         for(int i=0;i<tmp.Length;i++)
