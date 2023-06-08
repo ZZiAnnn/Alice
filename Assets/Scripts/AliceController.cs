@@ -91,7 +91,6 @@ public class AliceController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.tag == "Ground")
         {
             isGrounded=true;
@@ -100,8 +99,6 @@ public class AliceController : MonoBehaviour
         else if(collision.gameObject.tag == "Barrier" || collision.gameObject.tag == "Barrier2")
         {
             HP-=10;
-            Debug.Log(collision.gameObject.transform.position.x+"!!");
-            Debug.Log(this.gameObject.transform.position.x + "!");
             if (isDrop) StartCoroutine(DelayedAction(0.24f));
             else StartCoroutine(DelayedAction(1.0f));
         }
