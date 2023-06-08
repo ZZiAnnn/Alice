@@ -35,6 +35,7 @@ public class AliceController : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(HP);
         healthBar.value = HP / 100;
         float verticalVelocity = rigid.velocity.y;
         if (Input.GetKeyDown(KeyCode.Space)&&cnt<2)
