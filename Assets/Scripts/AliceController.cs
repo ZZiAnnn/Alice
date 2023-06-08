@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class AliceController : MonoBehaviour
@@ -13,10 +14,11 @@ public class AliceController : MonoBehaviour
     bool isGrounded=false;
     public GameObject bullet;
     private GameObject biu;
-    bool isAttacking, isJump;
+    bool isAttacking, isJump, isDrop;
     public float HP = 100;
     public Slider healthBar;
     private Vector3 startpos;
+    GameObject[] tmp;
 
     void Start()
     {
@@ -25,7 +27,8 @@ public class AliceController : MonoBehaviour
         //Alice_hp = GetComponent<AliceHP>();
         isAttacking = false;
         isJump = false;
-        tran=GetComponent<Transform>();
+        isDrop = false;
+        tran =GetComponent<Transform>();
         startpos=tran.position;
         startpos.y=-1.27024f;
     }
@@ -43,6 +46,7 @@ public class AliceController : MonoBehaviour
                 animator.SetBool("DropToJump", true);
             }
             else animator.SetBool("RunToJump", true);
+            isDrop = false;
             rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             cnt++; 
         }
@@ -51,12 +55,14 @@ public class AliceController : MonoBehaviour
             animator.SetBool("RunToJump", false);
             animator.SetBool("JumpToDrop",true);
             animator.SetBool("DropToRun",false);
+            isDrop = true;
         }
 
         if(isGrounded)
         {
             animator.SetBool("DropToRun",true);
             isJump = false;
+            isDrop = false;
         }
         if(!isAttacking)
         {
@@ -93,7 +99,10 @@ public class AliceController : MonoBehaviour
         else if(collision.gameObject.tag == "Barrier")
         {
             HP-=10;
-            StartCoroutine(DelayedAction(1.0f));
+            Debug.Log(collision.gameObject.transform.position.x+"!!");
+            Debug.Log(this.gameObject.transform.position.x + "!");
+            if (isDrop) StartCoroutine(DelayedAction(0.24f));
+            else StartCoroutine(DelayedAction(1.0f));
         }
     }
     public void AttacktoRun()
@@ -107,17 +116,32 @@ public class AliceController : MonoBehaviour
         animator.SetBool("JumpToDrop", false);
         //animator.SetBool("RunToJump", false);
         animator.SetBool("DropToJump", false);
+        animator.SetBool("HurtToRun", false);
     }
     public void Jump()
     {
         animator.SetBool("DropToJump", false);
         animator.SetBool("JumpToDrop", false);
     }
-
+    public void HurttoRun()
+    {
+        animator.SetBool("HurtToRun", true);
+        animator.SetBool("hurted", false);
+        for (int i = 0; i < tmp.Length; i++)
+        {
+            tmp[i].GetComponent<PolygonCollider2D>().enabled = true;
+        }
+    }
     IEnumerator DelayedAction(float wait)
     {
         yield return new WaitForSeconds(wait); 
         tran.position=startpos;
+        animator.SetBool("hurted", true);
+        tmp = GameObject.FindGameObjectsWithTag("Barrier");
+        for(int i=0;i<tmp.Length;i++)
+        {
+            tmp[i].GetComponent<PolygonCollider2D>().enabled = false;
+        }
     }
     
 }
