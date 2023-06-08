@@ -80,6 +80,7 @@ public class AliceController : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.tag == "Ground")
         {
             isGrounded=true;
@@ -88,10 +89,7 @@ public class AliceController : MonoBehaviour
         else if(collision.gameObject.tag == "Barrier")
         {
             Alice_hp.HP-=10;
-            StartCoroutine(DelayedAction(0.5f));
-            Debug.Log(2222);
-            Debug.Log(startpos.x);
-            tran.position=startpos;
+            StartCoroutine(DelayedAction(1.0f));
         }
     }
     public void AttacktoRun()
@@ -115,6 +113,7 @@ public class AliceController : MonoBehaviour
     IEnumerator DelayedAction(float wait)
     {
         yield return new WaitForSeconds(wait); 
+        tran.position=startpos;
     }
     
 }
