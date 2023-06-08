@@ -19,7 +19,9 @@ public class AliceController : MonoBehaviour
     public float HP = 100;
     public Slider healthBar;
     private Vector3 startpos;
+    public int bulletNum = 10;
     GameObject[] tmp;
+    GameObject[] barrier;
 
     void Start()
     {
@@ -66,7 +68,7 @@ public class AliceController : MonoBehaviour
             isDrop = false;
         }
 
-        if(!isAttacking&& Input.GetMouseButtonDown(0))
+        if(!isAttacking&& Input.GetMouseButtonDown(0)&&bulletNum>0)
         {
             if (biu == null)
             {
@@ -75,13 +77,11 @@ public class AliceController : MonoBehaviour
                 animator.SetTrigger("Attack");
                 isAttacking = true;
                 biu = Instantiate(bullet, transform.position + new Vector3(0.0f, -0.4f, 0), Quaternion.identity);
+                bulletNum--;
             }
         }
         if(biu!=null)
         {
-            //biu.transform.Translate(Vector3.right * bulletSpeed * Time.deltaTime);
-            //biu.transform.position+=new Vector3(0.1f,0,0);
-
             biu.transform.position += Vector3.right * bulletSpeed * Time.deltaTime;
             if (biu.transform.position.x>10)
             {
@@ -135,7 +135,6 @@ public class AliceController : MonoBehaviour
     {
         yield return new WaitForSeconds(wait); 
         tran.position=startpos;
-        Debug.Log(tran.position);
         animator.SetBool("hurted", true);
         tmp = GameObject.FindGameObjectsWithTag("Barrier");
         for(int i=0;i<tmp.Length;i++)

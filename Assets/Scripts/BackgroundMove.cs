@@ -6,7 +6,7 @@ using UnityEngine;
 public class BackgroundMove : MonoBehaviour
 {
     private GameObject[] background=new GameObject[3];
-    public float BackgroundSpeed=0.05f;
+    private float BackgroundSpeed=0.0f;
     private float ystart,zstart;
     float lasttime;
     void Start()
@@ -22,6 +22,9 @@ public class BackgroundMove : MonoBehaviour
 
     void Update()
     {
+
+        BackgroundSpeed = TilemapMove.Speed * 0.5f;
+
         if (Time.time - lasttime >= 3)
         {
             for (int i = 0; i < 3; ++i)

@@ -6,12 +6,17 @@ using UnityEngine;
 public class TilemapMove : MonoBehaviour
 {
     private GameObject[] tilemap=new GameObject[32];
-    public GameObject mushRoomPreferb;
-    private GameObject mr;
-    private float timer = 0f;
-    public float Speed=0.05f;
+    public GameObject mushRoomPreferb, smallMashroomPreferb;//,floatSteepPreferb;
+    private GameObject barrier;
+    private GameObject barrier2;
+    public float v0=2.0f;
+    public float accumlation=0.2f;
+    public static  float currentTime = 0f;
+    public static float Speed=2.00f;
     private float ystart,zstart;
     float lasttime;
+    private int[] mushRoomShow = { 6, 11, 16, 22, 25 ,28, 31, 34,39, 43, 47, 50, 54, 57 };
+    private int[] smallMushRoomShow = { 30, 37, 50, 52 };
     void Start()
     {
         StartCoroutine(StartTimer());
@@ -33,7 +38,6 @@ public class TilemapMove : MonoBehaviour
                 if (tilemap[i].transform.position.x < -27.7f)
                 {
                    tilemap[i].transform.position = new Vector3(26.2f, ystart, zstart);
-                   if(mr==null) mr = Instantiate(mushRoomPreferb, transform.position + new Vector3(20.0f, -0.5f, 0), Quaternion.identity);
                 }
                 else
                 {
@@ -41,33 +45,64 @@ public class TilemapMove : MonoBehaviour
                 }
             }
         }
-        BarrierController((int)timer);
+        BarrierController((int)currentTime);
+        BarrierDestroy();
+    }
+    void BarrierDestroy()
+    {
+        if(barrier!=null&&barrier.transform.position.x<-10.0f) Destroy(barrier);
     }
     void BarrierController(int t)
     {
-        Debug.Log(t);
-        if(t>=60)//finished
+        Speed = 4 + 6.0f * t / 60;
+        //Debug.Log(t);
+        if (t >= 60)//finished
         {
 
         }
+        else if (isMushRoomAppear(t)&&barrier==null) barrier = Instantiate(mushRoomPreferb, transform.position + new Vector3(20.0f, -0.5f, 0), Quaternion.identity);
+        else if (isSmallMushRoomAppear(t)&&barrier2==null) barrier2 = Instantiate(smallMashroomPreferb, transform.position + new Vector3(20.0f, -1.3f, 0), Quaternion.identity);
         else
         {
 
         }
 
     }
+
+    bool isMushRoomAppear(int x)
+    {
+        foreach (int mrs in mushRoomShow)
+        {
+            if (x == mrs) return true;
+        }
+        return false;
+    }
+
+    bool isSmallMushRoomAppear(int x)
+    {
+        foreach (int smrs in smallMushRoomShow)
+        {
+            if (x == smrs) return true;
+        }
+        return false;
+    }
+
+
+
     void OnGUI() // 在屏幕上显示计时器的数值
     {
-        int t;
-        if(timer<=3) t=0;
-        else t=(int)timer-3;
-        GUI.Label(new Rect(10, 10, 100, 20), "Timer: " + t.ToString("F2"));
+        int second = (int)(currentTime % 60) - 3;
+        int minute = (int)currentTime / 60;
+        string minutes = (minute).ToString("00"); // 转换分钟数并格式化
+        string seconds = (second).ToString("00"); // 转换秒数并格式化
+        if (second < 0) GUI.Label(new Rect(10, 10, 100, 20), "Timer: 00:00");
+        else GUI.Label(new Rect(10, 10, 100, 20), "Timer: " + minutes + ":" + seconds);
     }
     IEnumerator StartTimer()
     {
         while (true)
         {
-            timer = Time.time;
+            currentTime = Time.time;
             yield return null;
         }
     }
