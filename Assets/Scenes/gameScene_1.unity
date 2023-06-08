@@ -313,7 +313,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 161427329}
-  m_Father: {fileID: 1513701762}
+  m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
@@ -408,7 +408,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1513701762}
+  m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
@@ -1061,7 +1061,7 @@ GameObject:
   - component: {fileID: 1244538368}
   - component: {fileID: 1244538367}
   - component: {fileID: 1244538371}
-  - component: {fileID: 1244538372}
+  - component: {fileID: 0}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Ground
@@ -1474,7 +1474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 100
-  healthBar: {fileID: 1513701763}
+  healthBar: {fileID: 0}
 --- !u!1001 &2791308385455718633
 PrefabInstance:
   m_ObjectHideFlags: 0
