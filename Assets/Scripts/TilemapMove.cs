@@ -8,8 +8,10 @@ public class TilemapMove : MonoBehaviour
     private GameObject[] tilemap=new GameObject[32];
     public GameObject mushRoomPreferb;
     private GameObject mr;
-    private float timer = 0f;
-    public float Speed=0.05f;
+    public float v0=2.0f;
+    public float accumlation=0.2f;
+    public static  float timer = 0f;
+    public static float Speed=2.00f;
     private float ystart,zstart;
     float lasttime;
     void Start()
@@ -45,7 +47,8 @@ public class TilemapMove : MonoBehaviour
     }
     void BarrierController(int t)
     {
-        Debug.Log(t);
+        Speed=2+6.0f*t/60;
+        //Debug.Log(t);
         if(t>=60)//finished
         {
 
