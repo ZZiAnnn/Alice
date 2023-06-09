@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class Button : MonoBehaviour
 {
+    void Start()
+    {
+        Audio.instance.PlayMusicByName("bgm1");
+    }
+
     public void onclick1()
     {
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
