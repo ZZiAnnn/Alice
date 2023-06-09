@@ -10,7 +10,6 @@ public class LoadScene : MonoBehaviour
     public Transform trans;
     public Transform trans_2;
     float initx;
-    bool flag = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +38,6 @@ public class LoadScene : MonoBehaviour
         {
             if ((slider.value >= 1.0f || !GameObject.Find("Alice")) && operation.progress >= 0.9f) 
             {
-                flag = true;
                 operation.allowSceneActivation = true;
             }
             yield return null;

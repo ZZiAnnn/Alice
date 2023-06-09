@@ -21,7 +21,6 @@ public class MushRoomHP : MonoBehaviour
     {
         //OnmouseDown();
 
-        Debug.Log(hpp);
         if (hpp <= 0 && !flag) 
         {
             /*_material.DOFloat(30, "_Strength", 0.2f).OnComplete(() =>
