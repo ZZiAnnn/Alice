@@ -6,17 +6,24 @@ using UnityEngine;
 public class TilemapMove : MonoBehaviour
 {
     private GameObject[] tilemap=new GameObject[32];
-    public GameObject mushRoomPreferb, smallMashroomPreferb;//,floatSteepPreferb;
+    public GameObject mushRoomPreferb1, mushRoomPreferb2, smallMashroomPreferb, seaweedPreferb1, seaweedPreferb2, fishPreferb;//, floatSteepPreferb;
+
     private GameObject barrier;
     private GameObject barrier2;
-    public float v0=2.0f;
+    private GameObject seaweed;
+    private GameObject fish;
+
+    public float v0 = 4.0f;
     public float accumlation=0.2f;
     public static  float currentTime = 0f;
     public static float Speed=2.00f;
     private float ystart,zstart;
     float lasttime;
-    private int[] mushRoomShow = { 6, 11, 16, 22, 25 ,28, 31, 34,39, 43, 47, 50, 54, 57 };
-    private int[] smallMushRoomShow = { 2,30, 37, 50, 52 };
+    private int[] mushRoomShow = { 6, 11, 16, 22, 25 ,28, 31, 34,39, 43, 47, 50, 54, 57,59 };
+    private int[] smallMushRoomShow = { 2, 30, 37, 50, 52 };
+    private int[] fishShow = {  };
+    private int[] seaweedShow = { 4, 9, 15, 20, 24, 29, 32, 37, 40, 43, 47, 52, 57, 61 };
+
     void Start()
     {
         StartCoroutine(StartTimer());
@@ -49,19 +56,25 @@ public class TilemapMove : MonoBehaviour
     }
     void BarrierDestroy()
     {
-        if(barrier!=null&&barrier.transform.position.x<-10.0f) Destroy(barrier);
+        if (barrier != null && barrier.transform.position.x < -11.0f) Destroy(barrier);
     }
     void BarrierController(int t)
     {
-        Speed = 4 + 6.0f * t / 60;
+        Speed = v0 + 6.0f * t / 60;
         if (t >= 60)//finished
         {
             //todo
         }
-        else if (isMushRoomAppear(t)&&barrier==null) barrier = Instantiate(mushRoomPreferb, transform.position + new Vector3(20.0f, -0.5f, 0), Quaternion.identity);
-        else if (isSmallMushRoomAppear(t)&&barrier2==null) barrier2 = Instantiate(smallMashroomPreferb, transform.position + new Vector3(20.0f, -1.3f, 0), Quaternion.identity);
-        else //todo
-        ;
+        else
+        {
+            if (isMushRoomAppear(t) && barrier == null && t % 2 == 1) barrier = Instantiate(mushRoomPreferb1, transform.position + new Vector3(20.0f, -0.5f, 0), Quaternion.identity);
+            else if (isMushRoomAppear(t) && barrier == null && t % 2 == 0) barrier = Instantiate(mushRoomPreferb2, transform.position + new Vector3(20.0f, -0.5f, 0), Quaternion.identity);
+            if(isSmallMushRoomAppear(t) && barrier2 == null) barrier2 = Instantiate(smallMashroomPreferb, transform.position + new Vector3(20.0f, -1.3f, 0), Quaternion.identity);
+            if (isFishAppear(t) && fish == null) fish = Instantiate(fishPreferb, transform.position + new Vector3(20.0f, -3.5f, 0), Quaternion.identity);
+            //下面控制水草生成
+            if (isSeaweedAppear(t) && seaweed == null && t % 2 == 1) seaweed = Instantiate(seaweedPreferb1, transform.position + new Vector3(20.0f, -3f, 0), Quaternion.identity);
+            else if (isSeaweedAppear(t) && seaweed == null && t % 2 == 0) seaweed = Instantiate(seaweedPreferb2, transform.position + new Vector3(20.0f, -3f, 0), Quaternion.identity);
+        }
     }
 
     bool isMushRoomAppear(int x)
@@ -81,7 +94,26 @@ public class TilemapMove : MonoBehaviour
         }
         return false;
     }
-    
+
+    bool isSeaweedAppear(int x)
+    {
+        foreach (int sw in seaweedShow)
+        {
+            if (x == sw) return true;
+        }
+        return false;
+    }
+
+    bool isFishAppear(int x)
+    {
+        foreach (int fs in fishShow)
+        {
+            if (x == fs) return true;
+        }
+        return false;
+    }
+
+
     void OnGUI() // 在屏幕上显示计时器的数值
     {
         int second = (int)(currentTime % 60) - 3;
