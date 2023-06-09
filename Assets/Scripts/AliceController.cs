@@ -9,6 +9,13 @@ public class AliceController : MonoBehaviour
     Animator animator;
     Rigidbody2D rigid;
     Transform tran;
+
+    public AudioClip attackSound;  //π•ª˜“Ù–ß
+    public AudioClip dropSound;  //¬‰µÿ“Ù–ß
+    public AudioClip runSound;  //±º≈‹“Ù–ß
+
+    private AudioSource audioSource;
+
     private float jumpForce=4.5f;
     private int cnt=0;
     bool isGrounded=false;
@@ -25,7 +32,8 @@ public class AliceController : MonoBehaviour
 
     void Start()
     {
-        animator=GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+        animator =GetComponent<Animator>();
         rigid=GetComponent<Rigidbody2D>();
         isAttacking = false;
         isJump = false;
@@ -74,6 +82,7 @@ public class AliceController : MonoBehaviour
             {
                 if (!isJump) animator.SetTrigger("Attack");
                 else isAttacking = true;
+                audioSource.PlayOneShot(attackSound);
                 animator.SetTrigger("Attack");
                 isAttacking = true;
                 biu = Instantiate(bullet, transform.position + new Vector3(0.0f, -0.4f, 0), Quaternion.identity);
