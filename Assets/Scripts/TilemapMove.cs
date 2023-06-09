@@ -19,8 +19,8 @@ public class TilemapMove : MonoBehaviour
     public static float Speed=2.00f;
     private float ystart,zstart;
     float lasttime;
-    private int[] mushRoomShow = { 6, 11, 16, 22, 25 ,28, 31, 34,39, 43, 47, 50, 54, 57,59 };
-    private int[] smallMushRoomShow = { 2, 30, 37, 50, 52 };
+    private int[] mushRoomShow = { 6, 11, 16, 22, 25, 28, 31, 34, 39, 43, 47, 50, 54, 57, 59 };
+    private int[] smallMushRoomShow = { 2, 14 ,30, 37, 50, 52 };
     private int[] fishShow = {  };
     private int[] seaweedShow = { 4, 9, 15, 20, 24, 29, 32, 37, 40, 43, 47, 52, 57, 61 };
 
@@ -56,7 +56,7 @@ public class TilemapMove : MonoBehaviour
     }
     void BarrierDestroy()
     {
-        if (barrier != null && barrier.transform.position.x < -11.0f) Destroy(barrier);
+        if (barrier != null && barrier.transform.position.x < -15.0f) Destroy(barrier);
     }
     void BarrierController(int t)
     {
@@ -67,9 +67,9 @@ public class TilemapMove : MonoBehaviour
         }
         else
         {
-            if (isMushRoomAppear(t) && barrier == null && t % 2 == 1) barrier = Instantiate(mushRoomPreferb1, transform.position + new Vector3(20.0f, 2.00f, 0), Quaternion.identity);
+            if (isMushRoomAppear(t) && barrier == null && t % 2 == 1) barrier = Instantiate(mushRoomPreferb1, transform.position + new Vector3(20.0f, -0.50f, 0), Quaternion.identity);
             else if (isMushRoomAppear(t) && barrier == null && t % 2 == 0) barrier = Instantiate(mushRoomPreferb2, transform.position + new Vector3(20.0f, 2.00f, 0), Quaternion.identity);
-            if(isSmallMushRoomAppear(t) && barrier2 == null) barrier2 = Instantiate(smallMashroomPreferb, transform.position + new Vector3(20.0f, 1.18f, 0), Quaternion.identity);
+            if(isSmallMushRoomAppear(t) && barrier2 == null) barrier2 = Instantiate(smallMashroomPreferb, transform.position + new Vector3(20.0f, 1.05f, 0), Quaternion.identity);
             if (isFishAppear(t) && fish == null) fish = Instantiate(fishPreferb, transform.position + new Vector3(20.0f, 3.5f, 0), Quaternion.identity);
             //下面控制水草生成
             if (isSeaweedAppear(t) && seaweed == null && t % 2 == 1) seaweed = Instantiate(seaweedPreferb1, transform.position + new Vector3(20.0f, -3f, 0), Quaternion.identity);
@@ -116,18 +116,22 @@ public class TilemapMove : MonoBehaviour
 
     void OnGUI() // 在屏幕上显示计时器的数值
     {
-        int second = (int)(currentTime % 60) - 3;
+        int second = (int)(currentTime % 60);
         int minute = (int)currentTime / 60;
         string minutes = (minute).ToString("00"); // 转换分钟数并格式化
         string seconds = (second).ToString("00"); // 转换秒数并格式化
-        if (second < 0) GUI.Label(new Rect(10, 10, 100, 20), "Timer: 00:00");
-        else GUI.Label(new Rect(10, 10, 100, 20), "Timer: " + minutes + ":" + seconds);
+        //if (second < 0&& minute == 0) GUI.Label(new Rect(10, 10, 100, 20), "Timer: 00:00");
+        //else
+        GUI.Label(new Rect(10, 10, 100, 20), "Timer: " + minutes + ":" + seconds);
     }
     IEnumerator StartTimer()
     {
+        
         while (true)
         {
-            currentTime = Time.time;
+            currentTime = Time.time - lasttime;
+            if (currentTime <= 3) currentTime = 0;
+            else currentTime -= 3;
             yield return null;
         }
     }
