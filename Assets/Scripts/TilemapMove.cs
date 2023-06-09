@@ -41,9 +41,9 @@ public class TilemapMove : MonoBehaviour
         {
             for (int i = 0; i < 2; ++i)
             {
-                if (tilemap[i].transform.position.x < -27.7f)
+                if (tilemap[i].transform.position.x < -20.69f)
                 {
-                   tilemap[i].transform.position = new Vector3(26.2f, ystart, zstart);
+                   tilemap[i].transform.position = new Vector3(20.58f, ystart, zstart);
                 }
                 else
                 {
@@ -67,10 +67,10 @@ public class TilemapMove : MonoBehaviour
         }
         else
         {
-            if (isMushRoomAppear(t) && barrier == null && t % 2 == 1) barrier = Instantiate(mushRoomPreferb1, transform.position + new Vector3(20.0f, -0.5f, 0), Quaternion.identity);
-            else if (isMushRoomAppear(t) && barrier == null && t % 2 == 0) barrier = Instantiate(mushRoomPreferb2, transform.position + new Vector3(20.0f, -0.5f, 0), Quaternion.identity);
-            if(isSmallMushRoomAppear(t) && barrier2 == null) barrier2 = Instantiate(smallMashroomPreferb, transform.position + new Vector3(20.0f, -1.3f, 0), Quaternion.identity);
-            if (isFishAppear(t) && fish == null) fish = Instantiate(fishPreferb, transform.position + new Vector3(20.0f, -3.5f, 0), Quaternion.identity);
+            if (isMushRoomAppear(t) && barrier == null && t % 2 == 1) barrier = Instantiate(mushRoomPreferb1, transform.position + new Vector3(20.0f, 2.00f, 0), Quaternion.identity);
+            else if (isMushRoomAppear(t) && barrier == null && t % 2 == 0) barrier = Instantiate(mushRoomPreferb2, transform.position + new Vector3(20.0f, 2.00f, 0), Quaternion.identity);
+            if(isSmallMushRoomAppear(t) && barrier2 == null) barrier2 = Instantiate(smallMashroomPreferb, transform.position + new Vector3(20.0f, 1.18f, 0), Quaternion.identity);
+            if (isFishAppear(t) && fish == null) fish = Instantiate(fishPreferb, transform.position + new Vector3(20.0f, 3.5f, 0), Quaternion.identity);
             //下面控制水草生成
             if (isSeaweedAppear(t) && seaweed == null && t % 2 == 1) seaweed = Instantiate(seaweedPreferb1, transform.position + new Vector3(20.0f, -3f, 0), Quaternion.identity);
             else if (isSeaweedAppear(t) && seaweed == null && t % 2 == 0) seaweed = Instantiate(seaweedPreferb2, transform.position + new Vector3(20.0f, -3f, 0), Quaternion.identity);
