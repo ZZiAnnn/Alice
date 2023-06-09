@@ -2136,8 +2136,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244538366}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.81, y: -5.16, z: -0.24}
-  m_LocalScale: {x: 20.681158, y: 5.288802, z: 1}
+  m_LocalPosition: {x: 1.37, y: -5.16, z: -0.24}
+  m_LocalScale: {x: 18.40401, y: 5.288802, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2418,8 +2418,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 282c785efad96ab4dabebe04ef5d2f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mushRoomPreferb1: {fileID: 6235181250371175130, guid: 3274dc70d28dc0e4289a3df4ef03c26d, type: 3}
-  mushRoomPreferb2: {fileID: 2523866688316242840, guid: dd2b347521131d64c972504cee716c11, type: 3}
+  mushRoomPreferb1: {fileID: 8023613918283755332, guid: e4f150061edc84a46afe5f61020e6ed3, type: 3}
+  mushRoomPreferb2: {fileID: 2058166278662713429, guid: 3274dc70d28dc0e4289a3df4ef03c26d, type: 3}
   smallMashroomPreferb: {fileID: 2791308385674749207, guid: 374250e120b56d24eacdb1ffe896f1d3, type: 3}
   seaweedPreferb1: {fileID: 8036433949018499457, guid: 727899aec9f54624c8ac126d9af108c8, type: 3}
   seaweedPreferb2: {fileID: 1127719146361136791, guid: b80842b43ba8ce948ab1a253044c69cc, type: 3}
@@ -2504,7 +2504,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2.809013
+  orthographic size: 2.7656195
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -2528,7 +2528,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1689042998}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.56, y: 0.28, z: -1.0663458}
+  m_LocalPosition: {x: 1.41, y: 0.28, z: -1.0663458}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2789,7 +2789,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2049301031}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.99, y: -0.27, z: 0}
+  m_LocalPosition: {x: -6.53, y: -0.27, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

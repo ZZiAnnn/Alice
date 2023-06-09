@@ -11,7 +11,7 @@ public class BulletShooted : MonoBehaviour
         {
             Debug.Log("Collision with Barrier detected");
             Destroy(gameObject);
-            var mushRoomHP = collision.gameObject.GetComponent<MushRoomHP>();
+            var mushRoomHP = collision.gameObject.transform.parent.GetComponent<MushRoomHP>();
             if (mushRoomHP != null)
             {
                 mushRoomHP.hpdelete(50);
