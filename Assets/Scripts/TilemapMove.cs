@@ -27,7 +27,7 @@ public class TilemapMove : MonoBehaviour
     void Start()
     {
         StartCoroutine(StartTimer());
-      
+        lasttime = Time.time;
         for (int i=0;i<2;++i)
         {
             tilemap[i] = GameObject.Find("Tilemap"+(i+1));
@@ -126,11 +126,12 @@ public class TilemapMove : MonoBehaviour
     }
     IEnumerator StartTimer()
     {
-        yield return new WaitForSeconds(3f);
-        lasttime = Time.time;
+        
         while (true)
         {
-            currentTime = Time.time;
+            currentTime = Time.time - lasttime;
+            if (currentTime <= 3) currentTime = 0;
+            else currentTime -= 3;
             yield return null;
         }
     }
