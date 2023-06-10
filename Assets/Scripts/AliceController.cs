@@ -17,11 +17,11 @@ public class AliceController : MonoBehaviour
     private AudioSource audioSource;
     private bool audioControl = false;
 
-    private float jumpForce=4.5f;
+    public float jumpForce=4.5f;
     private int cnt=0;
     bool isGrounded=false;
     public GameObject bullet;
-    private GameObject biu;
+    private GameObject biu1,biu2;
     public float bulletSpeed = 50;
     bool isAttacking, isJump, isDrop;
     public float HP = 100;
@@ -85,23 +85,39 @@ public class AliceController : MonoBehaviour
 
         if(!isAttacking&& Input.GetMouseButtonDown(0)&&bulletNum>0)
         {
-            if (biu == null)
+            if (biu1 == null||biu2==null)
             {
                 if (!isJump) animator.SetTrigger("Attack");
                 else isAttacking = true;
                 audioSource.PlayOneShot(attackSound);
                 animator.SetTrigger("Attack");
                 isAttacking = true;
-                biu = Instantiate(bullet, transform.position + new Vector3(0.0f, -0.4f, 0), Quaternion.identity);
-                bulletNum--;
+                if(biu1==null)
+                {
+                    biu1 = Instantiate(bullet, transform.position + new Vector3(0.0f, -0.4f, 0), Quaternion.identity);
+                    bulletNum--;
+                }
+                else
+                {
+                    biu2 = Instantiate(bullet, transform.position + new Vector3(0.0f, -0.4f, 0), Quaternion.identity);
+                    bulletNum--;
+                }
             }
         }
-        if(biu!=null)
+        if(biu1!=null)
         {
-            biu.transform.position += Vector3.right * bulletSpeed * Time.deltaTime;
-            if (biu.transform.position.x>10)
+            biu1.transform.position += Vector3.right * bulletSpeed * Time.deltaTime;
+            if (biu1.transform.position.x>10)
             {
-                 Destroy(biu);
+                 Destroy(biu1);
+            }
+        }
+        if(biu2!=null)
+        {
+            biu2.transform.position += Vector3.right * bulletSpeed * Time.deltaTime;
+            if (biu2.transform.position.x>10)
+            {
+                 Destroy(biu2);
             }
         }
     }
