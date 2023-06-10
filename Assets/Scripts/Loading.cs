@@ -32,4 +32,8 @@ public class Loading : MonoBehaviour
     {
         Destroy(this.gameObject);
     }
+    public void InitAnimator()
+    {
+        ;
+    }
 }

@@ -29,6 +29,7 @@ public class AliceController : MonoBehaviour
     private Vector3 startpos;
     public int bulletNum = 10;
     GameObject[] tmp;
+    GameObject[] tmp2;
     GameObject[] barrier;
 
     void Start()
@@ -41,27 +42,30 @@ public class AliceController : MonoBehaviour
         isJump = false;
         isDrop = false;
         tran =GetComponent<Transform>();
-        startpos=tran.position;
-        startpos.y=0.0f;
+        startpos = new Vector2(tran.position.x, -1);
     }
 
     void Update()
     {
-        //Debug.Log(HP);
         healthBar.value = HP / 100;
         float verticalVelocity = rigid.velocity.y;
         if (Input.GetKeyDown(KeyCode.Space)&&cnt<2)
         {
+            
             isJump = true;
             isGrounded = false;
             if (verticalVelocity < 0.0f)
             {
                 animator.SetBool("DropToJump", true);
             }
-            else animator.SetBool("RunToJump", true);
+            else
+            { 
+                animator.SetBool("RunToJump", true);
+            }
+            
             isDrop = false;
             rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            cnt++; 
+            cnt++;
         }
         if(verticalVelocity<0.0f)
         {
@@ -162,6 +166,10 @@ public class AliceController : MonoBehaviour
         {
             if (tmp[i]) tmp[i].GetComponent<PolygonCollider2D>().enabled = true;
         }
+        for (int i = 0; i < tmp2.Length; i++)
+        {
+            if (tmp2[i]) tmp2[i].GetComponent<PolygonCollider2D>().enabled = true;
+        }
     }
     IEnumerator DelayedAction(float wait)
     {
@@ -169,9 +177,14 @@ public class AliceController : MonoBehaviour
         tran.position=startpos;
         animator.SetBool("hurted", true);
         tmp = GameObject.FindGameObjectsWithTag("Barrier");
-        for(int i=0;i<tmp.Length;i++)
+        tmp2 = GameObject.FindGameObjectsWithTag("Barrier2");
+        for (int i=0;i<tmp.Length;i++)
         {
             tmp[i].GetComponent<PolygonCollider2D>().enabled = false;
+        }
+        for (int i = 0; i < tmp2.Length; i++)
+        {
+            tmp2[i].GetComponent<PolygonCollider2D>().enabled = false;
         }
     }
     
