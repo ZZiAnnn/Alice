@@ -37,7 +37,8 @@ public class AliceController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         animator =GetComponent<Animator>();
         rigid=GetComponent<Rigidbody2D>();
-        DelayedAudioActivation();
+        audioSource.mute = true;
+        StartCoroutine(DelayedAudioActivation(3.0f));
         isAttacking = false;
         isJump = false;
         isDrop = false;
@@ -106,13 +107,10 @@ public class AliceController : MonoBehaviour
         }
     }
 
-    IEnumerator DelayedAudioActivation()
+    IEnumerator DelayedAudioActivation(float wait)
     {
-        // 等待三秒
-        yield return new WaitForSeconds(3.0f);
-
-        // 在延迟后使 AudioSource 组件生效
-        audioSource.UnPause();
+        yield return new WaitForSeconds(wait);
+        audioSource.mute = false;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -122,12 +120,6 @@ public class AliceController : MonoBehaviour
             if (!isGrounded)
             {
                 audioSource.PlayOneShot(dropSound);
-                if (audioControl == false)
-                {
-                    audioSource.Pause();
-                    audioControl = true;
-                    DelayedAudioActivation();   
-                }
             }
             isGrounded =true;
             cnt=0;
@@ -187,5 +179,4 @@ public class AliceController : MonoBehaviour
             tmp2[i].GetComponent<PolygonCollider2D>().enabled = false;
         }
     }
-    
 }
