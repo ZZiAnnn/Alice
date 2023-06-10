@@ -15,6 +15,7 @@ public class AliceController : MonoBehaviour
     public AudioClip runSound;  //奔跑音效
 
     private AudioSource audioSource;
+    private bool audioControl = false;
 
     private float jumpForce=4.5f;
     private int cnt=0;
@@ -35,6 +36,7 @@ public class AliceController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         animator =GetComponent<Animator>();
         rigid=GetComponent<Rigidbody2D>();
+        DelayedAudioActivation();
         isAttacking = false;
         isJump = false;
         isDrop = false;
@@ -71,6 +73,7 @@ public class AliceController : MonoBehaviour
 
         if(isGrounded)
         {
+            if (!audioSource.isPlaying) audioSource.PlayOneShot(runSound);
             animator.SetBool("DropToRun",true);
             isJump = false;
             isDrop = false;
@@ -99,12 +102,32 @@ public class AliceController : MonoBehaviour
         }
     }
 
+    IEnumerator DelayedAudioActivation()
+    {
+        // 等待三秒
+        yield return new WaitForSeconds(3.0f);
+
+        // 在延迟后使 AudioSource 组件生效
+        audioSource.UnPause();
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground")
         {
-            isGrounded=true;
+            if (!isGrounded)
+            {
+                audioSource.PlayOneShot(dropSound);
+                if (audioControl == false)
+                {
+                    audioSource.Pause();
+                    audioControl = true;
+                    DelayedAudioActivation();   
+                }
+            }
+            isGrounded =true;
             cnt=0;
+
         }
         else if(collision.gameObject.tag == "Barrier" || collision.gameObject.tag == "Barrier2")
         {
