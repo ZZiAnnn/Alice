@@ -65,6 +65,7 @@ public class AliceController : MonoBehaviour
             }
             
             isDrop = false;
+            rigid.velocity = new Vector2(rigid.velocity.x, 0f);
             rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             cnt++;
         }
