@@ -128,8 +128,7 @@ public class TilemapMove : MonoBehaviour
         GUI.Label(new Rect(10, 10, 100, 20), "Timer: " + minutes + ":" + seconds);
     }
     IEnumerator StartTimer()
-    {
-        
+    {      
         while (true)
         {
             currentTime = Time.time - lasttime;

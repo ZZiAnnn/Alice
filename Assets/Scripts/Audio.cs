@@ -5,7 +5,7 @@ using UnityEngine;
 public class Audio : MonoBehaviour
 {
     public static Audio instance; // 单例实例
-    public AudioSource audiosource; // 音频源
+    public static  AudioSource audiosource; // 音频源
 
     void Awake()
     {
@@ -15,7 +15,6 @@ public class Audio : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
         instance = this; // 设置当前实例为唯一实例
         DontDestroyOnLoad(gameObject); // 在场景切换时不销毁音频管理器对象
     }

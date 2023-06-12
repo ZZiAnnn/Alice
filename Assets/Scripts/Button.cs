@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Button : MonoBehaviour
 {
+    public GameObject first;
+    public GameObject setting;
     void Start()
     {
         Audio.instance.PlayMusicByName("bgm1");
@@ -20,7 +22,8 @@ public class Button : MonoBehaviour
     }
     public void onclick3()
     {
-
+        setting.SetActive(true);
+        first.SetActive(false);
     }
     public void onclick4()
     {

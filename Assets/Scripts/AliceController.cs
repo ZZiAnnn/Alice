@@ -146,7 +146,7 @@ public class AliceController : MonoBehaviour
         {
             HP-=10;
             if (isDrop) StartCoroutine(DelayedAction(0.24f));
-            else StartCoroutine(DelayedAction(1.0f));
+            else StartCoroutine(DelayedAction(0.5f));
         }
     }
     public void AttacktoRun()
