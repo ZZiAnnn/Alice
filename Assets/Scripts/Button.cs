@@ -29,4 +29,10 @@ public class Button : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void onclick3_1()
+    {
+        setting.SetActive(false);
+        first.SetActive(true);
+    }
 }
