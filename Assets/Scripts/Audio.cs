@@ -5,7 +5,7 @@ using UnityEngine;
 public class Audio : MonoBehaviour
 {
     public static Audio instance; // 单例实例
-    public static  AudioSource audiosource; // 音频源
+    public AudioSource audiosource; // 音频源
 
     void Awake()
     {

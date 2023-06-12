@@ -30,6 +30,6 @@ public class SettingButton : MonoBehaviour
     }
     private void Update()
     {
-        Audio.audiosource.volume=volumeSlider.value;
+       //Audio.audiosource.volume=volumeSlider.value;
     }
 }

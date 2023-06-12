@@ -9,6 +9,8 @@ TagManager:
   - Barrier2
   - trigger
   - player
+  - fish
+  - seaweed
   layers:
   - Default
   - TransparentFX
