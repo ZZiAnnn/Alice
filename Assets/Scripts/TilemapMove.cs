@@ -66,7 +66,7 @@ public class TilemapMove : MonoBehaviour
         Speed = v0 + 6.0f * t / 60;
         if (t >= 60)//finished
         {
-            //todo
+            
         }
         else
         {

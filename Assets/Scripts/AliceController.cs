@@ -13,6 +13,7 @@ public class AliceController : MonoBehaviour
     public AudioClip attackSound;  //¹¥»÷ÒôÐ§
     public AudioClip dropSound;  //ÂäµØÒôÐ§
     public AudioClip runSound;  //±¼ÅÜÒôÐ§
+    public AudioClip hurtSound;  //ÊÜÉËÒôÐ§
 
     private AudioSource audioSource;
     private bool audioControl = false;
@@ -84,6 +85,10 @@ public class AliceController : MonoBehaviour
             isJump = false;
             isDrop = false;
         }
+        else
+        {
+            if (audioSource.clip == runSound) audioSource.Pause();
+        }
 
         if(!isAttacking&& Input.GetMouseButtonDown(0)&&bulletNum>0)
         {
@@ -144,7 +149,8 @@ public class AliceController : MonoBehaviour
         }
         else if(collision.gameObject.tag == "Barrier" || collision.gameObject.tag == "Barrier2")
         {
-            HP-=10;
+            audioSource.PlayOneShot(hurtSound);
+            HP -=10;
             if (isDrop) StartCoroutine(DelayedAction(0.24f));
             else StartCoroutine(DelayedAction(1.0f));
         }
