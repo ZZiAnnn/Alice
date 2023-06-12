@@ -1221,7 +1221,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 431489180}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.43, y: 0.86, z: 10.04181}
+  m_LocalPosition: {x: 7.59, y: 0.86, z: 10.04181}
   m_LocalScale: {x: 5.4, y: 5.4, z: 7.642395}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1611,7 +1611,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u9000\u51FA\u6E38\u620F"
+  m_Text: "\u8FD4\u56DE\u9996\u9875"
 --- !u!222 &599896933
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1781,7 +1781,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 813032425}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.16, y: 0.86, z: 10.04181}
+  m_LocalPosition: {x: -13.69, y: 0.86, z: 10.04181}
   m_LocalScale: {x: 5.4, y: 5.4, z: 7.642395}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2560,7 +2560,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   setting: {fileID: 1864042297}
-  volumeSlider: {fileID: 864340108}
 --- !u!1 &1045489084
 GameObject:
   m_ObjectHideFlags: 0
@@ -3251,6 +3250,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2470057028081280473, guid: 3f1e5c68fb962f648abc67d6b1f9355d, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3fefb7a447c6f224a999816698355caa, type: 3}
     - target: {fileID: 4404435948394735398, guid: 3f1e5c68fb962f648abc67d6b1f9355d, type: 3}
       propertyPath: m_Name
       value: BGM
@@ -3299,6 +3302,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6320367257218127631, guid: 3f1e5c68fb962f648abc67d6b1f9355d, type: 3}
+      propertyPath: volumeSlider
+      value: 
+      objectReference: {fileID: 864340108}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f1e5c68fb962f648abc67d6b1f9355d, type: 3}
 --- !u!1 &1543705023
@@ -3780,7 +3787,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1894337420}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.64, y: 0.86, z: 10.04181}
+  m_LocalPosition: {x: -3.03, y: 0.86, z: 10.04181}
   m_LocalScale: {x: 5.4, y: 5.4, z: 7.642395}
   m_ConstrainProportionsScale: 0
   m_Children: []

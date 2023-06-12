@@ -29,9 +29,9 @@ public class BackgroundMove : MonoBehaviour
         {
             for (int i = 0; i < 3; ++i)
             {
-                if (background[i].transform.position.x < -13.53f)
+                if (background[i].transform.position.x < -13.69f)
                 {
-                    background[i].transform.position = new Vector3(18.41f, ystart, zstart);
+                    background[i].transform.position = new Vector3(18.25f, ystart, zstart);
                 }
                 else
                 {

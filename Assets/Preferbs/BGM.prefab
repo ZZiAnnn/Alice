@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audiosource: {fileID: 2470057028081280473}
+  volumeSlider: {fileID: 8618387091074021684, guid: 9e30d5e6fd5c1514384fb7d052884155, type: 3}
 --- !u!82 &2470057028081280473
 AudioSource:
   m_ObjectHideFlags: 0

@@ -1,14 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Audio : MonoBehaviour
 {
     public static Audio instance; // 单例实例
     public AudioSource audiosource; // 音频源
+<<<<<<< HEAD
 
+=======
+    public Slider volumeSlider;
+>>>>>>> 44604da117c63cdb6947617f73481fd07683924b
     void Awake()
     {
+        volumeSlider.value=0.5f;
         // 检查是否存在其他 AudioManager 实例，如果存在则销毁当前实例，保证只有一个实例存在
         if (instance != null && instance != this)
         {
@@ -18,7 +24,10 @@ public class Audio : MonoBehaviour
         instance = this; // 设置当前实例为唯一实例
         DontDestroyOnLoad(gameObject); // 在场景切换时不销毁音频管理器对象
     }
-
+    private void Update()
+    {
+        audiosource.volume=volumeSlider.value;
+    }
     // 输入音乐名，播放音乐
     public void PlayMusicByName(string name)
     {
