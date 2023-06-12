@@ -18,7 +18,7 @@ public class AliceController : MonoBehaviour
     private AudioSource audioSource;
     private bool audioControl = false;
 
-    public float jumpForce=4.5f;
+    public float jumpForce=6.0f;
     private int cnt=0;
     bool isGrounded=false;
     public GameObject bullet;

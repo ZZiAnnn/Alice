@@ -20,7 +20,7 @@ public class BarrierMove : MonoBehaviour
     {
         if (tran.position.x > -20.0f)
         {
-            tran.position -= new Vector3(Time.deltaTime*TilemapMove.Speed, 0, 0);
+            tran.position -= new Vector3(Time.deltaTime * TilemapMove.Speed, 0, 0);
         }
         else//到达结束点
         {

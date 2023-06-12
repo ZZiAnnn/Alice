@@ -6,7 +6,7 @@ public class fishMove : MonoBehaviour
 {
     private Transform tran;
     private Vector3 start;
-    public float moveSpeed = 4f;
+    public float moveSpeed = 7f;
     float lasttime;
     // Start is called before the first frame update
     void Start()
@@ -18,15 +18,25 @@ public class fishMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (tran.position.x > -20)
+        if (tran.position.x > -20.0f)
         {
-            tran.position -= new Vector3(moveSpeed * Time.deltaTime, 0, 0);
+            moveSpeed = TilemapMove.Speed + 2;
+            tran.position -= new Vector3(Time.deltaTime * moveSpeed, 0, 0);
         }
         else//到达结束点
         {
-            tran.position = start + new Vector3(20, 0, 0);
+            tran.position = start + new Vector3(20.0f, 0, 0);
+            if (tran.position.x > -20)
+            {
+                tran.position -= new Vector3(moveSpeed * Time.deltaTime, 0, 0);
+            }
+            else//到达结束点
+            {
+                tran.position = start + new Vector3(20, 0, 0);
+            }
         }
-
-
     }
 }
+
+
+
