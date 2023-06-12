@@ -3257,7 +3257,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5911561757900407741, guid: 3f1e5c68fb962f648abc67d6b1f9355d, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5911561757900407741, guid: 3f1e5c68fb962f648abc67d6b1f9355d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3464,7 +3464,7 @@ Transform:
   - {fileID: 184678954}
   - {fileID: 841010357}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1620429605
 BoxCollider2D:
@@ -3510,6 +3510,7 @@ MonoBehaviour:
   seaweedPreferb1: {fileID: 8036433949018499457, guid: 727899aec9f54624c8ac126d9af108c8, type: 3}
   seaweedPreferb2: {fileID: 1127719146361136791, guid: b80842b43ba8ce948ab1a253044c69cc, type: 3}
   fishPreferb: {fileID: 1302378289472842708, guid: 072b59f80c1d36a43910970ab09a3d7e, type: 3}
+  triggerPreferb: {fileID: 1833730347895887668, guid: d79bbaf4bf89ba743b2a5503cd3a43cc, type: 3}
   v0: 4
   accumlation: 0.2
 --- !u!1 &1689042998
@@ -3803,7 +3804,7 @@ GameObject:
   - component: {fileID: 2049301039}
   m_Layer: 0
   m_Name: Alice
-  m_TagString: Untagged
+  m_TagString: player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3910,7 +3911,8 @@ MonoBehaviour:
   attackSound: {fileID: 8300000, guid: b0e2183e1f3d69246a993f53f03e9ed6, type: 3}
   dropSound: {fileID: 8300000, guid: 50b6e15d4d13c0144b7e1c6ed10f947c, type: 3}
   runSound: {fileID: 8300000, guid: 1744d891dfec3a048b6f4c690e073ca0, type: 3}
-  jumpForce: 6.5
+  hurtSound: {fileID: 8300000, guid: a5fd521ad0605b74dac29e2f9d08a199, type: 3}
+  jumpForce: 4.5
   bullet: {fileID: 721909105728777466, guid: d8c70ac54dee7cf4e8ee56157b8a2480, type: 3}
   bulletSpeed: 20
   HP: 100
