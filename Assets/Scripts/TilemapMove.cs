@@ -11,6 +11,7 @@ public class TilemapMove : MonoBehaviour
     public GameObject triggerPreferb;
     private GameObject barrier;
     private GameObject barrier2;
+    private GameObject barrier3;
     private GameObject seaweed;
     private GameObject fish;
     private GameObject trigger;
@@ -22,7 +23,8 @@ public class TilemapMove : MonoBehaviour
     private float maxSpeed;
     private float ystart,zstart;
     float lasttime;
-    private int[] mushRoomShow = { 6, 11, 16, 22, 25, 28, 31, 34, 39, 43, 47, 51, 54, 57, 59 };
+    private int[] mushRoomShow1 = { 6, 16, 25, 31, 39, 47, 54, 59 };
+    private int[] mushRoomShow2 = { 11, 22, 28, 34, 43, 51, 57, };
     private int[] smallMushRoomShow = { 1, 5, 14, 17, 27, 30, 32, 37, 45, 48, 50, 52 };
     private int[] fishShow = { 2, 5, 10, 15, 20, 24, 28, 32, 36, 40, 43, 46, 49, 52, 55, 58, 61 };
     private int[] seaweedShow = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 15, 20, 24, 29, 32, 37, 40, 43, 47, 52, 57, 61 };
@@ -62,6 +64,7 @@ public class TilemapMove : MonoBehaviour
     {
         if (barrier != null && barrier.transform.position.x < -15.0f) Destroy(barrier);
         if (barrier2 != null && barrier2.transform.position.x < -15.0f) Destroy(barrier2);
+        if (barrier3 != null && barrier3.transform.position.x < -15.0f) Destroy(barrier3);
         if (fish != null && fish.transform.position.x < -15.0f) Destroy(fish);
         if (seaweed != null && seaweed.transform.position.x < -15.0f) Destroy(seaweed);
     }
@@ -82,8 +85,8 @@ public class TilemapMove : MonoBehaviour
         {
             Speed = v0 + 6.0f * t / 60;
             maxSpeed=Speed;
-            if (isMushRoomAppear(t) && barrier == null && t % 2 == 1) barrier = Instantiate(mushRoomPreferb1, transform.position + new Vector3(20.0f, -0.50f, 0), Quaternion.identity);
-            else if (isMushRoomAppear(t) && barrier == null && t % 2 == 0) barrier = Instantiate(mushRoomPreferb2, transform.position + new Vector3(20.0f, 2.00f, 0), Quaternion.identity);
+            if (isMushRoomAppear1(t) && barrier==null) barrier = Instantiate(mushRoomPreferb1, transform.position + new Vector3(20.0f, -0.50f, 0), Quaternion.identity);
+            if (isMushRoomAppear2(t) && barrier3==null) barrier3 = Instantiate(mushRoomPreferb2, transform.position + new Vector3(20.0f, 2.00f, 0), Quaternion.identity);
             if(isSmallMushRoomAppear(t) && barrier2 == null) barrier2 = Instantiate(smallMashroomPreferb, transform.position + new Vector3(20.0f, 1.05f, 0), Quaternion.identity);
             if (isFishAppear(t) && fish == null) fish = Instantiate(fishPreferb, new Vector3(12f, -3.7f, 0), Quaternion.Euler(0f, 0f, 0f));
             //下面控制水草生成
@@ -92,9 +95,18 @@ public class TilemapMove : MonoBehaviour
         }
     }
 
-    bool isMushRoomAppear(int x)
+    bool isMushRoomAppear1(int x)
     {
-        foreach (int mrs in mushRoomShow)
+        foreach (int mrs in mushRoomShow1)
+        {
+            if (x == mrs) return true;
+        }
+        return false;
+    }
+
+    bool isMushRoomAppear2(int x)
+    {
+        foreach (int mrs in mushRoomShow2)
         {
             if (x == mrs) return true;
         }

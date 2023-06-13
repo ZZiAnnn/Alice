@@ -6,8 +6,8 @@ public class ChangeShader : MonoBehaviour
 {
     //public Camera cam;
     //public Shader shader;
-    int flag;        //flag为0时表示可以开启技能，为1时表示正在开启技能/为-1时为技能正在冷却
-    float time;
+    public static int flag;        //flag为0时表示可以开启技能，为1时表示正在开启技能/为-1时为技能正在冷却
+    public static float time;
     public Material material;
     // Start is called before the first frame update
     void Start()
