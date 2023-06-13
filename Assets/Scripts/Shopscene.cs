@@ -66,7 +66,7 @@ public class Shopscene : MonoBehaviour
     //返回游戏场景
     public void BackToGame()
     {
-        Application.LoadLevel("gameScene_1");
+        AliceController.inShop=false;
     }
 
 }

@@ -10,7 +10,7 @@ public class AliceController : MonoBehaviour
     Animator animator;
     Rigidbody2D rigid;
     Transform tran;
-
+    static public bool inShop;
     public AudioClip attackSound;  //×²»÷ÉùÒô
     public AudioClip dropSound;  //µôÂäÉùÒô
     public AudioClip jumpSound;  //ÆðÌøÉùÒô
@@ -53,7 +53,6 @@ public class AliceController : MonoBehaviour
 
     void Update()
     {
-
         if (TilemapMove.Speed == 0)
         {
             horizontal = Input.GetAxis("Horizontal");
@@ -64,7 +63,7 @@ public class AliceController : MonoBehaviour
             enter.SetActive(true);
             if (Input.GetKeyDown(KeyCode.W))
             {
-                SceneManager.LoadScene("shopScene");
+                inShop=true;
             }
         }
         else
@@ -153,8 +152,11 @@ public class AliceController : MonoBehaviour
         {
             float speed = 5.0f;
             Vector2 position = rigid.position;
+            position.y=-1.466682f;
             position.x = position.x + speed * horizontal * Time.deltaTime;
             rigid.MovePosition(position);
+            if(horizontal>0) tran.localScale=new Vector3(-1,1,1);
+            else if(horizontal<0) tran.localScale=new Vector3(1,1,1);
         }
     }
     IEnumerator DelayedAudioActivation(float wait)

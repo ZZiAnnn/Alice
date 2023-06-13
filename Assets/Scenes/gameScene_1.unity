@@ -5186,7 +5186,7 @@ MonoBehaviour:
   hurtSound: {fileID: 8300000, guid: a5fd521ad0605b74dac29e2f9d08a199, type: 3}
   enter: {fileID: 1836637102}
   End: {fileID: 1827408966}
-  jumpForce: 6
+  jumpForce: 5.5
   bullet: {fileID: 721909105728777466, guid: d8c70ac54dee7cf4e8ee56157b8a2480, type: 3}
   bulletSpeed: 50
   healthBar: {fileID: 676146174}
