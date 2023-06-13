@@ -155,6 +155,7 @@ public class AliceController : MonoBehaviour
         {
             float speed = 5.0f;
             Vector2 position = rigid.position;
+            position.y=-1.466682f;
             position.x = position.x + speed * horizontal * Time.deltaTime;
             rigid.MovePosition(position);
             if(horizontal>0) tran.localScale=new Vector3(-1,1,1);
