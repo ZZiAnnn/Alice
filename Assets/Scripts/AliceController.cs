@@ -10,7 +10,7 @@ public class AliceController : MonoBehaviour
     Animator animator;
     Rigidbody2D rigid;
     Transform tran;
-
+    static public bool inShop;
     public AudioClip attackSound;  //◊≤ª˜…˘“Ù
     public AudioClip dropSound;  //µÙ¬‰…˘“Ù
     public AudioClip runSound;  //±º≈‹…˘“Ù
@@ -18,6 +18,7 @@ public class AliceController : MonoBehaviour
 
     private AudioSource audioSource;
     public GameObject enter;
+    public GameObject End;
     public float jumpForce = 6.0f;
     private int cnt = 0;
     bool isGrounded = false;
@@ -37,6 +38,7 @@ public class AliceController : MonoBehaviour
     float horizontal;
     void Start()
     {
+        End.SetActive(false);
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody2D>();
@@ -51,7 +53,6 @@ public class AliceController : MonoBehaviour
 
     void Update()
     {
-
         if (TilemapMove.Speed == 0)
         {
             horizontal = Input.GetAxis("Horizontal");
@@ -61,209 +62,199 @@ public class AliceController : MonoBehaviour
         {
             enter.SetActive(true);
             if (Input.GetKeyDown(KeyCode.W))
-
-                if (TilemapMove.Speed == 0)
-                {
-                    horizontal = Input.GetAxis("Horizontal");
-                }
-            if (tran.position.x > 9.11f) SceneManager.LoadScene("gameScene2");
-            else if (tran.position.x > -3.2f && tran.position.x < 1.06f)
             {
-                enter.SetActive(true);
-                if (Input.GetKeyDown(KeyCode.W))
-
-                {
-                    SceneManager.LoadScene("shopScene");
-                }
+                inShop=true;
+            }
+        }
+        else
+        {
+            enter.SetActive(false);
+        }
+        healthBar.value = HP / 100;
+        float verticalVelocity = rigid.velocity.y;
+        if (Input.GetKeyDown(KeyCode.Space) && cnt < 2)
+        {
+            isJump = true;
+            isGrounded = false;
+            if (verticalVelocity < 0.0f)
+            {
+                animator.SetBool("DropToJump", true);
             }
             else
             {
-                enter.SetActive(false);
+                animator.SetBool("RunToJump", true);
             }
-            healthBar.value = HP / 100;
-            float verticalVelocity = rigid.velocity.y;
-            if (Input.GetKeyDown(KeyCode.Space) && cnt < 2)
+
+            isDrop = false;
+            rigid.velocity = new Vector2(rigid.velocity.x, 0f);
+            rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            cnt++;
+        }
+        if (verticalVelocity < 0.0f)
+        {
+            animator.SetBool("RunToJump", false);
+            animator.SetBool("JumpToDrop", true);
+            animator.SetBool("DropToRun", false);
+            isDrop = true;
+        }
+
+        if (isGrounded)
+        {
+            if (!audioSource.isPlaying) audioSource.PlayOneShot(runSound);
+            animator.SetBool("DropToRun", true);
+            isJump = false;
+            isDrop = false;
+        }
+        else
+        {
+            if (audioSource.clip == runSound) audioSource.Pause();
+        }
+
+        if (!isAttacking && Input.GetMouseButtonDown(0) && bulletNum > 0)
+        {
+            if (biu1 == null || biu2 == null)
             {
-                isJump = true;
-                isGrounded = false;
-                if (verticalVelocity < 0.0f)
+                if (!isJump) animator.SetTrigger("Attack");
+                else isAttacking = true;
+                audioSource.PlayOneShot(attackSound);
+                animator.SetTrigger("Attack");
+                isAttacking = true;
+                if (biu1 == null)
                 {
-                    animator.SetBool("DropToJump", true);
+                    biu1 = Instantiate(bullet, transform.position + new Vector3(0.0f, -0.4f, 0), Quaternion.identity);
+                    bulletNum--;
                 }
                 else
                 {
-                    animator.SetBool("RunToJump", true);
-                }
-
-                isDrop = false;
-                rigid.velocity = new Vector2(rigid.velocity.x, 0f);
-                rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-                cnt++;
-            }
-            if (verticalVelocity < 0.0f)
-            {
-                animator.SetBool("RunToJump", false);
-                animator.SetBool("JumpToDrop", true);
-                animator.SetBool("DropToRun", false);
-                isDrop = true;
-            }
-
-            if (isGrounded)
-            {
-                if (!audioSource.isPlaying) audioSource.PlayOneShot(runSound);
-                animator.SetBool("DropToRun", true);
-                isJump = false;
-                isDrop = false;
-            }
-            else
-            {
-                if (audioSource.clip == runSound) audioSource.Pause();
-            }
-
-            if (!isAttacking && Input.GetMouseButtonDown(0) && bulletNum > 0)
-            {
-                if (biu1 == null || biu2 == null)
-                {
-                    if (!isJump) animator.SetTrigger("Attack");
-                    else isAttacking = true;
-                    audioSource.PlayOneShot(attackSound);
-                    animator.SetTrigger("Attack");
-                    isAttacking = true;
-                    if (biu1 == null)
-                    {
-                        biu1 = Instantiate(bullet, transform.position + new Vector3(0.0f, -0.4f, 0), Quaternion.identity);
-                        bulletNum--;
-                    }
-                    else
-                    {
-                        biu2 = Instantiate(bullet, transform.position + new Vector3(0.0f, -0.4f, 0), Quaternion.identity);
-                        bulletNum--;
-                    }
+                    biu2 = Instantiate(bullet, transform.position + new Vector3(0.0f, -0.4f, 0), Quaternion.identity);
+                    bulletNum--;
                 }
             }
-            if (biu1 != null)
+        }
+        if (biu1 != null)
+        {
+            biu1.transform.position += Vector3.right * bulletSpeed * Time.deltaTime;
+            if (biu1.transform.position.x > 10)
             {
-                biu1.transform.position += Vector3.right * bulletSpeed * Time.deltaTime;
-                if (biu1.transform.position.x > 10)
-                {
-                    Destroy(biu1);
-                }
+                Destroy(biu1);
             }
-            if (biu2 != null)
+        }
+        if (biu2 != null)
+        {
+            biu2.transform.position += Vector3.right * bulletSpeed * Time.deltaTime;
+            if (biu2.transform.position.x > 10)
             {
-                biu2.transform.position += Vector3.right * bulletSpeed * Time.deltaTime;
-                if (biu2.transform.position.x > 10)
-                {
-                    Destroy(biu2);
-                }
+                Destroy(biu2);
             }
         }
     }
-        void FixedUpdate()
-        {
+    void FixedUpdate()
+    {
 
-            if (TilemapMove.Speed == 0)
-            {
-                float speed = 5.0f;
-                Vector2 position = rigid.position;
-                position.x = position.x + speed * horizontal * Time.deltaTime;
-                rigid.MovePosition(position);
-            }
-        }
-        IEnumerator DelayedAudioActivation(float wait)
+        if (TilemapMove.Speed == 0)
         {
-            yield return new WaitForSeconds(wait);
-            audioSource.mute = false;
+            float speed = 5.0f;
+            Vector2 position = rigid.position;
+            position.x = position.x + speed * horizontal * Time.deltaTime;
+            rigid.MovePosition(position);
+            if(horizontal>0) tran.localScale=new Vector3(-1,1,1);
+            else if(horizontal<0) tran.localScale=new Vector3(1,1,1);
         }
+    }
+    IEnumerator DelayedAudioActivation(float wait)
+    {
+        yield return new WaitForSeconds(wait);
+        audioSource.mute = false;
+    }
 
-        void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        string collisionTag = collision.gameObject.tag;
+        if (collisionTag == "Ground")
         {
-            string collisionTag = collision.gameObject.tag;
-            if (collisionTag == "Ground")
+            if (!isGrounded)
             {
-                if (!isGrounded)
-                {
-                    audioSource.PlayOneShot(dropSound);
-                }
-                isGrounded = true;
-                cnt = 0;
-
+                audioSource.PlayOneShot(dropSound);
             }
-            else if (collisionTag == "Barrier" || collisionTag == "Barrier2" || collisionTag == "fish" || collisionTag == "seaweed")
-            {
-                audioSource.PlayOneShot(hurtSound);
-                HP -= 10;
-                if (isDrop) StartCoroutine(DelayedAction(0.24f));
-                else StartCoroutine(DelayedAction(0.5f));
-            }
-        }
-        void AttacktoRun()
-        {
-            animator.SetBool("AttackToRun", true);
-        }
-        void InitAnimator()
-        {
-            isAttacking = false;
-            animator.SetBool("AttackToRun", false);
-            animator.SetBool("JumpToDrop", false);
-            //animator.SetBool("RunToJump", false);
-            animator.SetBool("DropToJump", false);
-            animator.SetBool("HurtToRun", false);
-        }
-        void Jump()
-        {
-            animator.SetBool("DropToJump", false);
-            animator.SetBool("JumpToDrop", false);
-        }
-        void HurttoRun()
-        {
-            animator.SetBool("HurtToRun", true);
-            animator.SetBool("hurted", false);
-            for (int i = 0; i < tmp.Length; i++)
-            {
-                if (tmp[i]) tmp[i].GetComponent<PolygonCollider2D>().enabled = true;
-            }
-            for (int i = 0; i < tmp2.Length; i++)
-            {
-                if (tmp2[i]) tmp2[i].GetComponent<PolygonCollider2D>().enabled = true;
-            }
-            for (int i = 0; i < fish.Length; i++)
-            {
-                if (fish[i]) fish[i].GetComponent<BoxCollider2D>().enabled = true;
-            }
-            for (int i = 0; i < seaweed.Length; i++)
-            {
-                if (seaweed[i]) seaweed[i].GetComponent<BoxCollider2D>().enabled = true;
-            }
-
+            isGrounded = true;
+            cnt = 0;
 
         }
-        IEnumerator DelayedAction(float wait)
+        else if (collisionTag == "Barrier" || collisionTag == "Barrier2" || collisionTag == "fish" || collisionTag == "seaweed")
         {
-            yield return new WaitForSeconds(wait);
-            tran.position = startpos;
-            animator.SetBool("hurted", true);
-            tmp = GameObject.FindGameObjectsWithTag("Barrier");
-            tmp2 = GameObject.FindGameObjectsWithTag("Barrier2");
-            fish = GameObject.FindGameObjectsWithTag("fish");
-            seaweed = GameObject.FindGameObjectsWithTag("seaweed");
-            for (int i = 0; i < tmp.Length; i++)
-            {
-                tmp[i].GetComponent<PolygonCollider2D>().enabled = false;
-            }
-            for (int i = 0; i < tmp2.Length; i++)
-            {
-                tmp2[i].GetComponent<PolygonCollider2D>().enabled = false;
-            }
-            for (int i = 0; i < fish.Length; i++)
-            {
-                fish[i].GetComponent<BoxCollider2D>().enabled = false;
-            }
-            for (int i = 0; i < seaweed.Length; i++)
-            {
-                seaweed[i].GetComponent<BoxCollider2D>().enabled = false;
-            }
-
+            audioSource.PlayOneShot(hurtSound);
+            HP -= 10;
+            if (isDrop) StartCoroutine(DelayedAction(0.24f));
+            else StartCoroutine(DelayedAction(0.5f));
         }
+    }
+    void AttacktoRun()
+    {
+        animator.SetBool("AttackToRun", true);
+    }
+    void InitAnimator()
+    {
+        isAttacking = false;
+        animator.SetBool("AttackToRun", false);
+        animator.SetBool("JumpToDrop", false);
+        //animator.SetBool("RunToJump", false);
+        animator.SetBool("DropToJump", false);
+        animator.SetBool("HurtToRun", false);
+    }
+    void Jump()
+    {
+        animator.SetBool("DropToJump", false);
+        animator.SetBool("JumpToDrop", false);
+    }
+    void HurttoRun()
+    {
+        animator.SetBool("HurtToRun", true);
+        animator.SetBool("hurted", false);
+        for (int i = 0; i < tmp.Length; i++)
+        {
+            if (tmp[i]) tmp[i].GetComponent<PolygonCollider2D>().enabled = true;
+        }
+        for (int i = 0; i < tmp2.Length; i++)
+        {
+            if (tmp2[i]) tmp2[i].GetComponent<PolygonCollider2D>().enabled = true;
+        }
+        for (int i = 0; i < fish.Length; i++)
+        {
+            if (fish[i]) fish[i].GetComponent<BoxCollider2D>().enabled = true;
+        }
+        for (int i = 0; i < seaweed.Length; i++)
+        {
+            if (seaweed[i]) seaweed[i].GetComponent<BoxCollider2D>().enabled = true;
+        }
+
+
+    }
+    IEnumerator DelayedAction(float wait)
+    {
+        yield return new WaitForSeconds(wait);
+        tran.position = startpos;
+        animator.SetBool("hurted", true);
+        tmp = GameObject.FindGameObjectsWithTag("Barrier");
+        tmp2 = GameObject.FindGameObjectsWithTag("Barrier2");
+        fish = GameObject.FindGameObjectsWithTag("fish");
+        seaweed = GameObject.FindGameObjectsWithTag("seaweed");
+        for (int i = 0; i < tmp.Length; i++)
+        {
+            tmp[i].GetComponent<PolygonCollider2D>().enabled = false;
+        }
+        for (int i = 0; i < tmp2.Length; i++)
+        {
+            tmp2[i].GetComponent<PolygonCollider2D>().enabled = false;
+        }
+        for (int i = 0; i < fish.Length; i++)
+        {
+            fish[i].GetComponent<BoxCollider2D>().enabled = false;
+        }
+        for (int i = 0; i < seaweed.Length; i++)
+        {
+            seaweed[i].GetComponent<BoxCollider2D>().enabled = false;
+        }
+
+    }
     
 }
