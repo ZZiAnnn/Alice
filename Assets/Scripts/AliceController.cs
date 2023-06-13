@@ -18,6 +18,7 @@ public class AliceController : MonoBehaviour
 
     private AudioSource audioSource;
     public GameObject enter;
+    public GameObject End;
     public float jumpForce = 6.0f;
     private int cnt = 0;
     bool isGrounded = false;
@@ -36,6 +37,8 @@ public class AliceController : MonoBehaviour
     float horizontal;
     void Start()
     {
+        HP=100;
+        Time.timeScale=1;
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody2D>();
@@ -46,6 +49,7 @@ public class AliceController : MonoBehaviour
         isDrop = false;
         tran = GetComponent<Transform>();
         startpos = new Vector2(tran.position.x, -1);
+        End.SetActive(false);
     }
 
     void Update()
@@ -54,6 +58,8 @@ public class AliceController : MonoBehaviour
         {
             horizontal = Input.GetAxis("Horizontal");
         }
+        if(horizontal>0) tran.localScale=new Vector3(-1,1,1);
+        else if(horizontal<0) tran.localScale=new Vector3(1,1,1);
         if(tran.position.x>9.11f) SceneManager.LoadScene("gameScene2");
         else if(tran.position.x>-3.2f&&tran.position.x<1.06f) 
         {
@@ -143,6 +149,11 @@ public class AliceController : MonoBehaviour
             {
                 Destroy(biu2);
             }
+        }
+        if(HP==0) 
+        {
+            Time.timeScale = 0;
+            End.SetActive(true);
         }
     }
     void FixedUpdate()

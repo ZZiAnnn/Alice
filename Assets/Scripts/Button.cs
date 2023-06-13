@@ -35,4 +35,17 @@ public class Button : MonoBehaviour
         setting.SetActive(false);
         first.SetActive(true);
     }
+
+    public void onClickEnd()
+    {
+        Application.Quit();
+    }
+    public void onClickReplay()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void onClickReturn()
+    {
+        SceneManager.LoadScene("startPage");
+    }
 }

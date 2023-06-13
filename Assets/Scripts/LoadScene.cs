@@ -17,7 +17,6 @@ public class LoadScene : MonoBehaviour
         initx = trans.position.x;
         StartCoroutine(LoadLevel());
     }
-
     // Update is called once per frame
     void Update()
     {
