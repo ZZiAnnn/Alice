@@ -4921,7 +4921,6 @@ GameObject:
   - component: {fileID: 2049301038}
   - component: {fileID: 2049301039}
   - component: {fileID: 2049301040}
-  - component: {fileID: 2049301036}
   m_Layer: 0
   m_Name: Alice
   m_TagString: player
@@ -5016,27 +5015,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2049301036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2049301031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d41a4562ab41ec24393ea7233eac7398, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackSound: {fileID: 8300000, guid: b0e2183e1f3d69246a993f53f03e9ed6, type: 3}
-  dropSound: {fileID: 8300000, guid: 50b6e15d4d13c0144b7e1c6ed10f947c, type: 3}
-  runSound: {fileID: 8300000, guid: 1744d891dfec3a048b6f4c690e073ca0, type: 3}
-  hurtSound: {fileID: 8300000, guid: a5fd521ad0605b74dac29e2f9d08a199, type: 3}
-  jumpForce: 6.5
-  bullet: {fileID: 721909105728777466, guid: d8c70ac54dee7cf4e8ee56157b8a2480, type: 3}
-  bulletSpeed: 20
-  healthBar: {fileID: 676146174}
-  bulletNum: 10
 --- !u!50 &2049301037
 Rigidbody2D:
   serializedVersion: 4
@@ -5203,8 +5181,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackSound: {fileID: 8300000, guid: b0e2183e1f3d69246a993f53f03e9ed6, type: 3}
-  dropSound: {fileID: 8300000, guid: 50b6e15d4d13c0144b7e1c6ed10f947c, type: 3}
-  runSound: {fileID: 8300000, guid: 1744d891dfec3a048b6f4c690e073ca0, type: 3}
+  dropSound: {fileID: 8300000, guid: 1744d891dfec3a048b6f4c690e073ca0, type: 3}
+  jumpSound: {fileID: 8300000, guid: 50b6e15d4d13c0144b7e1c6ed10f947c, type: 3}
   hurtSound: {fileID: 8300000, guid: a5fd521ad0605b74dac29e2f9d08a199, type: 3}
   enter: {fileID: 1836637102}
   End: {fileID: 1827408966}
