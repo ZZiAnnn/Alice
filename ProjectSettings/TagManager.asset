@@ -11,6 +11,7 @@ TagManager:
   - player
   - fish
   - seaweed
+  - dropPane
   layers:
   - Default
   - TransparentFX

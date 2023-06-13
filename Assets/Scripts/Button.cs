@@ -9,7 +9,7 @@ public class Button : MonoBehaviour
     public GameObject setting;
     void Start()
     {
-        Audio.instance.PlayMusicByName("bgm1");
+        // Audio.instance.PlayMusicByName("bgm1");
     }
 
     public void onclick1()
