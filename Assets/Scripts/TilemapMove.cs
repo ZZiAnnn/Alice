@@ -69,7 +69,7 @@ public class TilemapMove : MonoBehaviour
         if (t>= 60&&t<63)//finished
         {
             Speed=maxSpeed-maxSpeed/8*(t-60);
-            if(shop==null) shop=Instantiate(shopPreferb, transform.position + new Vector3(25, 2.5f, 0), Quaternion.identity);
+            if(shop==null) shop=Instantiate(shopPreferb, transform.position + new Vector3(25, 2.5f, 1), Quaternion.identity);
             if(trigger==null)trigger = Instantiate(triggerPreferb, transform.position + new Vector3(35.2f, 0, 0), Quaternion.identity);
         }
         else if(t>=63)

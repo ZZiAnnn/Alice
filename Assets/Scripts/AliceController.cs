@@ -17,7 +17,7 @@ public class AliceController : MonoBehaviour
     public AudioClip hurtSound;  // ‹…À“Ù–ß
 
     private AudioSource audioSource;
-
+    public GameObject enter;
     public float jumpForce = 6.0f;
     private int cnt = 0;
     bool isGrounded = false;
@@ -33,7 +33,7 @@ public class AliceController : MonoBehaviour
     GameObject[] tmp2;
     GameObject[] fish;
     GameObject[] seaweed;
-
+    float horizontal;
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -71,7 +71,6 @@ public class AliceController : MonoBehaviour
         float verticalVelocity = rigid.velocity.y;
         if (Input.GetKeyDown(KeyCode.Space) && cnt < 2)
         {
-
             isJump = true;
             isGrounded = false;
             if (verticalVelocity < 0.0f)
@@ -146,7 +145,16 @@ public class AliceController : MonoBehaviour
             }
         }
     }
-
+    void FixedUpdate()
+    {
+        if(TilemapMove.Speed==0)
+        {
+            float speed=5.0f;
+            Vector2 position = rigid.position;
+            position.x = position.x + speed * horizontal * Time.deltaTime;
+            rigid.MovePosition(position);
+        }
+    }
     IEnumerator DelayedAudioActivation(float wait)
     {
         yield return new WaitForSeconds(wait);
