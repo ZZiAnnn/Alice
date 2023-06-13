@@ -25,7 +25,7 @@ public class AliceController : MonoBehaviour
     private GameObject biu1, biu2;
     public float bulletSpeed = 50;
     bool isAttacking, isJump, isDrop;
-    public float HP = 100;
+    public static float HP = 100;
     public Slider healthBar;
     private Vector3 startpos;
     public int bulletNum = 10;

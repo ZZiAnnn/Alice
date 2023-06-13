@@ -143,7 +143,16 @@ public class AliceController_BossTime : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("collision");
-
+        string collisionTag = collision.gameObject.tag;
+        if (collisionTag == "Ground")
+        {
+            if (!isGrounded)
+            {
+                audioSource.PlayOneShot(dropSound);
+            }
+            isGrounded = true;
+            cnt = 0;
+        }
     }
     public void AttacktoRun()
     {
@@ -167,10 +176,5 @@ public class AliceController_BossTime : MonoBehaviour
     {
         animator.SetBool("HurtToRun", true);
         animator.SetBool("hurted", false);
-    }
-    IEnumerator DelayedAction(float wait)
-    {
-        yield return new WaitForSeconds(wait);
-        animator.SetBool("hurted", true);   
     }
 }
