@@ -38,6 +38,8 @@ public class AliceController : MonoBehaviour
     float horizontal;
     void Start()
     {
+        HP=100;
+        Time.timeScale=1;
         End.SetActive(false);
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
@@ -57,19 +59,7 @@ public class AliceController : MonoBehaviour
         {
             horizontal = Input.GetAxis("Horizontal");
         }
-        if (tran.position.x > 9.11f) SceneManager.LoadScene("gameScene2");
-        else if (tran.position.x > -3.2f && tran.position.x < 1.06f)
-        {
-            enter.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                inShop=true;
-            }
-        }
-        else
-        {
-            enter.SetActive(false);
-        }
+
         healthBar.value = HP / 100;
         float verticalVelocity = rigid.velocity.y;
         if (Input.GetKeyDown(KeyCode.Space) && cnt < 2)
@@ -147,15 +137,19 @@ public class AliceController : MonoBehaviour
                 Destroy(biu2);
             }
         }
+        if(HP==0)
+        {
+            Time.timeScale=0;
+            End.SetActive(true);
+        }
     }
     void FixedUpdate()
     {
-
         if (TilemapMove.Speed == 0)
         {
             float speed = 5.0f;
             Vector2 position = rigid.position;
-            position.y=-1.466682f;
+            //position.y=-1.466682f;
             position.x = position.x + speed * horizontal * Time.deltaTime;
             rigid.MovePosition(position);
             if(horizontal>0) tran.localScale=new Vector3(-1,1,1);
@@ -256,6 +250,36 @@ public class AliceController : MonoBehaviour
             seaweed[i].GetComponent<BoxCollider2D>().enabled = false;
         }
 
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag=="shop")
+        {
+            enter.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                inShop=true;
+            }
+        }
+        else if(collision.gameObject.tag=="next")
+        {
+            SceneManager.LoadScene("bossScene");
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            inShop=true;
+        }
+
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag=="shop")
+        {
+            enter.SetActive(false);
+        }
     }
     
 }
