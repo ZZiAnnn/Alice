@@ -11,10 +11,10 @@ public class AliceController : MonoBehaviour
     Rigidbody2D rigid;
     Transform tran;
 
-    public AudioClip attackSound;  //¹¥»÷ÒôĞ§
-    public AudioClip dropSound;  //ÂäµØÒôĞ§
-    public AudioClip runSound;  //±¼ÅÜÒôĞ§
-    public AudioClip hurtSound;  //ÊÜÉËÒôĞ§
+    public AudioClip attackSound;  //×²»÷ÉùÒô
+    public AudioClip dropSound;  //µôÂäÉùÒô
+    public AudioClip runSound;  //±¼ÅÜÉùÒô
+    public AudioClip hurtSound;  //ÊÜÉËÉùÒô
 
     private AudioSource audioSource;
     public GameObject enter;
@@ -25,7 +25,8 @@ public class AliceController : MonoBehaviour
     private GameObject biu1, biu2;
     public float bulletSpeed = 50;
     bool isAttacking, isJump, isDrop;
-    public static float HP = 100;
+    public static float HP = 100; //AliceµÄÑªÁ¿
+    public static int money = 5; //AliceµÄ½ğÇ®
     public Slider healthBar;
     private Vector3 startpos;
     public int bulletNum = 10;
