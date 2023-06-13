@@ -17,21 +17,24 @@ public class AliceController_BossTime : MonoBehaviour
 
     private AudioSource audioSource;
     private bool audioControl = false;
-
+    public float walkingSpeed = 8f;
     public float jumpForce = 6.0f;
     private int cnt = 0;
     bool isGrounded = false;
     public GameObject bullet;
     private GameObject biu1, biu2;
-    public float bulletSpeed = 50;
+    public float bulletSpeed = 5f;
     bool isAttacking, isJump, isDrop;
     //public float HP = 100;
     public Slider healthBar;
-    public int bulletNum = 10;
+    public int bulletNum = 50;
     bool isLeftOrRight;  //false表示朝左，true表示朝右
+    bool biu1Direct;
+    bool biu2Direct;
 
     void Start()
     {
+        Audio.instance.PlayMusicByName("bgm3");
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody2D>();
@@ -46,9 +49,23 @@ public class AliceController_BossTime : MonoBehaviour
     {
         healthBar.value = AliceController.HP / 100;
         float verticalVelocity = rigid.velocity.y;
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.Translate(Vector3.left * walkingSpeed * Time.deltaTime);
+            if(isLeftOrRight) transform.localScale = new Vector3(1f, 1f, 1f); // 将角色朝向左
+            isLeftOrRight = false;
+        }
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            transform.Translate(Vector3.right * walkingSpeed * Time.deltaTime);
+            if (!isLeftOrRight) transform.localScale = new Vector3(-1f, 1f, 1f); // 将角色朝向左
+            isLeftOrRight = true;
+        }
+
         if (Input.GetKeyDown(KeyCode.Space) && cnt < 2)
         {
-
             isJump = true;
             isGrounded = false;
             if (verticalVelocity < 0.0f)
@@ -92,21 +109,23 @@ public class AliceController_BossTime : MonoBehaviour
                 if (biu1 == null)
                 {
                     biu1 = Instantiate(bullet, transform.position + new Vector3(0.0f, -0.4f, 0), Quaternion.identity);
+                    biu1Direct = isLeftOrRight;
                     bulletNum--;
                 }
                 else
                 {
                     biu2 = Instantiate(bullet, transform.position + new Vector3(0.0f, -0.4f, 0), Quaternion.identity);
+                    biu2Direct = isLeftOrRight;
                     bulletNum--;
                 }
             }
         } //子弹攻击
         if (biu1 != null)
         {
-            if (isLeftOrRight)
+            if (biu1Direct)
             {
                 biu1.transform.position += Vector3.right * bulletSpeed * Time.deltaTime;
-                if (biu1.transform.position.x > 10)
+                if (biu1.transform.position.x > 13)
                 {
                     Destroy(biu1);
                 }
@@ -114,7 +133,7 @@ public class AliceController_BossTime : MonoBehaviour
             else
             {
                 biu1.transform.position += Vector3.left * bulletSpeed * Time.deltaTime;
-                if (biu1.transform.position.x < -10)
+                if (biu1.transform.position.x < -13)
                 {
                     Destroy(biu1);
                 }
@@ -122,10 +141,10 @@ public class AliceController_BossTime : MonoBehaviour
         }
         if (biu2 != null)
         {
-            if (isLeftOrRight)
+            if (biu2Direct)
             {
                 biu1.transform.position += Vector3.right * bulletSpeed * Time.deltaTime;
-                if (biu1.transform.position.x > 10)
+                if (biu1.transform.position.x > 13)
                 {
                     Destroy(biu1);
                 }
@@ -133,7 +152,7 @@ public class AliceController_BossTime : MonoBehaviour
             else
             {
                 biu1.transform.position += Vector3.left * bulletSpeed * Time.deltaTime;
-                if (biu1.transform.position.x < -10)
+                if (biu1.transform.position.x < -13)
                 {
                     Destroy(biu1);
                 }

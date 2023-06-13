@@ -16,7 +16,6 @@ public class AliceController : MonoBehaviour
     public AudioClip hurtSound;  // ‹…À“Ù–ß
 
     private AudioSource audioSource;
-    private bool audioControl = false;
 
     public float jumpForce = 6.0f;
     private int cnt = 0;
