@@ -276,6 +276,7 @@ public class AliceController : MonoBehaviour
         if(collision.gameObject.tag=="shop")
         {
             enter.SetActive(false);
+            inShop = false;
         }
     }
     

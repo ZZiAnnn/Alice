@@ -290,6 +290,7 @@ GameObject:
   - component: {fileID: 528491540}
   - component: {fileID: 528491539}
   - component: {fileID: 528491542}
+  - component: {fileID: 528491543}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -425,6 +426,27 @@ PolygonCollider2D:
       - {x: -0.34375, y: -0.328125}
       - {x: -0.359375, y: -0.28125}
       - {x: -0.484375, y: -0.234375}
+--- !u!114 &528491543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 528491538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7326bd7a9ae8410429f7dee32493c0be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parameter:
+    health: 0
+    maxhealth: 0
+    chaseSpeed: 12
+    idleTime: 3
+    animator: {fileID: 528491539}
+    alice: {fileID: 1413337504}
+    flag: 0
+    Change: 0
 --- !u!1 &947385084
 GameObject:
   m_ObjectHideFlags: 0
