@@ -3,21 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
-public class AliceController : MonoBehaviour
+public class AliceController2 : MonoBehaviour
 {
     Animator animator;
     Rigidbody2D rigid;
     Transform tran;
 
-    public AudioClip attackSound;  //ÒZ∆ß∂xÕE
-    public AudioClip dropSound;  //Â„»A∂xÕE
-    public AudioClip runSound;  //µÙ◊É∂xÕE
-    public AudioClip hurtSound;  //è˜ﬁ≈∂xÕE
+    public AudioClip attackSound;  //π•ª˜“Ù–ß
+    public AudioClip dropSound;  //¬‰µÿ“Ù–ß
+    public AudioClip runSound;  //±º≈‹“Ù–ß
+    public AudioClip hurtSound;  // ‹…À“Ù–ß
 
     private AudioSource audioSource;
-    public GameObject enter;
+
     public float jumpForce = 6.0f;
     private int cnt = 0;
     bool isGrounded = false;
@@ -29,11 +28,12 @@ public class AliceController : MonoBehaviour
     public Slider healthBar;
     private Vector3 startpos;
     public int bulletNum = 10;
+    bool flag = true;
     GameObject[] tmp;
     GameObject[] tmp2;
     GameObject[] fish;
     GameObject[] seaweed;
-    float horizontal;
+
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -45,32 +45,24 @@ public class AliceController : MonoBehaviour
         isJump = false;
         isDrop = false;
         tran = GetComponent<Transform>();
-        startpos = new Vector2(tran.position.x, -1);
+        startpos = new Vector2(tran.position.x, tran.position.y);
     }
 
     void Update()
     {
-        if (TilemapMove.Speed == 0)
+        if(tran.position.y <= -5f && flag)
         {
-            horizontal = Input.GetAxis("Horizontal");
+            Debug.Log("-5");
+            flag = false;
+            HP -= 30;
+            DelayedAction(0.5f);
         }
-        if (tran.position.x > 9.11f) SceneManager.LoadScene("gameScene2");
-        else if (tran.position.x > -3.2f && tran.position.x < 1.06f)
-        {
-            enter.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                SceneManager.LoadScene("shopScene");
-            }
-        }
-        else
-        {
-            enter.SetActive(false);
-        }
+       
         healthBar.value = HP / 100;
         float verticalVelocity = rigid.velocity.y;
         if (Input.GetKeyDown(KeyCode.Space) && cnt < 2)
         {
+
             isJump = true;
             isGrounded = false;
             if (verticalVelocity < 0.0f)
@@ -145,16 +137,7 @@ public class AliceController : MonoBehaviour
             }
         }
     }
-    void FixedUpdate()
-    {
-        if (TilemapMove.Speed == 0)
-        {
-            float speed = 5.0f;
-            Vector2 position = rigid.position;
-            position.x = position.x + speed * horizontal * Time.deltaTime;
-            rigid.MovePosition(position);
-        }
-    }
+
     IEnumerator DelayedAudioActivation(float wait)
     {
         yield return new WaitForSeconds(wait);
@@ -171,17 +154,18 @@ public class AliceController : MonoBehaviour
                 audioSource.PlayOneShot(dropSound);
             }
             isGrounded = true;
+            flag = true;
             cnt = 0;
-
         }
         else if (collisionTag == "Barrier" || collisionTag == "Barrier2" || collisionTag == "fish" || collisionTag == "seaweed")
         {
             audioSource.PlayOneShot(hurtSound);
-            HP -= 10;
+            HP -=10;
             if (isDrop) StartCoroutine(DelayedAction(0.24f));
             else StartCoroutine(DelayedAction(0.5f));
         }
     }
+       
     public void AttacktoRun()
     {
         animator.SetBool("AttackToRun", true);
@@ -225,14 +209,14 @@ public class AliceController : MonoBehaviour
     }
     IEnumerator DelayedAction(float wait)
     {
-        yield return new WaitForSeconds(wait);
-        tran.position = startpos;
+        yield return new WaitForSeconds(wait); 
+        tran.position=startpos;
         animator.SetBool("hurted", true);
         tmp = GameObject.FindGameObjectsWithTag("Barrier");
         tmp2 = GameObject.FindGameObjectsWithTag("Barrier2");
         fish = GameObject.FindGameObjectsWithTag("fish");
         seaweed = GameObject.FindGameObjectsWithTag("seaweed");
-        for (int i = 0; i < tmp.Length; i++)
+        for (int i=0;i<tmp.Length;i++)
         {
             tmp[i].GetComponent<PolygonCollider2D>().enabled = false;
         }
