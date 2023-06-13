@@ -23,26 +23,27 @@ public class Shopscene : MonoBehaviour
     {
         
     }
-    //购买火鸡，增加到满血100点血量
+    //购买火鸡，增加到50点血量
     public void BuyTurkey()
     {
         if (AliceController.money >= 5)
         {
             AliceController.money -= 5;
-            AliceController.HP = 100;
+            AliceController.HP += 50;
+            if (AliceController.HP > 100) AliceController.HP = 100;
             moneyText.text = "X " + AliceController.money.ToString();
             info.text = "购买成功！";
         }else{
             info.text = "金钱不足！";
         }
     }
-    //购买面包，增加50点血量
+    //购买面包，增加25点血量
     public void BuyBread()
     {
         if (AliceController.money >= 3)
         {
             AliceController.money -= 3;
-            AliceController.HP += 50;
+            AliceController.HP += 25;
             if (AliceController.HP > 100) AliceController.HP = 100;
             moneyText.text = "X " + AliceController.money.ToString();
             info.text = "购买成功！";

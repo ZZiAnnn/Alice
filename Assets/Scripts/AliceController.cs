@@ -19,18 +19,18 @@ public class AliceController : MonoBehaviour
     private AudioSource audioSource;
     public GameObject enter;
     public GameObject End;
-    public float jumpForce = 6.0f;
+    public float jumpForce = 6.0f; //跳跃力度
     private int cnt = 0;
     bool isGrounded = false;
     public GameObject bullet;
     private GameObject biu1, biu2;
-    public float bulletSpeed = 50;
+    public float bulletSpeed = 50; //子弹速度
     bool isAttacking, isJump, isDrop;
     public static float HP = 100; //Alice的血量
     public static int money = 5; //Alice的金钱
     public Slider healthBar;
     private Vector3 startpos;
-    public int bulletNum = 20;
+    public int bulletNum = 20; //Alice的子弹数量
     GameObject[] tmp;
     GameObject[] tmp2;
     GameObject[] fish;
@@ -39,9 +39,9 @@ public class AliceController : MonoBehaviour
     void Start()
     {
         End.SetActive(false);
-        audioSource = GetComponent<AudioSource>();
-        animator = GetComponent<Animator>();
-        rigid = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>(); //获取声音组件
+        animator = GetComponent<Animator>(); //获取动画组件
+        rigid = GetComponent<Rigidbody2D>(); //获取刚体组件
         audioSource.mute = true;
         StartCoroutine(DelayedAudioActivation(3.0f));
         isAttacking = false;
@@ -57,11 +57,11 @@ public class AliceController : MonoBehaviour
         {
             horizontal = Input.GetAxis("Horizontal");
         }
-        if (tran.position.x > 9.11f) SceneManager.LoadScene("gameScene2");
+        if (tran.position.x > 9.11f) SceneManager.LoadScene("gameScene2"); //进入下一关
         else if (tran.position.x > -3.2f && tran.position.x < 1.06f)
         {
-            enter.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.W))
+            enter.SetActive(true); //进入商店
+            if (Input.GetKeyDown(KeyCode.W)) 
             {
                 inShop=true;
             }
@@ -70,9 +70,9 @@ public class AliceController : MonoBehaviour
         {
             enter.SetActive(false);
         }
-        healthBar.value = HP / 100;
-        float verticalVelocity = rigid.velocity.y;
-        if (Input.GetKeyDown(KeyCode.Space) && cnt < 2)
+        healthBar.value = HP / 100; //血条
+        float verticalVelocity = rigid.velocity.y; //获取垂直速度
+        if (Input.GetKeyDown(KeyCode.Space) && cnt < 2) //跳跃
         {
             
             if(cnt==0)audioSource.PlayOneShot(jumpSound);
@@ -92,7 +92,7 @@ public class AliceController : MonoBehaviour
             rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             cnt++;
         }
-        if (verticalVelocity < 0.0f)
+        if (verticalVelocity < 0.0f) //下落
         {
             animator.SetBool("RunToJump", false);
             animator.SetBool("JumpToDrop", true);
@@ -100,14 +100,14 @@ public class AliceController : MonoBehaviour
             isDrop = true;
         }
 
-        if (isGrounded)
+        if (isGrounded) //落地
         {
             animator.SetBool("DropToRun", true);
             isJump = false;
             isDrop = false;
         }
 
-        if (!isAttacking && Input.GetMouseButtonDown(0) && bulletNum > 0)
+        if (!isAttacking && Input.GetMouseButtonDown(0) && bulletNum > 0) //攻击
         {
             if (biu1 == null || biu2 == null)
             {
@@ -128,7 +128,7 @@ public class AliceController : MonoBehaviour
                 }
             }
         }
-        if (biu1 != null)
+        if (biu1 != null) //子弹移动
         {
             biu1.transform.position += Vector3.right * bulletSpeed * Time.deltaTime;
             if (biu1.transform.position.x > 10)
@@ -161,14 +161,14 @@ public class AliceController : MonoBehaviour
     }
     IEnumerator DelayedAudioActivation(float wait)
     {
-        yield return new WaitForSeconds(wait);
-        audioSource.mute = false;
+        yield return new WaitForSeconds(wait); //等待
+        audioSource.mute = false;  //激活声音
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         string collisionTag = collision.gameObject.tag;
-        if (collisionTag == "Ground")
+        if (collisionTag == "Ground") //碰到地面
         {
             if (!isGrounded)
             {
@@ -178,7 +178,7 @@ public class AliceController : MonoBehaviour
             cnt = 0;
 
         }
-        else if (collisionTag == "Barrier" || collisionTag == "Barrier2" || collisionTag == "fish" || collisionTag == "seaweed")
+        else if (collisionTag == "Barrier" || collisionTag == "Barrier2" || collisionTag == "fish" || collisionTag == "seaweed") //碰到障碍物
         {
             audioSource.PlayOneShot(hurtSound);
             HP -= 10;
