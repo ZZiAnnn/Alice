@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class AliceController : MonoBehaviour
 {
@@ -50,6 +51,23 @@ public class AliceController : MonoBehaviour
 
     void Update()
     {
+        if(TilemapMove.Speed==0)
+        {
+            horizontal = Input.GetAxis("Horizontal");
+        }
+        if(tran.position.x>9.11f) SceneManager.LoadScene("gameScene2");
+        else if(tran.position.x>-3.2f&&tran.position.x<1.06f) 
+        {
+            enter.SetActive(true);
+            if(Input.GetKeyDown(KeyCode.W))
+            {
+                SceneManager.LoadScene("shopScene");
+            }
+        }
+        else
+        {
+            enter.SetActive(false);
+        }
         healthBar.value = HP / 100;
         float verticalVelocity = rigid.velocity.y;
         if (Input.GetKeyDown(KeyCode.Space) && cnt < 2)
