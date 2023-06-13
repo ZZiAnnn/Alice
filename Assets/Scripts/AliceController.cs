@@ -39,6 +39,7 @@ public class AliceController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody2D>();
+        audioSource.mute = true;
         StartCoroutine(DelayedAudioActivation(3.0f));
         isAttacking = false;
         isJump = false;
@@ -80,9 +81,14 @@ public class AliceController : MonoBehaviour
 
         if (isGrounded)
         {
+            if (!audioSource.isPlaying) audioSource.PlayOneShot(runSound);
             animator.SetBool("DropToRun", true);
             isJump = false;
             isDrop = false;
+        }
+        else
+        {
+            if (audioSource.clip == runSound) audioSource.Pause();
         }
 
         if (!isAttacking && Input.GetMouseButtonDown(0) && bulletNum > 0)
