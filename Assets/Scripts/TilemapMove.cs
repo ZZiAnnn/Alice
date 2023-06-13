@@ -6,19 +6,20 @@ using UnityEngine;
 public class TilemapMove : MonoBehaviour
 {
     private GameObject[] tilemap=new GameObject[32];
-    public GameObject mushRoomPreferb1, mushRoomPreferb2, smallMashroomPreferb, seaweedPreferb1, seaweedPreferb2, fishPreferb;//, floatSteepPreferb;
+    public GameObject mushRoomPreferb1, mushRoomPreferb2, smallMashroomPreferb, 
+                        seaweedPreferb1, seaweedPreferb2, fishPreferb,shopPreferb;//, floatSteepPreferb;
     public GameObject triggerPreferb;
-
     private GameObject barrier;
     private GameObject barrier2;
     private GameObject seaweed;
     private GameObject fish;
     private GameObject trigger;
-
+    private GameObject shop;
     public float v0 = 4.0f;
     public float accumlation=0.2f;
     public static float currentTime = 0f;
     public static float Speed=2.00f;
+    private float maxSpeed;
     private float ystart,zstart;
     float lasttime;
     private int[] mushRoomShow = { 6, 11, 16, 22, 25, 28, 31, 34, 39, 43, 47, 51, 54, 57, 59 };
@@ -66,13 +67,20 @@ public class TilemapMove : MonoBehaviour
     }
     void BarrierController(int t)
     {
-        Speed = v0 + 6.0f * t / 60;
-        if (t >= 60)//finished
+        if (t>= 60&&t<63)//finished
         {
-            if(trigger==null)trigger = Instantiate(triggerPreferb, transform.position + new Vector3(0, 0, 0), Quaternion.identity);
+            Speed=maxSpeed-maxSpeed/8*(t-60);
+            if(shop==null) shop=Instantiate(shopPreferb, transform.position + new Vector3(25, 2.5f, 1), Quaternion.identity);
+            if(trigger==null)trigger = Instantiate(triggerPreferb, transform.position + new Vector3(35.2f, 0, 0), Quaternion.identity);
+        }
+        else if(t>=63)
+        {
+            Speed=0;
         }
         else
         {
+            Speed = v0 + 6.0f * t / 60;
+            maxSpeed=Speed;
             if (isMushRoomAppear(t) && barrier == null && t % 2 == 1) barrier = Instantiate(mushRoomPreferb1, transform.position + new Vector3(20.0f, -0.50f, 0), Quaternion.identity);
             else if (isMushRoomAppear(t) && barrier == null && t % 2 == 0) barrier = Instantiate(mushRoomPreferb2, transform.position + new Vector3(20.0f, 2.00f, 0), Quaternion.identity);
             if(isSmallMushRoomAppear(t) && barrier2 == null) barrier2 = Instantiate(smallMashroomPreferb, transform.position + new Vector3(20.0f, 1.05f, 0), Quaternion.identity);
