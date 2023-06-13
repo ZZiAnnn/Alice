@@ -7,7 +7,9 @@ public class Audio : MonoBehaviour
 {
     public static Audio instance; // ตฅภýสตภý
     public AudioSource audiosource; // า๔ฦติด
+
     public Slider volumeSlider;
+
     void Awake()
     {
         volumeSlider.value=0.5f;
