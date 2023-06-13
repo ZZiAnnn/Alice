@@ -15,11 +15,11 @@ public class ShopItemInfo : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
         //移动到购买按钮上时，显示商品信息
         if (eventData.pointerEnter.name == "buy1")
         {
-            infoText.text = "购买火鸡，回复全部血量！";
+            infoText.text = "购买火鸡，回复50%血量！";
         }
         else if (eventData.pointerEnter.name == "buy2")
         {
-            infoText.text = "购买面包，增加一半血量！";
+            infoText.text = "购买面包，增加25%血量！";
         }
         else if (eventData.pointerEnter.name == "buy3")
         {
