@@ -12,7 +12,7 @@ public class AliceController2 : MonoBehaviour
 
     public AudioClip attackSound;  //攻击音效
     public AudioClip dropSound;  //落地音效
-    public AudioClip runSound;  //奔跑音效
+    public AudioClip jumpSound;  //起跳音效
     public AudioClip hurtSound;  //受伤音效
 
     private AudioSource audioSource;
@@ -62,7 +62,7 @@ public class AliceController2 : MonoBehaviour
         float verticalVelocity = rigid.velocity.y;
         if (Input.GetKeyDown(KeyCode.Space) && cnt < 2)
         {
-
+            if (cnt == 0) audioSource.PlayOneShot(jumpSound);
             isJump = true;
             isGrounded = false;
             if (verticalVelocity < 0.0f)
@@ -89,14 +89,9 @@ public class AliceController2 : MonoBehaviour
 
         if (isGrounded)
         {
-            if (!audioSource.isPlaying) audioSource.PlayOneShot(runSound);
             animator.SetBool("DropToRun", true);
             isJump = false;
             isDrop = false;
-        }
-        else
-        {
-            if (audioSource.clip == runSound) audioSource.Pause();
         }
 
         if (!isAttacking && Input.GetMouseButtonDown(0) && bulletNum > 0)

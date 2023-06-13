@@ -15,7 +15,8 @@ public class Shopscene : MonoBehaviour
     {
         // 更新金钱数字
         moneyText.text = "X " + AliceController.money.ToString();
-        
+        Audio.instance.PlayMusicByName("bgm4");
+
     }
 
     // Update is called once per frame

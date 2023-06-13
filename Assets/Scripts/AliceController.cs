@@ -19,18 +19,18 @@ public class AliceController : MonoBehaviour
     private AudioSource audioSource;
     public GameObject enter;
     public GameObject End;
-    public float jumpForce = 6.0f; //跳跃力度
+    public float jumpForce = 6.0f;
     private int cnt = 0;
     bool isGrounded = false;
     public GameObject bullet;
     private GameObject biu1, biu2;
-    public float bulletSpeed = 50; //子弹速度
+    public float bulletSpeed = 50;
     bool isAttacking, isJump, isDrop;
     public static float HP = 100; //Alice的血量
     public static int money = 5; //Alice的金钱
     public Slider healthBar;
     private Vector3 startpos;
-    public int bulletNum = 20; //Alice的子弹数量
+    public int bulletNum = 20;
     GameObject[] tmp;
     GameObject[] tmp2;
     GameObject[] fish;
@@ -38,10 +38,12 @@ public class AliceController : MonoBehaviour
     float horizontal;
     void Start()
     {
+        HP=100;
+        Time.timeScale=1;
         End.SetActive(false);
-        audioSource = GetComponent<AudioSource>(); //获取声音组件
-        animator = GetComponent<Animator>(); //获取动画组件
-        rigid = GetComponent<Rigidbody2D>(); //获取刚体组件
+        audioSource = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
+        rigid = GetComponent<Rigidbody2D>();
         audioSource.mute = true;
         StartCoroutine(DelayedAudioActivation(3.0f));
         isAttacking = false;
@@ -57,22 +59,10 @@ public class AliceController : MonoBehaviour
         {
             horizontal = Input.GetAxis("Horizontal");
         }
-        if (tran.position.x > 9.11f) SceneManager.LoadScene("gameScene2"); //进入下一关
-        else if (tran.position.x > -3.2f && tran.position.x < 1.06f)
-        {
-            enter.SetActive(true); //进入商店
-            if (Input.GetKeyDown(KeyCode.W)) 
-            {
-                inShop=true;
-            }
-        }
-        else
-        {
-            enter.SetActive(false);
-        }
-        healthBar.value = HP / 100; //血条
-        float verticalVelocity = rigid.velocity.y; //获取垂直速度
-        if (Input.GetKeyDown(KeyCode.Space) && cnt < 2) //跳跃
+
+        healthBar.value = HP / 100;
+        float verticalVelocity = rigid.velocity.y;
+        if (Input.GetKeyDown(KeyCode.Space) && cnt < 2)
         {
             
             if(cnt==0)audioSource.PlayOneShot(jumpSound);
@@ -92,7 +82,7 @@ public class AliceController : MonoBehaviour
             rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             cnt++;
         }
-        if (verticalVelocity < 0.0f) //下落
+        if (verticalVelocity < 0.0f)
         {
             animator.SetBool("RunToJump", false);
             animator.SetBool("JumpToDrop", true);
@@ -100,14 +90,14 @@ public class AliceController : MonoBehaviour
             isDrop = true;
         }
 
-        if (isGrounded) //落地
+        if (isGrounded)
         {
             animator.SetBool("DropToRun", true);
             isJump = false;
             isDrop = false;
         }
 
-        if (!isAttacking && Input.GetMouseButtonDown(0) && bulletNum > 0) //攻击
+        if (!isAttacking && Input.GetMouseButtonDown(0) && bulletNum > 0)
         {
             if (biu1 == null || biu2 == null)
             {
@@ -128,7 +118,7 @@ public class AliceController : MonoBehaviour
                 }
             }
         }
-        if (biu1 != null) //子弹移动
+        if (biu1 != null)
         {
             biu1.transform.position += Vector3.right * bulletSpeed * Time.deltaTime;
             if (biu1.transform.position.x > 10)
@@ -144,15 +134,19 @@ public class AliceController : MonoBehaviour
                 Destroy(biu2);
             }
         }
+        if(HP==0)
+        {
+            Time.timeScale=0;
+            End.SetActive(true);
+        }
     }
     void FixedUpdate()
     {
-
         if (TilemapMove.Speed == 0)
         {
             float speed = 5.0f;
             Vector2 position = rigid.position;
-            position.y=-1.466682f;
+            //position.y=-1.466682f;
             position.x = position.x + speed * horizontal * Time.deltaTime;
             rigid.MovePosition(position);
             if(horizontal>0) tran.localScale=new Vector3(-1,1,1);
@@ -161,14 +155,14 @@ public class AliceController : MonoBehaviour
     }
     IEnumerator DelayedAudioActivation(float wait)
     {
-        yield return new WaitForSeconds(wait); //等待
-        audioSource.mute = false;  //激活声音
+        yield return new WaitForSeconds(wait);
+        audioSource.mute = false;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         string collisionTag = collision.gameObject.tag;
-        if (collisionTag == "Ground") //碰到地面
+        if (collisionTag == "Ground")
         {
             if (!isGrounded)
             {
@@ -178,7 +172,7 @@ public class AliceController : MonoBehaviour
             cnt = 0;
 
         }
-        else if (collisionTag == "Barrier" || collisionTag == "Barrier2" || collisionTag == "fish" || collisionTag == "seaweed") //碰到障碍物
+        else if (collisionTag == "Barrier" || collisionTag == "Barrier2" || collisionTag == "fish" || collisionTag == "seaweed")
         {
             audioSource.PlayOneShot(hurtSound);
             HP -= 10;
@@ -253,6 +247,36 @@ public class AliceController : MonoBehaviour
             seaweed[i].GetComponent<BoxCollider2D>().enabled = false;
         }
 
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag=="shop")
+        {
+            enter.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                inShop=true;
+            }
+        }
+        else if(collision.gameObject.tag=="next")
+        {
+            SceneManager.LoadScene("bossScene");
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            inShop=true;
+        }
+
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag=="shop")
+        {
+            enter.SetActive(false);
+        }
     }
     
 }
