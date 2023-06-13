@@ -1299,7 +1299,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 995499679}
         m_TargetAssemblyTypeName: SettingButton, Assembly-CSharp
         m_MethodName: pauseButton
         m_Mode: 1
@@ -3210,6 +3210,7 @@ GameObject:
   - component: {fileID: 995499676}
   - component: {fileID: 995499675}
   - component: {fileID: 995499678}
+  - component: {fileID: 995499679}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -3281,6 +3282,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   first: {fileID: 0}
   setting: {fileID: 0}
+--- !u!114 &995499679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 995499674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eea4f1f0a667cda47b47603c4c944ef4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setting: {fileID: 1864042297}
 --- !u!1 &1045489084
 GameObject:
   m_ObjectHideFlags: 0
@@ -3758,7 +3772,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 995499679}
         m_TargetAssemblyTypeName: SettingButton, Assembly-CSharp
         m_MethodName: backButton
         m_Mode: 1
@@ -4885,7 +4899,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1894337420}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.03, y: 0.86, z: 10.04181}
+  m_LocalPosition: {x: -3.09, y: 0.86, z: 10.04181}
   m_LocalScale: {x: 5.4, y: 5.4, z: 7.642395}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4907,6 +4921,7 @@ GameObject:
   - component: {fileID: 2049301038}
   - component: {fileID: 2049301039}
   - component: {fileID: 2049301040}
+  - component: {fileID: 2049301036}
   m_Layer: 0
   m_Name: Alice
   m_TagString: player
@@ -5017,8 +5032,6 @@ MonoBehaviour:
   dropSound: {fileID: 8300000, guid: 50b6e15d4d13c0144b7e1c6ed10f947c, type: 3}
   runSound: {fileID: 8300000, guid: 1744d891dfec3a048b6f4c690e073ca0, type: 3}
   hurtSound: {fileID: 8300000, guid: a5fd521ad0605b74dac29e2f9d08a199, type: 3}
-  enter: {fileID: 1836637102}
-  End: {fileID: 1827408966}
   jumpForce: 6.5
   bullet: {fileID: 721909105728777466, guid: d8c70ac54dee7cf4e8ee56157b8a2480, type: 3}
   bulletSpeed: 20
@@ -5193,7 +5206,8 @@ MonoBehaviour:
   dropSound: {fileID: 8300000, guid: 50b6e15d4d13c0144b7e1c6ed10f947c, type: 3}
   runSound: {fileID: 8300000, guid: 1744d891dfec3a048b6f4c690e073ca0, type: 3}
   hurtSound: {fileID: 8300000, guid: a5fd521ad0605b74dac29e2f9d08a199, type: 3}
-  enter: {fileID: 109217456}
+  enter: {fileID: 1836637102}
+  End: {fileID: 1827408966}
   jumpForce: 6
   bullet: {fileID: 721909105728777466, guid: d8c70ac54dee7cf4e8ee56157b8a2480, type: 3}
   bulletSpeed: 50
@@ -5283,7 +5297,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 995499679}
         m_TargetAssemblyTypeName: SettingButton, Assembly-CSharp
         m_MethodName: continueButton
         m_Mode: 1
