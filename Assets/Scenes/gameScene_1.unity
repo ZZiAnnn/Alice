@@ -5181,8 +5181,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackSound: {fileID: 8300000, guid: b0e2183e1f3d69246a993f53f03e9ed6, type: 3}
-  dropSound: {fileID: 8300000, guid: 50b6e15d4d13c0144b7e1c6ed10f947c, type: 3}
-  runSound: {fileID: 8300000, guid: 1744d891dfec3a048b6f4c690e073ca0, type: 3}
+  dropSound: {fileID: 8300000, guid: 1744d891dfec3a048b6f4c690e073ca0, type: 3}
+  jumpSound: {fileID: 8300000, guid: 50b6e15d4d13c0144b7e1c6ed10f947c, type: 3}
   hurtSound: {fileID: 8300000, guid: a5fd521ad0605b74dac29e2f9d08a199, type: 3}
   enter: {fileID: 1836637102}
   End: {fileID: 1827408966}

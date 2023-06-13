@@ -14,7 +14,8 @@ public class BulletShooted : MonoBehaviour
             var mushRoomHP = collision.gameObject.transform.parent.GetComponent<MushRoomHP>();
             if (mushRoomHP != null)
             {
-                mushRoomHP.hpdelete(50);
+                if(ChangeShader.flag==1) mushRoomHP.hpdelete(100);
+                else mushRoomHP.hpdelete(50);
             }
         }
     }

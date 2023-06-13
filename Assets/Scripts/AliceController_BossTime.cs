@@ -12,7 +12,7 @@ public class AliceController_BossTime : MonoBehaviour
 
     public AudioClip attackSound;  //攻击音效
     public AudioClip dropSound;  //落地音效
-    public AudioClip runSound;  //奔跑音效
+    public AudioClip jumpSound;  //奔跑音效
     public AudioClip hurtSound;  //受伤音效
 
     private AudioSource audioSource;
@@ -27,7 +27,7 @@ public class AliceController_BossTime : MonoBehaviour
     bool isAttacking, isJump, isDrop;
     //public float HP = 100;
     public Slider healthBar;
-    public int bulletNum = 50;
+    //public int bulletNum = 50;
     bool isLeftOrRight;  //false表示朝左，true表示朝右
     bool biu1Direct;
     bool biu2Direct;
@@ -66,6 +66,7 @@ public class AliceController_BossTime : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && cnt < 2)
         {
+            if (cnt == 0) audioSource.PlayOneShot(jumpSound);
             isJump = true;
             isGrounded = false;
             if (verticalVelocity < 0.0f)
@@ -97,7 +98,7 @@ public class AliceController_BossTime : MonoBehaviour
             isDrop = false;
         }
 
-        if (!isAttacking && Input.GetMouseButtonDown(0) && bulletNum > 0)
+        if (!isAttacking && Input.GetMouseButtonDown(0))//子弹无限
         {
             if (biu1 == null || biu2 == null)
             {
@@ -110,13 +111,13 @@ public class AliceController_BossTime : MonoBehaviour
                 {
                     biu1 = Instantiate(bullet, transform.position + new Vector3(0.0f, -0.4f, 0), Quaternion.identity);
                     biu1Direct = isLeftOrRight;
-                    bulletNum--;
+                    //bulletNum--;
                 }
                 else
                 {
                     biu2 = Instantiate(bullet, transform.position + new Vector3(0.0f, -0.4f, 0), Quaternion.identity);
                     biu2Direct = isLeftOrRight;
-                    bulletNum--;
+                    //bulletNum--;
                 }
             }
         } //子弹攻击
