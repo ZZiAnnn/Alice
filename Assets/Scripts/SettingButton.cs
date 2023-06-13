@@ -26,12 +26,4 @@ public class SettingButton : MonoBehaviour
         Time.timeScale = 1;
         setting.SetActive(false);
     }
-<<<<<<< HEAD
-    private void Update()
-    {
-       //Audio.audiosource.volume=volumeSlider.value;
-    }
-=======
-
->>>>>>> 44604da117c63cdb6947617f73481fd07683924b
 }
