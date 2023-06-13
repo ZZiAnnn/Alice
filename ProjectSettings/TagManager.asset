@@ -12,6 +12,8 @@ TagManager:
   - fish
   - seaweed
   - dropPane
+  - shop
+  - next
   layers:
   - Default
   - TransparentFX
