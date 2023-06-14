@@ -3,22 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-<<<<<<< HEAD
-  tags: []
-=======
   tags:
   - Barrier
   - Coin
-  - Boss
+  - next
+  - shop
+  - fish
   - Ground
   - player
-  - seaweed
   - Barrier2
-  - next
-  - fish
-  - shop
+  - seaweed
   - wall
->>>>>>> 9390682f8a770f59be5d0f6cb7612d8363278215
+  - Boss
+  - Flower
   layers:
   - Default
   - TransparentFX
@@ -55,4 +52,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: background
+    uniqueID: 2373693087
+    locked: 0
+  - name: bridge
+    uniqueID: 4268131425
+    locked: 0
+  - name: other
+    uniqueID: 300012435
     locked: 0

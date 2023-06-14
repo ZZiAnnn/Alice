@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class BossDeathControl : MonoBehaviour
 {
+    public AudioClip deathSound;  //À¿Õˆ…˘“Ù
+    private AudioSource audioSource;
     public static float hpp = 1000;
     public ParticleSystem particlesystem;
     public GameObject gameobject;
@@ -15,11 +17,13 @@ public class BossDeathControl : MonoBehaviour
     void Start()
     {
         flag = false;
+        audioSource = GetComponent<AudioSource>();
     }
     void Update()
     {
         if (hpp <= 0 && !flag) 
         {
+            audioSource.PlayOneShot(deathSound);
             particlesystem.transform.position = gameobject.transform.position;
             Destroy(gameobject, 0.1f);
             DOTween.SetTweensCapacity(200, 150);

@@ -15,6 +15,7 @@ public class AliceController2 : MonoBehaviour
     public AudioClip dropSound;  //落地音效
     public AudioClip jumpSound;  //起跳音效
     public AudioClip hurtSound;  //受伤音效
+    public AudioClip coinSound;  //金币声音
 
     private AudioSource audioSource;
 
@@ -141,6 +142,21 @@ public class AliceController2 : MonoBehaviour
         audioSource.mute = false;
     }
 
+    void OnGUI() // 在屏幕上显示计时器的数值
+    {
+        GUIStyle style = new GUIStyle(GUI.skin.label); // 创建一个新的 GUIStyle 对象
+
+        // 调整标签的位置和大小
+        Rect labelRect = new Rect(Screen.width - 120, 20, 100, 40);
+
+        // 调整字体大小
+        style.fontSize = 24;
+
+        // 在屏幕上绘制标签
+        GUI.Label(labelRect, "×" + AliceController.money.ToString(), style);
+    }
+
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         string collisionTag = collision.gameObject.tag;
@@ -157,6 +173,7 @@ public class AliceController2 : MonoBehaviour
         else if (collisionTag == "Coin")
         {
             Debug.Log("coin!");
+            audioSource.PlayOneShot(dropSound);
             Destroy(collision.gameObject);
             AliceController.money++;
         }

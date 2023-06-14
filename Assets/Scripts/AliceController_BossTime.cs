@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class AliceController_BossTime : MonoBehaviour
 {
@@ -12,8 +14,9 @@ public class AliceController_BossTime : MonoBehaviour
 
     public AudioClip attackSound;  //攻击音效
     public AudioClip dropSound;  //落地音效
-    public AudioClip jumpSound;  //奔跑音效
+    public AudioClip jumpSound;  //起跳音效
     public AudioClip hurtSound;  //受伤音效
+    public AudioClip coinSound;  //金币声音
 
     private AudioSource audioSource;
     private bool audioControl = false;
@@ -187,6 +190,18 @@ public class AliceController_BossTime : MonoBehaviour
             audioSource.PlayOneShot(hurtSound);
             AliceController.HP -= 15;
             timer = 2;
+        }
+        else if(collisionTag == "Flower")
+        {
+            Debug.Log("flower!");
+            SceneManager.LoadSceneAsync("gameScene_2");
+        }
+        else if (collisionTag == "Coin")
+        {
+            Debug.Log("coin!");
+            audioSource.PlayOneShot(dropSound);
+            Destroy(collision.gameObject);
+            AliceController.money++;
         }
     }
     public void AttacktoRun()

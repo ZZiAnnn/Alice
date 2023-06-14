@@ -1534,15 +1534,9 @@ RectTransform:
   m_Father: {fileID: 164044617}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 326, y: 109}
-=======
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -44, y: -46}
->>>>>>> 9390682f8a770f59be5d0f6cb7612d8363278215
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &340358208
@@ -4625,6 +4619,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   first: {fileID: 0}
   setting: {fileID: 0}
+  tutoring: {fileID: 0}
 --- !u!114 &995499679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7631,8 +7626,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackSound: {fileID: 8300000, guid: b0e2183e1f3d69246a993f53f03e9ed6, type: 3}
   dropSound: {fileID: 8300000, guid: 1744d891dfec3a048b6f4c690e073ca0, type: 3}
-  runSound: {fileID: 0}
+  jumpSound: {fileID: 8300000, guid: 50b6e15d4d13c0144b7e1c6ed10f947c, type: 3}
   hurtSound: {fileID: 8300000, guid: a5fd521ad0605b74dac29e2f9d08a199, type: 3}
+  coinSound: {fileID: 8300000, guid: 6056a48c17e2e17448d349a048188c4e, type: 3}
   enter: {fileID: 1836637102}
   End: {fileID: 1827408966}
   jumpForce: 5.5
