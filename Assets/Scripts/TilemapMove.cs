@@ -6,12 +6,13 @@ using UnityEngine;
 public class TilemapMove : MonoBehaviour
 {
     private GameObject[] tilemap=new GameObject[32];
-    public GameObject mushRoomPreferb1, mushRoomPreferb2, smallMashroomPreferb, 
+    public GameObject mushRoomPreferb1, mushRoomPreferb2, smallMashroomPreferb, coinPreferb,
                         seaweedPreferb1, seaweedPreferb2, fishPreferb,shopPreferb;//, floatSteepPreferb;
     public GameObject triggerPreferb;
     private GameObject barrier;
     private GameObject barrier2;
     private GameObject barrier3;
+    private GameObject coin;
     private GameObject seaweed;
     private GameObject fish;
     private GameObject trigger;
@@ -25,9 +26,10 @@ public class TilemapMove : MonoBehaviour
     float lasttime;
     private int[] mushRoomShow1 = { 1,6, 16, 25, 31, 39, 47, 54, 59 };
     private int[] mushRoomShow2 = { 4,11, 22, 28, 34, 43, 51, 57, };
-    private int[] smallMushRoomShow = { 2, 5, 14, 17, 27, 30, 32, 37, 45, 48, 50, 52 };
+    private int[] smallMushRoomShow = { 3, 5, 14, 17, 27, 30, 32, 37, 45, 48, 50, 52 };
     private int[] fishShow = { 2, 5, 10, 15, 20, 24, 28, 32, 36, 40, 43, 46, 49, 52, 55, 58, 61 };
     private int[] seaweedShow = { 4, 5, 6, 7, 8, 9, 15, 20, 24, 29, 32, 37, 40, 43, 47, 52, 57, 61 };
+    private int[] coinShow = { 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60 };
 
     void Start()
     {
@@ -67,6 +69,7 @@ public class TilemapMove : MonoBehaviour
         if (barrier3 != null && barrier3.transform.position.x < -15.0f) Destroy(barrier3);
         if (fish != null && fish.transform.position.x < -15.0f) Destroy(fish);
         if (seaweed != null && seaweed.transform.position.x < -15.0f) Destroy(seaweed);
+        if (coin != null && coin.transform.position.x < -15.0f) Destroy(coin);
     }
     void BarrierController(int t)
     {
@@ -88,7 +91,7 @@ public class TilemapMove : MonoBehaviour
             if (isMushRoomAppear2(t) && barrier3==null) barrier3 = Instantiate(mushRoomPreferb2,  new Vector3(20.0f, -0.05f, 0), Quaternion.identity);
             if(isSmallMushRoomAppear(t) && barrier2 == null) barrier2 = Instantiate(smallMashroomPreferb, transform.position + new Vector3(20.0f, 1.05f, 0), Quaternion.identity);
             if (isFishAppear(t) && fish == null) fish = Instantiate(fishPreferb, new Vector3(12f, -3.7f, 0), Quaternion.Euler(0f, 0f, 0f));
-            //下面控制水草生成
+            if (isCoinAppear(t) && coin == null) coin = Instantiate(coinPreferb, new Vector3(12f, -1f, 0), Quaternion.Euler(0f, 0f, 0f));
             if (isSeaweedAppear(t) && seaweed == null && t % 2 == 1) seaweed = Instantiate(seaweedPreferb1, new Vector3(12f, -5f, 0), Quaternion.identity);
             else if (isSeaweedAppear(t) && seaweed == null && t % 2 == 0) seaweed = Instantiate(seaweedPreferb2, new Vector3(12f, -3f, 0), Quaternion.Euler(180f, 0f, 0f));
         }
@@ -135,6 +138,15 @@ public class TilemapMove : MonoBehaviour
         foreach (int fs in fishShow)
         {
             if (x == fs) return true;
+        }
+        return false;
+    }
+
+    bool isCoinAppear(int x)
+    {
+        foreach (int cn in coinShow)
+        {
+            if (x == cn) return true;
         }
         return false;
     }

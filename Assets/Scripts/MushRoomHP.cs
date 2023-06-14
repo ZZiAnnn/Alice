@@ -33,7 +33,7 @@ public class MushRoomHP : MonoBehaviour
                 if (particlesystem) particlesystem.Play();
 
                 // 在蘑菇消失的位置生成金币预制体
-                Instantiate(coinPrefab, new Vector3(transform.position.x, -0.7f, 0), Quaternion.identity);
+                if (gameobject.name == "mushroom_2") Instantiate(coinPrefab, new Vector3(transform.position.x, -0.7f, 0), Quaternion.identity);
             });
             flag = true;
         }
