@@ -40,7 +40,6 @@ public class AliceController_BossTime : MonoBehaviour
 
     void Start()
     {
-        Audio.instance.PlayMusicByName("bgm3");
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody2D>();
@@ -213,9 +212,9 @@ public class AliceController_BossTime : MonoBehaviour
             AliceController.HP -= 15;
             timer = 2;
         }
-        else if(collisionTag == "Flower")
+        else if(collisionTag == "portal")
         {
-            Debug.Log("flower!");
+            Debug.Log("portal!");
             SceneManager.LoadSceneAsync("gameScene_2");
         }
         else if (collisionTag == "Coin")

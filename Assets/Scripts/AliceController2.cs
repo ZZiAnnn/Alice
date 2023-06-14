@@ -147,7 +147,7 @@ public class AliceController2 : MonoBehaviour
         GUIStyle style = new GUIStyle(GUI.skin.label); // 创建一个新的 GUIStyle 对象
 
         // 调整标签的位置和大小
-        Rect labelRect = new Rect(Screen.width - 120, 20, 100, 40);
+        Rect labelRect = new Rect(Screen.width - 170, 30, 100, 40);
 
         // 调整字体大小
         style.fontSize = 24;
@@ -176,6 +176,11 @@ public class AliceController2 : MonoBehaviour
             audioSource.PlayOneShot(dropSound);
             Destroy(collision.gameObject);
             AliceController.money++;
+        }
+        else if(collisionTag == "palace")
+        {
+            Debug.Log("palace!");
+            SceneManager.LoadScene("gameScene_3");
         }
     }
        

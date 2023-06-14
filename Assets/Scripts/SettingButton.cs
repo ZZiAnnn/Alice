@@ -18,9 +18,8 @@ public class SettingButton : MonoBehaviour
     }
     public void pauseButton()
     {
-        audioSource.PlayOneShot(buttonClickSound);
-        Time.timeScale = 0;
         setting.SetActive(true);
+        Time.timeScale = 0; 
     }
     public void backButton()
     {

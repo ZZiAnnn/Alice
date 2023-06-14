@@ -23,9 +23,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/bossScene.unity
     guid: d25e87748ece5e642b96ed27c31620d6
-  - enabled: 1
-    path: Assets/Scenes/Replay.unity
-    guid: ecb7808c018b068469b211bdda711093
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/shopScene.unity
     guid: f1756f0f971c77440ab0ba9db12b0edc

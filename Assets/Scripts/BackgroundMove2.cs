@@ -28,7 +28,7 @@ public class BackgroundMove2 : MonoBehaviour
     void Update()
     {
 
-        BackgroundSpeed = 1f;
+        BackgroundSpeed = 0.3f;
 
         if (Time.time - lasttime >= 3)
         {
