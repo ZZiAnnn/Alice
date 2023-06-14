@@ -10,6 +10,8 @@ public class MushRoomHP : MonoBehaviour
     public ParticleSystem particlesystem;
     private Material _material;
     public GameObject gameobject;
+    public GameObject coinPrefab;
+
     bool flag;
     // Update is called once per frame
     void Start()
@@ -19,31 +21,24 @@ public class MushRoomHP : MonoBehaviour
     }
     void Update()
     {
-        //OnmouseDown();
-
-        if (hpp <= 0 && !flag) 
+        if (hpp <= 0 && !flag)
         {
-            /*_material.DOFloat(30, "_Strength", 0.2f).OnComplete(() =>
-            {
-                *//*Destroy(gameobject);
-                if(particlesystem)
-                particlesystem.Play();
-                
-            });*/
             DOTween.SetTweensCapacity(200, 150);
             var s = DOTween.Sequence();
-            
             s.Append(_material.DOFloat(30, "_Strength", 0.2f));
             s.AppendInterval(0.2f);
             s.AppendCallback(() =>
             {
                 Destroy(gameobject);
                 if (particlesystem) particlesystem.Play();
+
+                // 在蘑菇消失的位置生成金币预制体
+                Instantiate(coinPrefab, new Vector3(transform.position.x, -0.7f, 0), Quaternion.identity);
             });
             flag = true;
-            // Bar.fillAmount = hpp / 100;
         }
     }
+
     public void hpdelete(int x)
     {
         hpp = hpp - x;

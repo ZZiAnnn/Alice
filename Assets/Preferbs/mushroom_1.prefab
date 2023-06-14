@@ -155,8 +155,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8023613918283755332}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5371529, y: -2.4620457, z: -1.0129573}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalPosition: {x: 0, y: -2.72, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5642469704524122176}
@@ -179,6 +179,7 @@ MonoBehaviour:
   hpp: 100
   particlesystem: {fileID: 5884317307701967099}
   gameobject: {fileID: 6093554069908774409}
+  coinPrefab: {fileID: 7190184581784348562, guid: 6769c7c45e076f34fb0a0aa425f0f2d2, type: 3}
 --- !u!114 &2268012564685428491
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -30,7 +30,7 @@ public class AliceController : MonoBehaviour
     public static int money = 5; //Alice的金钱
     public Slider healthBar;
     private Vector3 startpos;
-    public int bulletNum = 20;
+    public int bulletNum = 50;
     GameObject[] tmp;
     GameObject[] tmp2;
     GameObject[] fish;
@@ -52,7 +52,7 @@ public class AliceController : MonoBehaviour
     }
 
     void Update()
-    {
+    {            
         if (TilemapMove.Speed == 0)
         {
             horizontal = Input.GetAxis("Horizontal");
@@ -178,6 +178,13 @@ public class AliceController : MonoBehaviour
             cnt = 0;
 
         }
+        else if(collisionTag == "Coin")
+        {
+            Debug.Log("coin!");
+            Destroy(collision.gameObject);
+            money++;
+        }
+
         else if (collisionTag == "Barrier" || collisionTag == "Barrier2" || collisionTag == "fish" || collisionTag == "seaweed")
         {
             audioSource.PlayOneShot(hurtSound);
@@ -254,5 +261,19 @@ public class AliceController : MonoBehaviour
         }
 
     }
-    
+
+    void OnGUI() // 在屏幕上显示计时器的数值
+    {
+        GUIStyle style = new GUIStyle(GUI.skin.label); // 创建一个新的 GUIStyle 对象
+
+        // 调整标签的位置和大小
+        Rect labelRect = new Rect(Screen.width - 110, 20, 100, 40);
+
+        // 调整字体大小
+        style.fontSize = 24;
+
+        // 在屏幕上绘制标签
+        GUI.Label(labelRect, money.ToString(), style);
+    }
+
 }

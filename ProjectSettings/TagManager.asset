@@ -12,6 +12,7 @@ TagManager:
   - fish
   - seaweed
   - dropPane
+  - Coin
   layers:
   - Default
   - TransparentFX
