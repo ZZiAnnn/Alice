@@ -4,20 +4,17 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ground
   - Barrier
-  - Barrier2
-  - trigger
-  - player
-  - fish
-  - seaweed
-  - dropPane
-<<<<<<< HEAD
   - Coin
-=======
-  - shop
+  - Boss
+  - Ground
+  - player
+  - seaweed
+  - Barrier2
   - next
->>>>>>> f9b511dd368eb4b804052037d4717420097a41a3
+  - fish
+  - shop
+  - wall
   layers:
   - Default
   - TransparentFX
@@ -52,12 +49,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: background
-    uniqueID: 1784182927
-    locked: 0
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: New Layer 2
-    uniqueID: 2545837321
     locked: 0

@@ -15,19 +15,35 @@ public class AttackState : IState
     public void OnEnter()
     {
         parameter.animator.Play("BossAttack");
+        Debug.Log("attack");
         manager.FlipTo(parameter.alice.transform);
-        animatorStateInfo = parameter.animator.GetCurrentAnimatorStateInfo(0);
     }
     public void OnUpdate()
     {
-        if (!animatorStateInfo.IsName("Base Layer.BossAttack")) 
+        animatorStateInfo = parameter.animator.GetCurrentAnimatorStateInfo(0);
+        if (animatorStateInfo.normalizedTime >= 0.95f) 
         {
             manager.TransitionState(StateType.Idle);
-            Debug.Log("!!!");
         }
     }
     public void OnExit()
     {
-
+        if(parameter.tmptran0 != null)
+        {
+            parameter.tmptran0.gameObject.SetActive(false);
+        }
+        if (parameter.tmptran1 != null)
+        {
+            parameter.tmptran1.gameObject.SetActive(false);
+        }
+        if (parameter.tmptran2 != null)
+        {
+            parameter.tmptran2.gameObject.SetActive(false);
+        }
+        if (parameter.tmptran3 != null)
+        {
+            parameter.tmptran3.gameObject.SetActive(false);
+        }
     }
+    
 }
