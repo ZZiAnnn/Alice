@@ -13,7 +13,7 @@ public class AliceController : MonoBehaviour
     static public bool inShop;
     public AudioClip attackSound;  //×²»÷ÉùÒô
     public AudioClip dropSound;  //µôÂäÉùÒô
-    public AudioClip jumpSound;  //ÆğÌøÉùÒô
+    public AudioClip runSound;  //±¼ÅÜÉùÒô
     public AudioClip hurtSound;  //ÊÜÉËÉùÒô
 
     private AudioSource audioSource;
@@ -30,7 +30,7 @@ public class AliceController : MonoBehaviour
     public static int money = 5; //AliceµÄ½ğÇ®
     public Slider healthBar;
     private Vector3 startpos;
-    public int bulletNum = 20;
+    public int bulletNum = 10;
     GameObject[] tmp;
     GameObject[] tmp2;
     GameObject[] fish;
@@ -64,8 +64,6 @@ public class AliceController : MonoBehaviour
         float verticalVelocity = rigid.velocity.y;
         if (Input.GetKeyDown(KeyCode.Space) && cnt < 2)
         {
-            
-            if(cnt==0)audioSource.PlayOneShot(jumpSound);
             isJump = true;
             isGrounded = false;
             if (verticalVelocity < 0.0f)
@@ -92,9 +90,14 @@ public class AliceController : MonoBehaviour
 
         if (isGrounded)
         {
+            if (!audioSource.isPlaying) audioSource.PlayOneShot(runSound);
             animator.SetBool("DropToRun", true);
             isJump = false;
             isDrop = false;
+        }
+        else
+        {
+            if (audioSource.clip == runSound) audioSource.Pause();
         }
 
         if (!isAttacking && Input.GetMouseButtonDown(0) && bulletNum > 0)
@@ -253,10 +256,6 @@ public class AliceController : MonoBehaviour
         if(collision.gameObject.tag=="shop")
         {
             enter.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                inShop=true;
-            }
         }
         else if(collision.gameObject.tag=="next")
         {
@@ -265,18 +264,16 @@ public class AliceController : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (collision.gameObject.tag=="shop"&&Input.GetKeyDown(KeyCode.W))
         {
             inShop=true;
         }
-
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if(collision.gameObject.tag=="shop")
         {
             enter.SetActive(false);
-            inShop = false;
         }
     }
     
