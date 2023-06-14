@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 2357613509184377706}
   - component: {fileID: 2357613509184377705}
   - component: {fileID: 2357613509184377704}
+  - component: {fileID: 1829650219296854627}
+  - component: {fileID: 7397016503323291418}
   m_Layer: 0
   m_Name: Spade
-  m_TagString: Untagged
+  m_TagString: Barrier
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2357613509184377703}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.4963611, y: 0.22182137, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.8, y: 1.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -105,3 +107,107 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1829650219296854627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2357613509184377703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6748171404dbe74cae0cd033ee554bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 8
+--- !u!60 &7397016503323291418
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2357613509184377703}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.1601562, y: 1.5}
+    newSize: {x: 4.640625, y: 6}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.44726562, y: -0.40625}
+      - {x: 0.49804688, y: -0.265625}
+      - {x: 0.5800781, y: -0.28515625}
+      - {x: 0.5800781, y: 0.00390625}
+      - {x: 0.5410156, y: 0.06640625}
+      - {x: 0.47851562, y: 0.15625}
+      - {x: 0.5253906, y: 0.16015625}
+      - {x: 0.5410156, y: 0.21484375}
+      - {x: 0.48632812, y: 0.24609375}
+      - {x: 0.43945312, y: 0.30859375}
+      - {x: 0.45117188, y: 0.3828125}
+      - {x: 0.43554688, y: 0.43359375}
+      - {x: 0.40429688, y: 0.50390625}
+      - {x: 0.27148438, y: 0.640625}
+      - {x: 0.29101562, y: 0.6796875}
+      - {x: 0.28710938, y: 0.74609375}
+      - {x: 0.27148438, y: 0.75}
+      - {x: 0.17382812, y: 0.75}
+      - {x: 0.16210938, y: 0.69140625}
+      - {x: 0.19726562, y: 0.65234375}
+      - {x: 0.107421875, y: 0.6015625}
+      - {x: -0.025390625, y: 0.45703125}
+      - {x: -0.029296875, y: 0.33984375}
+      - {x: -0.025390625, y: 0.2890625}
+      - {x: -0.123046875, y: 0.2578125}
+      - {x: -0.14648438, y: 0.234375}
+      - {x: -0.14648438, y: 0.1328125}
+      - {x: -0.23632812, y: 0.12109375}
+      - {x: -0.30273438, y: 0.13671875}
+      - {x: -0.36132812, y: 0.18359375}
+      - {x: -0.36132812, y: 0.25390625}
+      - {x: -0.36914062, y: 0.28125}
+      - {x: -0.41601562, y: 0.3203125}
+      - {x: -0.49414062, y: 0.3125}
+      - {x: -0.5800781, y: 0.28515625}
+      - {x: -0.5800781, y: 0.1796875}
+      - {x: -0.5761719, y: 0.16796875}
+      - {x: -0.5527344, y: 0.109375}
+      - {x: -0.5097656, y: 0.05859375}
+      - {x: -0.43945312, y: 0.0390625}
+      - {x: -0.39257812, y: 0.08203125}
+      - {x: -0.31835938, y: 0.09765625}
+      - {x: -0.19335938, y: 0.03515625}
+      - {x: -0.20898438, y: -0.05859375}
+      - {x: -0.123046875, y: -0.12109375}
+      - {x: -0.056640625, y: -0.1171875}
+      - {x: -0.060546875, y: -0.16796875}
+      - {x: -0.060546875, y: -0.56640625}
+      - {x: -0.099609375, y: -0.60546875}
+      - {x: -0.15820312, y: -0.59375}
+      - {x: -0.17382812, y: -0.609375}
+      - {x: -0.16210938, y: -0.66796875}
+      - {x: -0.107421875, y: -0.69921875}
+      - {x: -0.025390625, y: -0.69921875}
+      - {x: 0.052734375, y: -0.66796875}
+      - {x: 0.083984375, y: -0.62890625}
+      - {x: 0.123046875, y: -0.50390625}
+      - {x: 0.17382812, y: -0.48828125}
+      - {x: 0.24414062, y: -0.5}
+      - {x: 0.27929688, y: -0.55859375}
+      - {x: 0.30273438, y: -0.609375}
+      - {x: 0.28320312, y: -0.64453125}
+      - {x: 0.29492188, y: -0.7265625}
+      - {x: 0.31445312, y: -0.75}
+      - {x: 0.41992188, y: -0.75}
+      - {x: 0.44726562, y: -0.7109375}

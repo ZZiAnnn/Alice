@@ -48,7 +48,7 @@ public class TilemapMove : MonoBehaviour
         }
         ystart=tilemap[0].transform.position.y;
         zstart=tilemap[0].transform.position.z;
-        //SimulatedAnnealing(); //模拟退火算法
+        SimulatedAnnealing(); //模拟退火算法
     }
     void Update()
     {

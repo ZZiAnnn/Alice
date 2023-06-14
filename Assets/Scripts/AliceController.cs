@@ -21,7 +21,7 @@ public class AliceController : MonoBehaviour
     private AudioSource audioSource;
     public GameObject enter;
     public GameObject End;
-    public float jumpForce = 6.0f;
+    public static float jumpForce = 6.0f;
     private int cnt = 0;
     bool isGrounded = false;
     public GameObject bullet;
@@ -190,7 +190,7 @@ public class AliceController : MonoBehaviour
         else if (collisionTag == "Barrier" || collisionTag == "Barrier2" || collisionTag == "fish" || collisionTag == "seaweed")
         {
             audioSource.PlayOneShot(hurtSound);
-            HP -= 100;
+            HP -= 10;
             if (isDrop) StartCoroutine(DelayedAction(0.24f));
             else StartCoroutine(DelayedAction(0.5f));
         }
