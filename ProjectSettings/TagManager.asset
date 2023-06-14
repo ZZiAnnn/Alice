@@ -12,7 +12,12 @@ TagManager:
   - fish
   - seaweed
   - dropPane
+<<<<<<< HEAD
   - Coin
+=======
+  - shop
+  - next
+>>>>>>> f9b511dd368eb4b804052037d4717420097a41a3
   layers:
   - Default
   - TransparentFX

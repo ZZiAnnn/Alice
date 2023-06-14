@@ -13,7 +13,7 @@ public class AliceController : MonoBehaviour
     static public bool inShop;
     public AudioClip attackSound;  //撞击声音
     public AudioClip dropSound;  //掉落声音
-    public AudioClip jumpSound;  //起跳声音
+    public AudioClip runSound;  //奔跑声音
     public AudioClip hurtSound;  //受伤声音
 
     private AudioSource audioSource;
@@ -30,7 +30,9 @@ public class AliceController : MonoBehaviour
     public static int money = 5; //Alice的金钱
     public Slider healthBar;
     private Vector3 startpos;
+
     public int bulletNum = 50;
+
     GameObject[] tmp;
     GameObject[] tmp2;
     GameObject[] fish;
@@ -38,6 +40,8 @@ public class AliceController : MonoBehaviour
     float horizontal;
     void Start()
     {
+        HP=100;
+        Time.timeScale=1;
         End.SetActive(false);
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
@@ -57,25 +61,11 @@ public class AliceController : MonoBehaviour
         {
             horizontal = Input.GetAxis("Horizontal");
         }
-        if (tran.position.x > 9.11f) SceneManager.LoadScene("gameScene2");
-        else if (tran.position.x > -3.2f && tran.position.x < 1.06f)
-        {
-            enter.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                inShop=true;
-            }
-        }
-        else
-        {
-            enter.SetActive(false);
-        }
+
         healthBar.value = HP / 100;
         float verticalVelocity = rigid.velocity.y;
         if (Input.GetKeyDown(KeyCode.Space) && cnt < 2)
         {
-            
-            if(cnt==0)audioSource.PlayOneShot(jumpSound);
             isJump = true;
             isGrounded = false;
             if (verticalVelocity < 0.0f)
@@ -102,9 +92,14 @@ public class AliceController : MonoBehaviour
 
         if (isGrounded)
         {
+            if (!audioSource.isPlaying) audioSource.PlayOneShot(runSound);
             animator.SetBool("DropToRun", true);
             isJump = false;
             isDrop = false;
+        }
+        else
+        {
+            if (audioSource.clip == runSound) audioSource.Pause();
         }
 
         if (!isAttacking && Input.GetMouseButtonDown(0) && bulletNum > 0)
@@ -144,15 +139,19 @@ public class AliceController : MonoBehaviour
                 Destroy(biu2);
             }
         }
+        if(HP==0)
+        {
+            Time.timeScale=0;
+            End.SetActive(true);
+        }
     }
     void FixedUpdate()
     {
-
         if (TilemapMove.Speed == 0)
         {
             float speed = 5.0f;
             Vector2 position = rigid.position;
-            position.y=-1.466682f;
+            //position.y=-1.466682f;
             position.x = position.x + speed * horizontal * Time.deltaTime;
             rigid.MovePosition(position);
             if(horizontal>0) tran.localScale=new Vector3(-1,1,1);
@@ -262,6 +261,7 @@ public class AliceController : MonoBehaviour
 
     }
 
+
     void OnGUI() // 在屏幕上显示计时器的数值
     {
         GUIStyle style = new GUIStyle(GUI.skin.label); // 创建一个新的 GUIStyle 对象
@@ -276,4 +276,29 @@ public class AliceController : MonoBehaviour
         GUI.Label(labelRect, money.ToString(), style);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag=="shop")
+        {
+            enter.SetActive(true);
+        }
+        else if(collision.gameObject.tag=="next")
+        {
+            SceneManager.LoadScene("bossScene");
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag=="shop"&&Input.GetKeyDown(KeyCode.W))
+        {
+            inShop=true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag=="shop")
+        {
+            enter.SetActive(false);
+        }
+    }
 }
