@@ -87,22 +87,4 @@ public class Button : MonoBehaviour
         setting.SetActive(false);
         first.SetActive(true);
     }
-
-    public void onClickEnd()
-    {
-        audioSource.PlayOneShot(buttonClickSound);
-        Application.Quit();
-    }
-
-    public void onClickReplay()
-    {
-        audioSource.PlayOneShot(buttonClickSound);
-        SceneManager.LoadScene("gameScene_1");
-    }
-
-    public void onClickReturn()
-    {
-        audioSource.PlayOneShot(buttonClickSound);
-        SceneManager.LoadScene("startPage");
-    }
 }

@@ -15,7 +15,7 @@ public class ShoporGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(AliceController.inShop);
+        //Debug.Log(AliceController.inShop);
         if (AliceController.inShop == true) 
         {
             game.SetActive(false);

@@ -1,11 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-<<<<<<< HEAD
-//using static UnityEngine.RuleTile.TilingRuleOutput;
-=======
 // using static UnityEngine.RuleTile.TilingRuleOutput;
->>>>>>> 9c9711ee735a80e2fe010c2041263d14dfad6dc8
+
 
 public class IdleState : IState
 {
