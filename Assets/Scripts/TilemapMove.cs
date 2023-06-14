@@ -39,7 +39,7 @@ public class TilemapMove : MonoBehaviour
 
     void Start()
     {
-        Audio.instance.PlayMusicByName("bgm2"); //播放背景音乐
+        Audio.instance.PlayMusicByName("bgm5"); //播放背景音乐
         StartCoroutine(StartTimer()); //开始计时
         lasttime = Time.time;
         for (int i=0;i<2;++i)

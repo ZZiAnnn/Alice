@@ -267,13 +267,13 @@ public class AliceController : MonoBehaviour
         GUIStyle style = new GUIStyle(GUI.skin.label); // 创建一个新的 GUIStyle 对象
 
         // 调整标签的位置和大小
-        Rect labelRect = new Rect(Screen.width - 100, 20, 100, 40);
+        Rect labelRect = new Rect(Screen.width - 120, 20, 100, 40);
 
         // 调整字体大小
         style.fontSize = 24;
 
         // 在屏幕上绘制标签
-        GUI.Label(labelRect, money.ToString(), style);
+        GUI.Label(labelRect, "×" + money.ToString(), style);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
