@@ -8,7 +8,7 @@ public class TilemapMove : MonoBehaviour
 {
     private GameObject[] tilemap=new GameObject[32];
 
-    public GameObject mushRoomPreferb1, mushRoomPreferb2, smallMashroomPreferb, coinPreferb,
+    public GameObject mushRoomPreferb1, mushRoomPreferb2, smallMashroomPreferb, coinPreferb, signPreferb,
                         seaweedPreferb1, seaweedPreferb2, fishPreferb,shopPreferb;//预制体
     public GameObject triggerPreferb; //触发器预制体
     private GameObject barrier; //蘑菇墙
@@ -19,6 +19,7 @@ public class TilemapMove : MonoBehaviour
     private GameObject trigger; //触发器
     private GameObject shop; //商店
     private GameObject coin; //金币
+    private GameObject sign; //路牌
 
     public float v0 = 4.0f;
     public float accumlation=0.2f;
@@ -84,7 +85,8 @@ public class TilemapMove : MonoBehaviour
         {
             Speed=maxSpeed-maxSpeed/8*(t-60);
             if(shop==null) shop=Instantiate(shopPreferb, transform.position + new Vector3(25, 2.5f, 1), Quaternion.identity);
-            if(trigger==null)trigger = Instantiate(triggerPreferb, transform.position + new Vector3(37.3f, 2.57f, 0), Quaternion.identity);
+            if (sign == null) sign = Instantiate(signPreferb, new Vector3(-3, -0.3f, 1), Quaternion.identity);
+            if (trigger==null)trigger = Instantiate(triggerPreferb, transform.position + new Vector3(37.3f, 2.57f, 0), Quaternion.identity);
         }
         else if(t>=63)
         {
