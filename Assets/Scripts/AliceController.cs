@@ -13,8 +13,9 @@ public class AliceController : MonoBehaviour
     static public bool inShop;
     public AudioClip attackSound;  //×²»÷ÉùÒô
     public AudioClip dropSound;  //µôÂäÉùÒô
-    public AudioClip runSound;  //±¼ÅÜÉùÒô
+    public AudioClip jumpSound;  //ÆğÌøÉùÒô
     public AudioClip hurtSound;  //ÊÜÉËÉùÒô
+    public AudioClip coinSound;  //½ğ±ÒÉùÒô
 
     private AudioSource audioSource;
     public GameObject enter;
@@ -66,6 +67,7 @@ public class AliceController : MonoBehaviour
         float verticalVelocity = rigid.velocity.y;
         if (Input.GetKeyDown(KeyCode.Space) && cnt < 2)
         {
+            if (cnt == 0) audioSource.PlayOneShot(jumpSound);
             isJump = true;
             isGrounded = false;
             if (verticalVelocity < 0.0f)
@@ -92,14 +94,9 @@ public class AliceController : MonoBehaviour
 
         if (isGrounded)
         {
-            if (!audioSource.isPlaying) audioSource.PlayOneShot(runSound);
             animator.SetBool("DropToRun", true);
             isJump = false;
             isDrop = false;
-        }
-        else
-        {
-            if (audioSource.clip == runSound) audioSource.Pause();
         }
 
         if (!isAttacking && Input.GetMouseButtonDown(0) && bulletNum > 0)
@@ -181,6 +178,7 @@ public class AliceController : MonoBehaviour
         {
             Debug.Log("coin!");
             Destroy(collision.gameObject);
+            audioSource.PlayOneShot(dropSound);
             money++;
         }
 
