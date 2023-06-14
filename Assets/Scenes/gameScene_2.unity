@@ -324,9 +324,9 @@ RectTransform:
   m_Father: {fileID: 1444362097}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 237, y: 105}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -197.9, y: -46}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &146737424
@@ -655,7 +655,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 300012435
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 272713952, guid: 2134675664978ad4bbb35f3534e0f19e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1215,7 +1215,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1921274209
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e41d8c650a100dd42ba78d709be7b145, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1236,7 +1236,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1033750415}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.12, y: 0.0249, z: 0}
+  m_LocalPosition: {x: -0.12, y: 0.0249, z: 1}
   m_LocalScale: {x: 26.6, y: 20.076872, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1388,7 +1388,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -26835871
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6e0d53813ff4a0342a0f25fd38224264, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1513,7 +1513,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 379995505469267784, guid: d4b57c5111d138345b393ede4268d8fe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10
+      value: -7.14
       objectReference: {fileID: 0}
     - target: {fileID: 379995505469267784, guid: d4b57c5111d138345b393ede4268d8fe, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1623,7 +1623,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -26835871
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 1861463524, guid: f00b48d11462aeb4092a1051aabe2663, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1961,7 +1961,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -26835871
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6e0d53813ff4a0342a0f25fd38224264, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2320,7 +2320,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -26835871
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 1861463524, guid: f00b48d11462aeb4092a1051aabe2663, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2720,9 +2720,9 @@ RectTransform:
   m_Father: {fileID: 1444362097}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 326, y: 109}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -44, y: -46}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1857217037
@@ -2953,7 +2953,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -26835871
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 1861463524, guid: f00b48d11462aeb4092a1051aabe2663, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3116,7 +3116,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -26835871
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 1861463524, guid: f00b48d11462aeb4092a1051aabe2663, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
