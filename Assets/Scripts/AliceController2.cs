@@ -177,6 +177,11 @@ public class AliceController2 : MonoBehaviour
             Destroy(collision.gameObject);
             AliceController.money++;
         }
+        else if(collisionTag == "palace")
+        {
+            Debug.Log("palace!");
+            SceneManager.LoadScene("gameScene_3");
+        }
     }
        
     public void AttacktoRun()

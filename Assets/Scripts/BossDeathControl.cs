@@ -16,6 +16,7 @@ public class BossDeathControl : MonoBehaviour
     // Update is called once per frame
     void Start()
     {
+        Audio.instance.PlayMusicByName("bgm3");
         flag = false;
         audioSource = GetComponent<AudioSource>();
     }
