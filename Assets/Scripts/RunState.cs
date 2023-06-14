@@ -27,9 +27,8 @@ public class RunState : IState
     public void OnUpdate()
     {
         manager.transform.position = Vector2.MoveTowards(manager.transform.position,
-            new Vector3(parameter.alice.transform.position.x + DeltaDis, manager.transform.position.y, manager.transform.position.z),
+            new Vector3(parameter.alice.transform.position.x + DeltaDis, manager.transform.position.y, -1),
             parameter.chaseSpeed * Time.deltaTime);
-
         if (DeltaDis < 0 && manager.transform.position.x <= parameter.alice.transform.position.x + DeltaDis)
         {
             if (parameter.Change)
