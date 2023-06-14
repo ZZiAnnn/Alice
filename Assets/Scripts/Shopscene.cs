@@ -65,6 +65,18 @@ public class Shopscene : MonoBehaviour
             info.text = "金钱不足！";
         }
     }
+    //购买魔杖，没有任何效果
+    public void BuyWand()
+    {
+        if (AliceController.money >= 6)
+        {
+            AliceController.money -= 6;
+            moneyText.text = "X " + AliceController.money.ToString();
+            info.text = "购买成功！";
+        }else{
+            info.text = "金钱不足！";
+        }
+    }
     //返回游戏场景
     public void BackToGame()
     {

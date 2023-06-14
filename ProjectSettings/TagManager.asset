@@ -3,6 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
+<<<<<<< HEAD
   tags:
   - Barrier
   - Coin
@@ -16,6 +17,9 @@ TagManager:
   - wall
   - Boss
   - Flower
+=======
+  tags: []
+>>>>>>> 9c9711ee735a80e2fe010c2041263d14dfad6dc8
   layers:
   - Default
   - TransparentFX
