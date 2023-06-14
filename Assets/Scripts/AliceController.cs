@@ -291,7 +291,7 @@ public class AliceController : MonoBehaviour
     {
         if (collision.gameObject.tag=="shop"&&Input.GetKeyDown(KeyCode.W))
         {
-            inShop=true;
+            inShop = true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
