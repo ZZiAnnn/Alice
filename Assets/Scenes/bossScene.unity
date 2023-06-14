@@ -9082,7 +9082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52ca138d9f59b844fba16e2c38312d81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPrefab: {fileID: 4508435964534888199, guid: 1cddb594104f0774f97a69a068e508c9, type: 3}
+  objectPrefab: {fileID: 6019967982253958459, guid: 4a18cf6e00b38fb46a1618a4218cf562, type: 3}
   enter: {fileID: 397022442}
   coinPrefab: {fileID: 7190184581784348562, guid: 6769c7c45e076f34fb0a0aa425f0f2d2, type: 3}
 --- !u!1001 &1751651105
