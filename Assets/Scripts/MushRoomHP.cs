@@ -43,18 +43,4 @@ public class MushRoomHP : MonoBehaviour
     {
         hpp = hpp - x;
     }
-    public void OnmouseDown()
-    {
-        Debug.Log("GetMouseDown");
-        if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log("GetMouseDown0");
-            _material.DOFloat(30, "_Strength", 0.2f).OnComplete(() =>
-            {
-                Destroy(gameobject);
-
-                particlesystem.Play();
-            });
-        }
-    }
 }

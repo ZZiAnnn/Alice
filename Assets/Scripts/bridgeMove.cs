@@ -6,13 +6,15 @@ using UnityEngine;
 public class bridgeMove : MonoBehaviour
 {
     private GameObject[] bridgeMap = new GameObject[32];
-
-    public float v0 = 1.0f;
+    public GameObject coinPrefab;
+    float v0 = 2.0f;
     //public float accumlation = 0.5f;
     public static float currentTime = 0f;
-    public static float Speed = 2.00f;
+    public static float Speed = 0;
     private float ystart, zstart;
     float lasttime;
+    private GameObject coin; //金币
+    private int[] coinShow = { 1, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60 };
 
     void Start()
     {
@@ -47,51 +49,28 @@ public class bridgeMove : MonoBehaviour
     }
     void BarrierDestroy()
     {
-
+        if (coin != null && coin.transform.position.x < -15.0f) Destroy(coin);
     }
+
     void BarrierController(int t)
     {
         Speed = v0 + 0.1f * t / 60;
-        
+        if (isCoinAppear(t) && coin == null)
+        {
+            if(t%2==1) coin = Instantiate(coinPrefab, new Vector3(12f, -1f, 0), Quaternion.Euler(0f, 0f, 0f));
+            else coin = Instantiate(coinPrefab, new Vector3(12f, 0f, 0), Quaternion.Euler(0f, 0f, 0f));
+
+        }
     }
 
-    /*
-    bool isMushRoomAppear(int x)
+    bool isCoinAppear(int x)
     {
-        foreach (int mrs in mushRoomShow)
+        foreach (int cn in coinShow)
         {
-            if (x == mrs) return true;
+            if (x == cn) return true;
         }
         return false;
     }
-
-    bool isSmallMushRoomAppear(int x)
-    {
-        foreach (int smrs in smallMushRoomShow)
-        {
-            if (x == smrs) return true;
-        }
-        return false;
-    }
-
-    bool isSeaweedAppear(int x)
-    {
-        foreach (int sw in seaweedShow)
-        {
-            if (x == sw) return true;
-        }
-        return false;
-    }
-
-    bool isFishAppear(int x)
-    {
-        foreach (int fs in fishShow)
-        {
-            if (x == fs) return true;
-        }
-        return false;
-    }
-    */
 
     void OnGUI() // 在屏幕上显示计时器的数值
     {

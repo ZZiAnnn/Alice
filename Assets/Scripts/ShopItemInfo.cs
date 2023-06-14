@@ -15,15 +15,19 @@ public class ShopItemInfo : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
         //移动到购买按钮上时，显示商品信息
         if (eventData.pointerEnter.name == "buy1")
         {
-            infoText.text = "购买火鸡，回复50%血量！";
+            infoText.text = "购买香喷喷的烤鸡，回复50%血量！";
         }
         else if (eventData.pointerEnter.name == "buy2")
         {
-            infoText.text = "购买面包，增加25%血量！";
+            infoText.text = "购买体力面包，增加25%血量！";
         }
         else if (eventData.pointerEnter.name == "buy3")
         {
-            infoText.text = "购买龟壳，可以抵御下两次伤害！";
+            infoText.text = "购买乌龟壳，可以抵御下两次伤害！";
+        }
+        else if (eventData.pointerEnter.name == "buy4")
+        {
+            infoText.text = "购买魔杖，可以在战斗中祝你一臂之力！";
         }
     }
     //鼠标离开

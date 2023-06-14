@@ -629,7 +629,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1784182927
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e41d8c650a100dd42ba78d709be7b145, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -726,7 +726,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1784182927
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6e0d53813ff4a0342a0f25fd38224264, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -913,7 +913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3edbbb795df9a440ab3f31c5e04d9de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  v0: 2
+  coinPrefab: {fileID: 7190184581784348562, guid: 6769c7c45e076f34fb0a0aa425f0f2d2, type: 3}
 --- !u!61 &1186525782
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1086,7 +1086,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1784182927
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6e0d53813ff4a0342a0f25fd38224264, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1250,7 +1250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3edbbb795df9a440ab3f31c5e04d9de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  v0: 2
+  coinPrefab: {fileID: 7190184581784348562, guid: 6769c7c45e076f34fb0a0aa425f0f2d2, type: 3}
 --- !u!1001 &1650775644
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1554,7 +1554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3edbbb795df9a440ab3f31c5e04d9de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  v0: 2
+  coinPrefab: {fileID: 7190184581784348562, guid: 6769c7c45e076f34fb0a0aa425f0f2d2, type: 3}
 --- !u!1 &2033616008
 GameObject:
   m_ObjectHideFlags: 0
@@ -1679,4 +1679,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3edbbb795df9a440ab3f31c5e04d9de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  v0: 2
+  coinPrefab: {fileID: 7190184581784348562, guid: 6769c7c45e076f34fb0a0aa425f0f2d2, type: 3}
