@@ -31,6 +31,7 @@ public class AliceController_BossTime : MonoBehaviour
     bool isLeftOrRight;  //false表示朝左，true表示朝右
     bool biu1Direct;
     bool biu2Direct;
+    float timer;
 
     void Start()
     {
@@ -43,13 +44,18 @@ public class AliceController_BossTime : MonoBehaviour
         isDrop = false;
         isLeftOrRight = true;
         tran = GetComponent<Transform>();
+        timer = 0;
     }
 
     void Update()
     {
         healthBar.value = AliceController.HP / 100;
         float verticalVelocity = rigid.velocity.y;
-
+        if (timer > 0)
+        {
+            timer -= Time.deltaTime;
+        }
+        else timer = 0;
         if (Input.GetKey(KeyCode.A))
         {
             transform.Translate(Vector3.left * walkingSpeed * Time.deltaTime);
@@ -125,6 +131,7 @@ public class AliceController_BossTime : MonoBehaviour
         {
             if (biu1Direct)
             {
+                biu1.transform.localScale = new Vector3(1, 1, 1);
                 biu1.transform.position += Vector3.right * bulletSpeed * Time.deltaTime;
                 if (biu1.transform.position.x > 13)
                 {
@@ -133,6 +140,7 @@ public class AliceController_BossTime : MonoBehaviour
             }
             else
             {
+                biu1.transform.localScale = new Vector3(-1, 1, 1);
                 biu1.transform.position += Vector3.left * bulletSpeed * Time.deltaTime;
                 if (biu1.transform.position.x < -13)
                 {
@@ -172,6 +180,13 @@ public class AliceController_BossTime : MonoBehaviour
             }
             isGrounded = true;
             cnt = 0;
+        }
+        else if (collisionTag == "Boss" && timer == 0) 
+        {
+            Debug.Log("Boss!");
+            audioSource.PlayOneShot(hurtSound);
+            AliceController.HP -= 15;
+            timer = 2;
         }
     }
     public void AttacktoRun()

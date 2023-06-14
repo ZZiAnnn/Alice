@@ -3,7 +3,22 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
+<<<<<<< HEAD
   tags: []
+=======
+  tags:
+  - Barrier
+  - Coin
+  - Boss
+  - Ground
+  - player
+  - seaweed
+  - Barrier2
+  - next
+  - fish
+  - shop
+  - wall
+>>>>>>> 9390682f8a770f59be5d0f6cb7612d8363278215
   layers:
   - Default
   - TransparentFX

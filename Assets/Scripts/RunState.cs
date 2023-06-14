@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.UIElements;
 using UnityEngine;
 
@@ -17,7 +18,6 @@ public class RunState : IState
     {
         parameter.animator.Play("BossRun");
         manager.FlipTo(parameter.alice.transform);
-        manager.FlipTo(parameter.alice.transform);
         if (manager.transform.localScale.x > 0)
         {
             DeltaDis = -2;
@@ -27,9 +27,8 @@ public class RunState : IState
     public void OnUpdate()
     {
         manager.transform.position = Vector2.MoveTowards(manager.transform.position,
-            new Vector3(parameter.alice.transform.position.x + DeltaDis, manager.transform.position.y, 0),
+            new Vector3(parameter.alice.transform.position.x + DeltaDis, manager.transform.position.y, -1),
             parameter.chaseSpeed * Time.deltaTime);
-
         if (DeltaDis < 0 && manager.transform.position.x <= parameter.alice.transform.position.x + DeltaDis)
         {
             if (parameter.Change)
