@@ -97,7 +97,7 @@ public class Button : MonoBehaviour
     public void onClickReplay()
     {
         audioSource.PlayOneShot(buttonClickSound);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("gameScene_1");
     }
 
     public void onClickReturn()

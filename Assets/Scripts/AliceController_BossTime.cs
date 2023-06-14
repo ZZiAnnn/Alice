@@ -21,6 +21,8 @@ public class AliceController_BossTime : MonoBehaviour
     public float jumpForce = 6.0f;
     private int cnt = 0;
     bool isGrounded = false;
+
+    public GameObject End;
     public GameObject bullet;
     private GameObject biu1, biu2;
     public float bulletSpeed = 5f;
@@ -45,12 +47,14 @@ public class AliceController_BossTime : MonoBehaviour
         isLeftOrRight = true;
         tran = GetComponent<Transform>();
         timer = 0;
+        End.SetActive(false);
     }
 
     void Update()
     {
         healthBar.value = AliceController.HP / 100;
         float verticalVelocity = rigid.velocity.y;
+        bool moving=false;
         if (timer > 0)
         {
             timer -= Time.deltaTime;
@@ -61,6 +65,7 @@ public class AliceController_BossTime : MonoBehaviour
             transform.Translate(Vector3.left * walkingSpeed * Time.deltaTime);
             if(isLeftOrRight) transform.localScale = new Vector3(1f, 1f, 1f); // 将角色朝向左
             isLeftOrRight = false;
+            moving=true;
         }
 
         if (Input.GetKey(KeyCode.D))
@@ -68,6 +73,18 @@ public class AliceController_BossTime : MonoBehaviour
             transform.Translate(Vector3.right * walkingSpeed * Time.deltaTime);
             if (!isLeftOrRight) transform.localScale = new Vector3(-1f, 1f, 1f); // 将角色朝向左
             isLeftOrRight = true;
+            moving=true;
+        }
+
+        if(moving)
+        {
+            animator.SetBool("IdleToRun", true);
+            animator.SetBool("RunToIdle", false);
+        }
+        else 
+        {
+            animator.SetBool("RunToIdle", true);
+            animator.SetBool("IdleToRun", false);
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && cnt < 2)
@@ -166,6 +183,11 @@ public class AliceController_BossTime : MonoBehaviour
                     Destroy(biu1);
                 }
             }
+        }
+        if(AliceController.HP<=0)
+        {
+            Time.timeScale=0;
+            End.SetActive(true);
         }
     }
     void OnCollisionEnter2D(Collision2D collision)

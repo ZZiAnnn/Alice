@@ -139,7 +139,7 @@ public class AliceController : MonoBehaviour
                 Destroy(biu2);
             }
         }
-        if(HP==0)
+        if(HP<=0)
         {
             Time.timeScale=0;
             End.SetActive(true);
