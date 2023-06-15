@@ -2209,7 +2209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinPrefab: {fileID: 7190184581784348562, guid: 6769c7c45e076f34fb0a0aa425f0f2d2, type: 3}
-  palacePrefab: {fileID: 2660431228461627188, guid: 2b2a68ca8bdf6734fa31cdeb748b00b0, type: 3}
+  palacePrefab: {fileID: 2144377766927295404, guid: 11c1d8df061afcd4b94d016a597a5047, type: 3}
 --- !u!61 &1186525782
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2934,7 +2934,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinPrefab: {fileID: 7190184581784348562, guid: 6769c7c45e076f34fb0a0aa425f0f2d2, type: 3}
-  palacePrefab: {fileID: 2660431228461627188, guid: 2b2a68ca8bdf6734fa31cdeb748b00b0, type: 3}
+  palacePrefab: {fileID: 2144377766927295404, guid: 11c1d8df061afcd4b94d016a597a5047, type: 3}
 --- !u!1 &1534918390
 GameObject:
   m_ObjectHideFlags: 0
@@ -4041,7 +4041,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinPrefab: {fileID: 7190184581784348562, guid: 6769c7c45e076f34fb0a0aa425f0f2d2, type: 3}
-  palacePrefab: {fileID: 2660431228461627188, guid: 2b2a68ca8bdf6734fa31cdeb748b00b0, type: 3}
+  palacePrefab: {fileID: 2144377766927295404, guid: 11c1d8df061afcd4b94d016a597a5047, type: 3}
 --- !u!1 &2008836267
 GameObject:
   m_ObjectHideFlags: 0
@@ -4205,7 +4205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinPrefab: {fileID: 7190184581784348562, guid: 6769c7c45e076f34fb0a0aa425f0f2d2, type: 3}
-  palacePrefab: {fileID: 2660431228461627188, guid: 2b2a68ca8bdf6734fa31cdeb748b00b0, type: 3}
+  palacePrefab: {fileID: 2144377766927295404, guid: 11c1d8df061afcd4b94d016a597a5047, type: 3}
 --- !u!1 &2126924125
 GameObject:
   m_ObjectHideFlags: 0

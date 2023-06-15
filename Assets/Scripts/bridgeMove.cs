@@ -62,7 +62,7 @@ public class bridgeMove : MonoBehaviour
             if(t%2==1) coin = Instantiate(coinPrefab, new Vector3(12f, -1f, 0), Quaternion.Euler(0f, 0f, 0f));
             else coin = Instantiate(coinPrefab, new Vector3(12f, 0f, 0), Quaternion.Euler(0f, 0f, 0f));
         }
-        if(t==30) palace = Instantiate(palacePrefab, new Vector3(12f, 0f, 0), Quaternion.Euler(0f, 0f, 0f));
+        if (t == 30 && palace == null&&gameObject.name == "bridge1") palace = Instantiate(palacePrefab, new Vector3(15f, 0f, 0), Quaternion.Euler(0f, 0f, 0f));
     }
 
     bool isCoinAppear(int x)

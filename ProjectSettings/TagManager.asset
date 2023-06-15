@@ -3,7 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Boss
+  - Barrier
+  - wall
+  - Ground
+  - Flower
+  - player
+  - seaweed
+  - portal
+  - shop
+  - fish
+  - palace
+  - Coin
   layers:
   - Default
   - TransparentFX

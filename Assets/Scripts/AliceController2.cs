@@ -173,7 +173,7 @@ public class AliceController2 : MonoBehaviour
         else if (collisionTag == "Coin")
         {
             Debug.Log("coin!");
-            audioSource.PlayOneShot(dropSound);
+            audioSource.PlayOneShot(coinSound);
             Destroy(collision.gameObject);
             AliceController.money++;
         }
