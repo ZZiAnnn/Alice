@@ -85,7 +85,7 @@ public class TilemapMove : MonoBehaviour
         {
             Speed=maxSpeed-maxSpeed/8*(t-60);
             if(shop==null) shop=Instantiate(shopPreferb, transform.position + new Vector3(25, 2.5f, 1), Quaternion.identity);
-            if (sign == null) sign = Instantiate(signPreferb, new Vector3(-3, -0.3f, 1), Quaternion.identity);
+            if (sign == null) sign = Instantiate(signPreferb, transform.position + new Vector3(-11f, 2f, 0f), Quaternion.identity);
             if (trigger==null)trigger = Instantiate(triggerPreferb, transform.position + new Vector3(37.3f, 2.57f, 0), Quaternion.identity);
         }
         else if(t>=63)
