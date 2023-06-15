@@ -11,16 +11,17 @@ public class AliceController : MonoBehaviour
     Rigidbody2D rigid;
     Transform tran;
     static public bool inShop;
-    public AudioClip attackSound;  //×²»÷ÉùÒô
+    public AudioClip attackSound; //×²»÷ÉùÒô
     public AudioClip dropSound;  //µôÂäÉùÒô
     public AudioClip jumpSound;  //ÆğÌøÉùÒô
     public AudioClip hurtSound;  //ÊÜÉËÉùÒô
     public AudioClip coinSound;  //½ğ±ÒÉùÒô
 
+    private bool atShop;
     private AudioSource audioSource;
     public GameObject enter;
     public GameObject End;
-    public float jumpForce = 6.0f;
+    public static float jumpForce = 6.0f;
     private int cnt = 0;
     bool isGrounded = false;
     public GameObject bullet;
@@ -42,6 +43,7 @@ public class AliceController : MonoBehaviour
     void Start()
     {
         HP=100;
+        atShop=false;
         Time.timeScale=1;
         End.SetActive(false);
         audioSource = GetComponent<AudioSource>();
@@ -62,7 +64,10 @@ public class AliceController : MonoBehaviour
         {
             horizontal = Input.GetAxis("Horizontal");
         }
-
+        if(atShop&&Input.GetKeyDown(KeyCode.W))
+        {
+            inShop = true;
+        }
         healthBar.value = HP / 100;
         float verticalVelocity = rigid.velocity.y;
         if (Input.GetKeyDown(KeyCode.Space) && cnt < 2)
@@ -279,23 +284,19 @@ public class AliceController : MonoBehaviour
         if(collision.gameObject.tag=="shop")
         {
             enter.SetActive(true);
+            atShop=true;
         }
         else if(collision.gameObject.tag=="next")
         {
             SceneManager.LoadScene("bossScene");
         }
     }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag=="shop"&&Input.GetKeyDown(KeyCode.W))
-        {
-            inShop = true;
-        }
-    }
+    
     private void OnTriggerExit2D(Collider2D collision)
     {
         if(collision.gameObject.tag=="shop")
         {
+            atShop=false;
             enter.SetActive(false);
         }
     }

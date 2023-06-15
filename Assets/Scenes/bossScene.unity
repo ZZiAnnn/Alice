@@ -7146,7 +7146,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 236, y: -46}
+  m_AnchoredPosition: {x: 271, y: -46}
   m_SizeDelta: {x: 120.3198, y: 20.1988}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1028567409
@@ -7655,7 +7655,7 @@ MonoBehaviour:
   dropSound: {fileID: 8300000, guid: 1744d891dfec3a048b6f4c690e073ca0, type: 3}
   jumpSound: {fileID: 8300000, guid: 50b6e15d4d13c0144b7e1c6ed10f947c, type: 3}
   hurtSound: {fileID: 8300000, guid: a5fd521ad0605b74dac29e2f9d08a199, type: 3}
-  coinSound: {fileID: 8300000, guid: 6056a48c17e2e17448d349a048188c4e, type: 3}
+  coinSound: {fileID: 0}
   walkingSpeed: 8
   jumpForce: 6
   End: {fileID: 1908143912}
@@ -8190,7 +8190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 673e7613540f06644adf61b99101a605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathSound: {fileID: 8300000, guid: cd64badef28108245a8bf705c65bf9a2, type: 3}
+  deathSound: {fileID: 0}
   particlesystem: {fileID: 476580629}
   gameobject: {fileID: 528491538}
   gameobject2: {fileID: 1734124036}
@@ -9084,7 +9084,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectPrefab: {fileID: 6019967982253958459, guid: 4a18cf6e00b38fb46a1618a4218cf562, type: 3}
   enter: {fileID: 397022442}
-  coinPrefab: {fileID: 7190184581784348562, guid: 6769c7c45e076f34fb0a0aa425f0f2d2, type: 3}
+  coinPrefab: {fileID: 0}
 --- !u!1001 &1751651105
 PrefabInstance:
   m_ObjectHideFlags: 0
