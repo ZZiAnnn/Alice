@@ -34,7 +34,7 @@ public class TilemapMove : MonoBehaviour
     private int[] mushRoomShow2 = { 11, 22, 28, 34, 43, 51, 57, }; //蘑菇墙出现的时间
     private int[] smallMushRoomShow = { 1, 5, 14, 17, 27, 30, 32, 37, 45, 48, 50, 52 }; //小蘑菇墙出现的时间
     private int[] fishShow = { 2, 5, 10, 15, 20, 24, 28, 32, 36, 40, 43, 46, 49, 52, 55, 58, 61 }; //鱼出现的时间
-    private int[] seaweedShow = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 15, 20, 24, 29, 32, 37, 40, 43, 47, 52, 57, 61 }; //水草出现的时间
+    private int[] seaweedShow = { 3, 4, 5, 6, 7, 8, 9, 15, 20, 24, 29, 32, 37, 40, 43, 47, 52, 57, 61 }; //水草出现的时间
     private int[] coinShow = { 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60 };
 
 
