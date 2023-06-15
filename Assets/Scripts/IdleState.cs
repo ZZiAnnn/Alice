@@ -1,11 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-<<<<<<< Updated upstream
 // using static UnityEngine.RuleTile.TilingRuleOutput;
 
-=======
->>>>>>> Stashed changes
 
 public class IdleState : IState
 {
