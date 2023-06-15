@@ -26,7 +26,7 @@ public class TreasureControl : MonoBehaviour
                 enter.SetActive(false);
 
                 // 生成物体
-                GameObject newObject = Instantiate(objectPrefab, new Vector3(9f, -3f, 0), Quaternion.identity);
+                GameObject newObject = Instantiate(objectPrefab, new Vector3(9f, -2.5f, 0), Quaternion.identity);
 
                 obj[0] = Instantiate(coinPrefab, new Vector3(2f, -2.5f, 0), Quaternion.identity);
                 obj[1] = Instantiate(coinPrefab, new Vector3(3f, -2.8f, 0), Quaternion.identity);
