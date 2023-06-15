@@ -642,7 +642,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7, y: -53}
+  m_AnchoredPosition: {x: 6.9999695, y: -53}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &375166999
@@ -3442,6 +3442,7 @@ MonoBehaviour:
   jumpSound: {fileID: 8300000, guid: 50b6e15d4d13c0144b7e1c6ed10f947c, type: 3}
   hurtSound: {fileID: 8300000, guid: a5fd521ad0605b74dac29e2f9d08a199, type: 3}
   coinSound: {fileID: 8300000, guid: 6056a48c17e2e17448d349a048188c4e, type: 3}
+  end: {fileID: 237663039}
   jumpForce: 6
   bullet: {fileID: 721909105728777466, guid: d8c70ac54dee7cf4e8ee56157b8a2480, type: 3}
   bulletSpeed: 50
@@ -3531,7 +3532,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1876458178}
         m_TargetAssemblyTypeName: SettingButton, Assembly-CSharp
         m_MethodName: pauseButton
         m_Mode: 1

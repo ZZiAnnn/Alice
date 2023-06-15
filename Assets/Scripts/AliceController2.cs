@@ -17,6 +17,7 @@ public class AliceController2 : MonoBehaviour
     public AudioClip hurtSound;  // ‹…À“Ù–ß
     public AudioClip coinSound;  //Ω±“…˘“Ù
 
+    public GameObject end;
     private AudioSource audioSource;
 
     public float jumpForce = 6.0f;
@@ -57,7 +58,8 @@ public class AliceController2 : MonoBehaviour
             Debug.Log("-5");
             flag = false;
             HP -= 30;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            if (HP <= 0) end.SetActive(true);
+            else SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             //DelayedAction(0.5f);
         }
        

@@ -18,7 +18,7 @@ public class palaceController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveSpeed = bridgeMove.Speed;
+        moveSpeed = bridgeMove.Speed * 4.1f;
         if (tran.position.x > -20.0f)
         {
             tran.position -= new Vector3(Time.deltaTime * moveSpeed, 0, 0);
